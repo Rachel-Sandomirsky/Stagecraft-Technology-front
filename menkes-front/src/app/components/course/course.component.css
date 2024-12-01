@@ -1,0 +1,95 @@
+/* כרטיס קורס */
+.course-card {
+  width: 300px;
+  min-height: 340px; /* גובה מינימלי */
+  height: 100%; /* גובה משתנה בהתאם לתוכן */
+  border: 1px solid #000; /* שחור */
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff; /* לבן */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* מרווחים אחידים */
+  box-sizing: border-box; /* זה ימנע חפיפות בין התוכן לקצוות */
+}
+
+/* אפקט ריחוף על כרטיס הקורס */
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* תמונת קורס */
+.course-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* כותרת הקורס */
+.course-title {
+  font-size: 1.2em;
+  margin-top: 10px;
+  color: #000; /* שחור */
+  font-weight: 600;
+}
+
+/* תיאור הקורס */
+.course-description {
+  font-size: 1em;
+  color: #333;
+  margin: 10px 0;
+  flex-grow: 1; /* תתפוס את מקום הפנוי */
+  overflow: hidden; /* במקרה של טקסט ארוך */
+  white-space: normal; /* לא יגרום לשורה אחת */
+  text-overflow: ellipsis; /* הוסף '...' אם התיאור ארוך מדי */
+}
+
+/* פרטי הקורס (מחיר ודירוג) */
+.course-details {
+  font-size: 1em;
+  color: #000; /* שחור */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.course-price {
+  font-weight: bold;
+  color: #ffcf00; /* צהוב */
+}
+
+.course-rating {
+  font-size: 0.9em;
+  color: #ffcf00; /* צהוב */
+}
+
+/* כפתור הרשמה */
+.register-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffcf00; /* צהוב */
+  color: black; /* שחור */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.register-button:hover {
+  background-color: #e6b800; /* צהוב כהה */
+  transform: translateY(-3px);
+}
+
+.register-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
