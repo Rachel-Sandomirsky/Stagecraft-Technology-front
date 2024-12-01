@@ -1,28 +1,28 @@
-/* כרטיס קורס */
+/* Course Card */
 .course-card {
   width: 300px;
-  min-height: 340px; /* גובה מינימלי */
-  height: 100%; /* גובה משתנה בהתאם לתוכן */
-  border: 1px solid #000; /* שחור */
+  min-height: 340px; /* Minimum height */
+  height: 100%; /* Flexible height based on content */
+  border: 1px solid #000; /* Black */
   border-radius: 8px;
   overflow: hidden;
-  background-color: #fff; /* לבן */
+  background-color: #fff; /* White */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* מרווחים אחידים */
-  box-sizing: border-box; /* זה ימנע חפיפות בין התוכן לקצוות */
+  justify-content: space-between; /* Even spacing */
+  box-sizing: border-box; /* Prevent content from overlapping with edges */
 }
 
-/* אפקט ריחוף על כרטיס הקורס */
+/* Hover Effect on Course Card */
 .course-card:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* תמונת קורס */
+/* Course Image */
 .course-image {
   width: 100%;
   height: 180px;
@@ -31,29 +31,29 @@
   margin-bottom: 15px;
 }
 
-/* כותרת הקורס */
+/* Course Title */
 .course-title {
   font-size: 1.2em;
   margin-top: 10px;
-  color: #000; /* שחור */
+  color: #000; /* Black */
   font-weight: 600;
 }
 
-/* תיאור הקורס */
+/* Course Description */
 .course-description {
   font-size: 1em;
   color: #333;
   margin: 10px 0;
-  flex-grow: 1; /* תתפוס את מקום הפנוי */
-  overflow: hidden; /* במקרה של טקסט ארוך */
-  white-space: normal; /* לא יגרום לשורה אחת */
-  text-overflow: ellipsis; /* הוסף '...' אם התיאור ארוך מדי */
+  flex-grow: 1; /* Occupy available space */
+  overflow: hidden; /* In case of long text */
+  white-space: normal; /* Allows multiple lines */
+  text-overflow: ellipsis; /* Adds '...' if the description is too long */
 }
 
-/* פרטי הקורס (מחיר ודירוג) */
+/* Course Details (Price and Rating) */
 .course-details {
   font-size: 1em;
-  color: #000; /* שחור */
+  color: #000; /* Black */
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
@@ -61,20 +61,20 @@
 
 .course-price {
   font-weight: bold;
-  color: #ffcf00; /* צהוב */
+  color: #ffcf00; /* Yellow */
 }
 
 .course-rating {
   font-size: 0.9em;
-  color: #ffcf00; /* צהוב */
+  color: #ffcf00; /* Yellow */
 }
 
-/* כפתור הרשמה */
+/* Register Button */
 .register-button {
   width: 100%;
   padding: 12px;
-  background-color: #ffcf00; /* צהוב */
-  color: black; /* שחור */
+  background-color: #ffcf00; /* Yellow */
+  color: black; /* Black */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -85,7 +85,7 @@
 }
 
 .register-button:hover {
-  background-color: #e6b800; /* צהוב כהה */
+  background-color: #e6b800; /* Darker Yellow */
   transform: translateY(-3px);
 }
 

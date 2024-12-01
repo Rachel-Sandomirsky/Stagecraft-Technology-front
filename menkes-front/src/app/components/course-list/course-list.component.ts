@@ -2,28 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/course.service';
 
-
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
-  courses: Course[] = []; // מאגר הקורסים ריק בהתחלה
+  courses: Course[] = []; // The initial list of courses is empty
 
   constructor(private courseService: CourseService) {}
 
   ngOnInit(): void {
-    // ניסיון לטעון קורסים מה-API
+    // Attempt to fetch courses from the API
     this.courseService.getCourses().subscribe({
-      next: (data: Course[]) => { // טיפוס מוגדר
+      next: (data: Course[]) => { // Defined data type
         this.courses = data;
       },
-      error: () => {
-        console.warn('Failed to load courses from API. Loading mock data...');
-        this.courseService.getMockCourses().subscribe((mockData: Course[]) => { // טיפוס מוגדר
-          this.courses = mockData;
-        });
+      error: (error) => {
+        console.error('Failed to load courses from API:', error);
+        // If an error occurs, a message can be shown to the user
       }
     });
   }

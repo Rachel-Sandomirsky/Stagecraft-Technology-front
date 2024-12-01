@@ -11,75 +11,64 @@ import { CourseService } from 'src/app/course.service';
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
-  courseName!: string; // שם הקורס לתצוגה בלבד
-  courseId!: number; // מזהה הקורס לשליחה לשרת
+  courseName!: string; // Course name for display purposes only
+  courseId!: number; // Course ID to be sent to the server
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private http: HttpClient,
-    private courseService: CourseService // חיבור לשירות הקורסים
+    private courseService: CourseService // Service for courses
   ) {}
 
   ngOnInit(): void {
-    // שליפת שם הקורס מהנתיב
+    // Extract course name from the route
     this.courseName = this.route.snapshot.paramMap.get('course') || 'Unknown Course';
 
-    // שליפת מזהה הקורס על בסיס השם
-    this.courseService.getMockCourses().subscribe((courses) => {
-      const course = courses.find((c) => c.title === this.courseName);
-      if (course) {
-        this.courseId = course.code;
-        console.log('Course ID loaded:', this.courseId);
-      } else {
-        console.error('Course not found!');
-      }
-    });
-
-    // יצירת טופס הרשמה
+    // Initialize the registration form
     this.registrationForm = this.fb.group({
       fullName: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^[a-zA-Zא-ת\s]+$/), // רק אותיות ורווחים
+          Validators.pattern(/^[a-zA-Zא-ת\s]+$/), // Only letters and spaces
           Validators.minLength(2),
         ],
       ],
-      email: ['', [Validators.required, Validators.email]], // אימות מייל תקין
+      email: ['', [Validators.required, Validators.email]], // Valid email
       phone: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^0[2-9]\d{7,8}$/), // תבנית מספר טלפון ישראלי
+          Validators.pattern(/^0[2-9]\d{7,8}$/), // Israeli phone number format
         ],
       ],
-      course: [{ value: this.courseName, disabled: true }], // שדה מנוטרל לתצוגה
+      course: [{ value: this.courseName, disabled: true }], // Disabled field for display
     });
   }
 
   onSubmit(): void {
     if (this.registrationForm.valid) {
       const formData = {
-        ...this.registrationForm.getRawValue(), // הנתונים מהטופס
-        courseId: this.courseId, // הוספת מזהה הקורס לנתונים הנשלחים
+        ...this.registrationForm.getRawValue(), // Form data
+        courseId: this.courseId, // Add course ID to the submitted data
       };
 
-      console.log('Form Data to be sent:', formData); // הצגת נתונים בקונסול
+      console.log('Form Data to be sent:', formData); // Log data to the console
 
-      // שליחת הנתונים לשרת
+      // Send the data to the server
       this.http.post('http://localhost:3000/register', formData).subscribe(
         (response) => {
-          console.log('Response from server:', response); // תגובת השרת
-          alert('הטופס נשלח בהצלחה!');
+          console.log('Response from server:', response); // Server response
+          alert('Form submitted successfully!');
         },
         (error) => {
-          console.error('Error sending form:', error); // שגיאה במשלוח
-          alert('אירעה שגיאה בעת שליחת הטופס.');
+          console.error('Error sending form:', error); // Error while submitting
+          alert('An error occurred while submitting the form.');
         }
       );
     } else {
-      alert('אנא מלא את הטופס בצורה תקינה.');
+      alert('Please fill out the form correctly.');
     }
   }
 
