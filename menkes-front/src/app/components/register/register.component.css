@@ -1,26 +1,31 @@
 /* Form */
 .registration-form {
-  max-width: 500px;
+  max-width: 25rem; /* 400px / 16 */
   width: 100%; 
-  margin: 50px auto; 
-  padding: 30px;
-  border: 1px solid #000;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+  margin: 2rem auto; /* 32px / 16 */
+  padding: 1.5rem; /* 24px / 16 */
+  border: 0.0625rem solid #000; /* 1px / 16 */
+  border-radius: 0.5rem; /* 8px / 16 */
+  background-color: #f9f9f9; /* רקע בהיר וידידותי */
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); /* 2px / 10px */
   transition: all 0.3s ease-in-out; 
+  direction: rtl; /* טקסט מימין לשמאל */
+  text-align: right; /* יישור טקסט לימין */
 }
 
-.registration-form:hover {
-  transform: scale(1.02); 
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+/* הודעה בראש הטופס */
+.registration-form h1 {
+  font-size: 1.2rem; /* 19px / 16 */
+  text-align: center;
+  color:#ffcf00; /* ירוק ידידותי */
+  margin-bottom: 1rem; /* 16px */
 }
 
 /* Form Title */
 h2 {
-  text-align: center;
+  text-align: center; /* הכותרת נשארת במרכז */
   font-size: 1.5em;
-  margin-bottom: 20px;
+  margin-bottom: 1rem; /* 16px / 16 */
   color: #ffcf00; /* Yellow */
   font-family: 'Arial', sans-serif;
   font-weight: 600;
@@ -30,46 +35,51 @@ h2 {
 label {
   display: block;
   font-size: 1em;
-  margin-bottom: 6px;
+  margin-bottom: 0.375rem; /* 6px / 16 */
   color: #000; /* Black */
+  text-align: right; /* יישור טקסט לימין */
 }
 
 /* Input Fields */
 input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
+  width: calc(100% - 2rem); /* פחות שוליים */
+  padding: 0.5rem; /* 8px */
+  margin: 0.5rem auto; /* רווחים מסביב */
+  border: 0.0625rem solid #ccc; /* 1px / 16 */
+  border-radius: 0.25rem; /* 4px / 16 */
+  font-size: 0.9rem; /* מעט קטן יותר */
   transition: border-color 0.3s ease;
+  text-align: right; /* יישור טקסט לימין */
+  display: block;
+  box-sizing: border-box;
 }
 
 /* Input Hover Effect */
 input:focus {
   border-color: #ffcf00; 
   outline: none;
-  box-shadow: 0 0 5px rgba(255, 207, 0, 0.5); 
+  box-shadow: 0 0 0.25rem rgba(255, 207, 0, 0.5); /* 4px / 16 */
 }
 
 /* Button */
 button {
-  width: 100%;
-  padding: 12px;
-  background-color: #ffcf00;
-  color: black; 
+  width: calc(100% - 2rem);
+  margin: 1rem auto; /* ריווח לפני הכפתור */
+  padding: 0.75rem; /* 12px / 16 */
+  background-color:#ffcf00; /* ירוק */
+  color: white; 
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem; /* 4px / 16 */
   cursor: pointer;
-  font-size: 1.1em;
+  font-size: 1rem; /* גודל סטנדרטי */
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: block;
 }
 
-/* Button Hover Effect */
 button:hover {
-  background-color: #e6b800; 
+  background-color:#ffcf00; /* ירוק כהה יותר */
+  transform: scale(1.05);
 }
 
 /* Disabled Button */
@@ -82,22 +92,11 @@ button:disabled {
 .error-message {
   color: red;
   font-size: 0.9em;
-  margin-top: 5px; 
-  margin-bottom: 10px;
+  margin-top: 0.3125rem; /* 5px / 16 */
+  margin-bottom: 0.625rem; /* 10px / 16 */
+  text-align: right; /* יישור שגיאות לימין */
 }
 
 .error-message span {
   display: block; 
-}
-
-/* Input Fields for Mobile */
-@media (max-width: 600px) {
-  .registration-form {
-    padding: 20px;
-    max-width: 100%;
-  }
-
-  input, button {
-    padding: 10px;
-  }
 }
