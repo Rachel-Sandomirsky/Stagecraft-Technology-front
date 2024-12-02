@@ -4,8 +4,8 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  { path: '', component: CourseListComponent }, // עמוד הבית
-  { path: 'register/:course', component: RegisterComponent }, // מסלול ההרשמה
+  { path: '', component: CourseListComponent },
+  { path: 'register/:course', component: RegisterComponent },
 ];
 
 @NgModule({

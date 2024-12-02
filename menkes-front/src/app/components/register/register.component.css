@@ -1,4 +1,4 @@
-/* טופס */
+/* Form */
 .registration-form {
   max-width: 500px;
   width: 100%; 
@@ -16,25 +16,25 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 }
 
-/* כותרת הטופס */ 
+/* Form Title */
 h2 {
   text-align: center;
   font-size: 1.5em;
   margin-bottom: 20px;
-  color: #ffcf00; /* צהוב */
+  color: #ffcf00; /* Yellow */
   font-family: 'Arial', sans-serif;
   font-weight: 600;
 }
 
-/* תוויות */
+/* Labels */
 label {
   display: block;
   font-size: 1em;
   margin-bottom: 6px;
-  color: #000; /* שחור */
+  color: #000; /* Black */
 }
 
-/* שדות קלט */
+/* Input Fields */
 input {
   width: 100%;
   padding: 12px;
@@ -46,14 +46,14 @@ input {
   transition: border-color 0.3s ease;
 }
 
-/* אפקט על שדות קלט בעת ריחוף */
+/* Input Hover Effect */
 input:focus {
   border-color: #ffcf00; 
   outline: none;
   box-shadow: 0 0 5px rgba(255, 207, 0, 0.5); 
 }
 
-/* כפתור */
+/* Button */
 button {
   width: 100%;
   padding: 12px;
@@ -67,18 +67,18 @@ button {
   transition: background-color 0.3s ease;
 }
 
-/* אפקט ריחוף על הכפתור */
+/* Button Hover Effect */
 button:hover {
   background-color: #e6b800; 
 }
 
-/* כפתור מנוטרל */
+/* Disabled Button */
 button:disabled {
   background-color: #aaa;
   cursor: not-allowed;
 }
 
-/* הודעות שגיאה */
+/* Error Messages */
 .error-message {
   color: red;
   font-size: 0.9em;
@@ -90,7 +90,7 @@ button:disabled {
   display: block; 
 }
 
-/* שדות הקלט במובייל */
+/* Input Fields for Mobile */
 @media (max-width: 600px) {
   .registration-form {
     padding: 20px;
@@ -101,4 +101,3 @@ button:disabled {
     padding: 10px;
   }
 }
-  

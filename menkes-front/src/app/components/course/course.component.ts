@@ -12,10 +12,8 @@ export class CourseComponent {
 
   constructor(private router: Router) {}
 
-register(course: Course): void {
-  this.router.navigate(['/register', 'test-course']);
-  console.log('Navigating to /register/test-course');
-}
-
-
+  register(course: Course): void {
+    this.router.navigate(['/register', course.title]); // Navigate using the course title
+    console.log('Navigating to /register/' + course.title);
+  }
 }
