@@ -1,0 +1,40 @@
+<div class="registration-form">
+  <h1>כיף שבחרת להירשם!</h1>
+  <h2>הרשמה לקורס: {{ courseName }}</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <label>
+      שם מלא:
+      <input formControlName="fullName" type="text" />
+    </label>
+    <div *ngIf="fullName?.invalid && fullName?.touched" class="error-message">
+      <span *ngIf="fullName?.errors?.['required']">שם מלא נדרש.</span>
+      <span *ngIf="fullName?.errors?.['pattern']">יש להזין שם תקין (רק אותיות ורווחים).</span>
+      <span *ngIf="fullName?.errors?.['minlength']">שם מלא חייב להיות לפחות 2 תווים.</span>
+    </div>
+
+    <label>
+      טלפון:
+      <input formControlName="phone" type="tel" />
+    </label>
+    <div *ngIf="phone?.invalid && phone?.touched" class="error-message">
+      <span *ngIf="phone?.errors?.['required']">מספר טלפון נדרש.</span>
+      <span *ngIf="phone?.errors?.['pattern']">מספר הטלפון אינו תקין.</span>
+    </div>
+
+    <label>
+      דוא"ל:
+      <input formControlName="email" type="email" />
+    </label>
+    <div *ngIf="email?.invalid && email?.touched" class="error-message">
+      <span *ngIf="email?.errors?.['required']">דוא"ל נדרש.</span>
+      <span *ngIf="email?.errors?.['email']">אנא הזן כתובת דוא"ל תקינה.</span>
+    </div>
+
+    <label>
+      שם הקורס:
+      <input formControlName="course" type="text" readonly />
+    </label>
+
+    <button type="submit" [disabled]="registrationForm.invalid">שלח</button>
+  </form>
+</div>

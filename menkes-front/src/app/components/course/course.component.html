@@ -1,0 +1,13 @@
+<div class="course-card">
+  <img [src]="course.image" alt="{{ course.title }}" class="course-image">
+  <h2 class="course-title">{{ course.title }}</h2>
+  <p class="course-description">{{ course.description }}</p>
+  <div class="course-details">
+    <span class="course-price">₪{{ course.price }}</span>
+    <span class="course-rating">⭐ {{ course.rating }} ({{ course.reviews }} ביקורות)</span>
+  </div>
+  <button class="register-button" [routerLink]="['/register', course.title]">
+    הירשם לקורס
+  </button>
+</div>
+

@@ -1,0 +1,95 @@
+/* Course Card */
+.course-card {
+  width: 18.75rem; /* 300px / 16 */
+  min-height: 21.25rem; /* 340px / 16 */
+  height: 100%; /* Flexible height based on content */
+  border: 0.0625rem solid #000; /* 1px / 16 */
+  border-radius: 0.5rem; /* 8px / 16 */
+  overflow: hidden;
+  background-color: #fff; /* White */
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1); /* 2px / 8px */
+  text-align: center;
+  padding: 1rem; /* 16px / 16 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Even spacing */
+  box-sizing: border-box; /* Prevent content from overlapping with edges */
+}
+
+/* Hover Effect on Course Card */
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2); /* 4px / 16, 16px / 16 */
+}
+
+/* Course Image */
+.course-image {
+  width: 100%;
+  height: 11.25rem; /* 180px / 16 */
+  object-fit: cover;
+  border-radius: 0.25rem; /* 4px / 16 */
+  margin-bottom: 0.9375rem; /* 15px / 16 */
+}
+
+/* Course Title */
+.course-title {
+  font-size: 1.2em; /* No change */
+  margin-top: 0.625rem; /* 10px / 16 */
+  color: #000; /* Black */
+  font-weight: 600;
+}
+
+/* Course Description */
+.course-description {
+  font-size: 1em; /* No change */
+  color: #333;
+  margin: 0.625rem 0; /* 10px / 16 */
+  flex-grow: 1; /* Occupy available space */
+  overflow: hidden; /* In case of long text */
+  white-space: normal; /* Allows multiple lines */
+  text-overflow: ellipsis; /* Adds '...' if the description is too long */
+}
+
+/* Course Details (Price and Rating) */
+.course-details {
+  font-size: 1em; /* No change */
+  color: #000; /* Black */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.9375rem; /* 15px / 16 */
+}
+
+.course-price {
+  font-weight: bold;
+  color: #ffcf00; /* Yellow */
+}
+
+.course-rating {
+  font-size: 0.9em; /* No change */
+  color: #ffcf00; /* Yellow */
+}
+
+/* Register Button */
+.register-button {
+  width: 100%;
+  padding: 0.75rem; /* 12px / 16 */
+  background-color: #ffcf00; /* Yellow */
+  color: black; /* Black */
+  border: none;
+  border-radius: 0.25rem; /* 4px / 16 */
+  cursor: pointer;
+  font-size: 1em; /* No change */
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 0.625rem; /* 10px / 16 */
+}
+
+.register-button:hover {
+  background-color: #e6b800; /* Darker Yellow */
+  transform: translateY(-0.1875rem); /* 3px / 16 */
+}
+
+.register-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
