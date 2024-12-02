@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Course } from './models/course';
+import { environment } from 'src/environments/environment';
+import { ApiService } from './ApiService';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  private apiUrl = 'http://localhost:3000/courses'; 
-
-  constructor(private http: HttpClient) {}
+  private apiUrl = `${environment.apiUrl}/courses`;
+  constructor(private apiService: ApiService) {}
 
   // פונקציה לקבלת קורסים אמיתיים
   getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl);
+    return this.apiService.get<Course[]>(this.apiUrl);
   }
 
   // פונקציה לקבלת נתונים מדומים (לשימוש זמני)
