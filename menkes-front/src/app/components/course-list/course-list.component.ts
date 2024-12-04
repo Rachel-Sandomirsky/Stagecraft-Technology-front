@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/course.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -10,7 +11,7 @@ import { CourseService } from 'src/app/course.service';
 export class CourseListComponent implements OnInit {
   courses: Course[] = []; // The initial list of courses is empty
 
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService, private router: Router) {}
 
   ngOnInit(): void {
     // Attempt to fetch courses from the API
@@ -24,4 +25,8 @@ export class CourseListComponent implements OnInit {
       }
     });
   }
+  viewDetails(courseCode: number): void {
+    this.router.navigate(['/courses', courseCode]);
+  }
+  
 }

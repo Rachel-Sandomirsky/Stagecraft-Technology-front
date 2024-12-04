@@ -1,0 +1,30 @@
+<div class="course-container">
+    <!-- צד ימין: מידע קצר -->
+    <div class="course-sidebar">
+      <img [src]="course.image" [alt]="course.title" class="course-image" />
+      <h3>{{ course.title }}</h3>
+      <p><strong>Price:</strong> {{ course.price | currency }}</p>
+      <button class="register-now-button" (click)="registerNow()">Register Now</button>
+    </div>
+  
+    <!-- חלק מרכזי: פרטים מלאים -->
+    <div class="course-details">
+      <h1>{{ course.title }}</h1>
+      <p>{{ course.description }}</p>
+      <div class="course-meta">
+        <p><strong>Rating:</strong> {{ course.rating || 'N/A' }} ({{ course.reviews || 0 }} reviews)</p>
+      </div>
+  
+      <div class="topics-info">
+        <h2>Topics covered in this course:</h2>
+        <ul>
+          <li *ngFor="let topic of course.topics">{{ topic }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <p>Loading course details...</p>
+  </ng-template>
+  

@@ -6,7 +6,8 @@ export class Course {
       public image: string,
       public price: number,
       public rating: number,
-      public reviews: number
+      public reviews: number,
+      public topics: string[],
     ) {}
   }
   
