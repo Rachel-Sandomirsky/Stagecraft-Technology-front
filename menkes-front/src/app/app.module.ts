@@ -8,6 +8,9 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { CourseComponent } from './components/course/course.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
     CourseListComponent,
     CourseComponent,
     RegisterComponent,
+    CourseDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],
