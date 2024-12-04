@@ -1,0 +1,39 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; /* הגדרת רוחב מקסימלי */
+    margin: 10px auto;
+    background-color: #f9f9f9; /* רקע בהיר */
+    border: 1px solid #ddd;
+    border-radius: 50px; /* מעגל את הקצוות */
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* הצללה */
+  }
+  
+  .search-icon {
+    color: #aaa;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background-color: transparent;
+  }
+  
+  .search-input::placeholder {
+    color: #ccc;
+  }
+  
+  .search-bar:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* הצללה בה-hover */
+  }
+  
+  .search-bar:focus-within {
+    border-color: #007bff; /* צבע מסגרת בכחול בעת פוקוס */
+  }
+  

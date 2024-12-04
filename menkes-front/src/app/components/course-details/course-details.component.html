@@ -1,12 +1,4 @@
 <div class="course-container">
-    <!-- צד ימין: מידע קצר -->
-    <div class="course-sidebar">
-      <img [src]="course.image" [alt]="course.title" class="course-image" />
-      <h3>{{ course.title }}</h3>
-      <p><strong>Price:</strong> {{ course.price | currency }}</p>
-      <button class="register-now-button" (click)="registerNow()">Register Now</button>
-    </div>
-  
     <!-- חלק מרכזי: פרטים מלאים -->
     <div class="course-details">
       <h1>{{ course.title }}</h1>
