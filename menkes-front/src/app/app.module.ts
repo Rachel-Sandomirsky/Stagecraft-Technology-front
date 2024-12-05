@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
     CourseComponent,
     RegisterComponent,
     CourseDetailsComponent,
-    SearchBarComponent
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +30,7 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     RouterModule,
     CommonModule,
+    BrowserAnimationsModule,
     BrowserAnimationsModule
   ],
   providers: [],

@@ -30,4 +30,5 @@ export class CourseDetailsComponent implements OnInit {
   registerNow(): void {
    
   }
+  
 }

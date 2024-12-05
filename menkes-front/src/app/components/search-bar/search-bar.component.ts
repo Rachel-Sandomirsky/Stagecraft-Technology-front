@@ -12,4 +12,8 @@ export class SearchBarComponent {
   onSearch(): void {
     this.search.emit(this.searchTerm); // שליחת האירוע עם ערך החיפוש
   }
+  onLogoClick(): void {
+    console.log('Logo clicked!');
+  }
+  
 }

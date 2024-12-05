@@ -1,17 +1,10 @@
 <div class="course-container">
-    <app-search-bar (search)="filterCourses($event)"></app-search-bar>
-<div class="course-list">
-  <app-course  *ngFor="let course of filteredCourses"
-    [course]="course"
-   (click)="selectCourse(course)"></app-course>
+  <!-- <app-search-bar (search)="filterCourses($event)"></app-search-bar> -->
+  <div class="course-list">
+    <app-course *ngFor="let course of filteredCourses" [course]="course" (click)="selectCourse(course)"></app-course>
+  </div>
+  <div class="course-details-container" *ngIf="selectedCourse">
+    <app-course-details [course]="selectedCourse"></app-course-details>
+    <button class="back-button" (click)="clearSelection()">Back</button>
+  </div>
 </div>
-<div
-class="course-details-container"
-*ngIf="selectedCourse">
-<app-course-details
-  [course]="selectedCourse"
-></app-course-details>
-<button class="back-button" (click)="clearSelection()">Back</button>
-</div>
-</div>
-
