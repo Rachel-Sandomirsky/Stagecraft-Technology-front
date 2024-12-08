@@ -4,7 +4,7 @@
   <p class="course-description">{{ course.description }}</p>
   <div class="course-details">
     <span class="course-price">₪{{ course.price }}</span>
-    <span class="course-rating">⭐ {{ course.rating }} ({{ course.reviews }} ביקורות)</span>
+    <span class="course-rating">⭐⭐⭐⭐⭐ {{ course.rating }} ({{ course.reviews }} ביקורות)</span>
   </div>
   <button class="register-button" [routerLink]="['/register', course.title]" (click)="registerForCourse()">
     הירשם לקורס

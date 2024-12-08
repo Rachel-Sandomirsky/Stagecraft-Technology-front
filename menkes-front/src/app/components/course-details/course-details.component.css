@@ -7,7 +7,7 @@
   width: 100%;
   height: 400px;
   z-index: 1;
-  margin-top: 10%;
+  margin-top: 4%;
 
 }
   
@@ -46,7 +46,7 @@
 
 
 
-   /* .course-sidebar {
+    .course-sidebar {
     width: 300px;
     border: 1px solid #ddd;
     padding: 15px;
@@ -65,4 +65,4 @@
     margin: 10px 0;
     margin-left: 300px;
 
-  } */
+  } 

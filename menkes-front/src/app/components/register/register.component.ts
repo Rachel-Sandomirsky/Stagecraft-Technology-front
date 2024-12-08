@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { CourseService } from 'src/app/course.service';
+import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 

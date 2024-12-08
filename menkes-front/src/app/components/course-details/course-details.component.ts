@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from 'src/app/models/course';
-import { CourseService } from 'src/app/course.service';
-
+import { CourseService } from 'src/app/services/course.service';
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
@@ -32,3 +31,5 @@ export class CourseDetailsComponent implements OnInit {
   }
   
 }
+
+

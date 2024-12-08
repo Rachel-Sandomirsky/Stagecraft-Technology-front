@@ -2,7 +2,7 @@
 .course-card {
   width: 18.75rem; /* 300px / 16 */
   height: 100%; /* Flexible height based on content */
-  border: 5px solid #ffcf00; /* 1px / 16 */
+  border: 0.3rem solid #ffcf00; /* 1px / 16 */
   border-radius: 0; /* 8px / 16 */
   overflow: hidden;
   background-color: #fff; /* White */
@@ -15,7 +15,6 @@
   justify-content: space-between; /* Even spacing */
   box-sizing: border-box; /* Prevent content from overlapping with edges */
   width: 300px;
-  border: 2px solid #ffd700;
   padding: 20px;
   margin-left: 50px;
   z-index: 2;
