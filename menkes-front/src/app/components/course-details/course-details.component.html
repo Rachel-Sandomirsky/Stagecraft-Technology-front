@@ -1,16 +1,17 @@
 <div class="course-details">
-  <h1 style="margin-left: 500px;">{{ course.title }}</h1>
-  <p style="margin-left: 500px;">{{ course.description }}</p>
-  <div class="course-meta" style="margin-left: 500px;">
-    <p><strong>Rating:</strong> {{ course.rating || 'N/A' }} ({{ course.reviews || 0 }} reviews)</p>
+  <h1 >{{ course.title }}</h1>
+  <p >{{ course.description }}</p>
+  <div class="course-meta">
+    <!-- <p><strong>Rating:</strong> {{ course.rating || 'N/A' }} ({{ course.reviews || 0 }} reviews)</p> -->
   </div>
-
-  <div class="topics-info" style="margin-right: 790px;  direction: rtl; ">
-    <h2>נושאים הנלמדים בקורס זה:</h2>
+<div>
+  <h2>נושאים הנלמדים בקורס זה:</h2>
+  <div class="topics-info">
     <ul>
       <li *ngFor="let topic of course.topics">{{ topic }}</li>
     </ul>
   </div>
+</div>
 </div>
 <ng-template #loading>
 <p>Loading course details...</p>
