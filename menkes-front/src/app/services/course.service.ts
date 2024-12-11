@@ -9,12 +9,12 @@ import { ApiService } from '../api.service';
   providedIn: 'root',
 })
 export class CourseService {
-  private apiUrl = `${environment.apiUrl}/courses`;
+  private apiUrl = `https://menkes-2-back.onrender.com/courses`;
   constructor(private apiService: ApiService) {}
 
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
-    console.log('API URL:', `${environment.apiUrl}/endpoint`);
+    //console.log('API URL:', `${environment.apiUrl}/endpoint`);
 
     return this.apiService.get<Course[]>(this.apiUrl);
   }
