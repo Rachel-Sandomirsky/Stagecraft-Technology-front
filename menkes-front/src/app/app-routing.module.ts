@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { CourseListComponent } from './components/course-list/course-list.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component'; // ייבוא רכיב הדשבורד
+import { DashboardComponent } from './components/dashboard/dashboard.component'; 
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent }, // נתיב לדשבורד של מירי
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // נתיב ברירת מחדל מפנה לדשבורד
-  { path: 'register/:course', component: RegisterComponent }, // עמוד הרשמה
-  { path: 'courses/:code', component: CourseDetailsComponent }, // פרטי קורס
-  { path: 'course-list', component: CourseListComponent }, // נתיב חדש לרשימת הקורסים (אם תצטרכי אותו מאוחר יותר)
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'register/:course', component: RegisterComponent }, 
+  { path: 'courses/:code', component: CourseDetailsComponent }, 
+  { path: 'course-list', component: CourseListComponent }, 
 ];
 
 
