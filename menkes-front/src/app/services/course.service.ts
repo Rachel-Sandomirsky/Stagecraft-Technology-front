@@ -15,8 +15,13 @@ export class CourseService {
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
     console.log('API URL:', `https://menkes-2-back.onrender.com/courses`);
-
+try{
     return this.apiService.get<Course[]>(this.apiUrl);
+  } catch (error) {
+    console.error('Error fetching courses:', error);
+throw new Error
+}
+
   }
   getCourseByCode(courseCode: number): Observable<Course> {
     return this.apiService.get<Course>(`${this.apiUrl}/${courseCode}`);
