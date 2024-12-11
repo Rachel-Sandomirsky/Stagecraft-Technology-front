@@ -57,4 +57,30 @@ li::before {
   margin-right: 10px;
   font-weight: bold; /* רווח קטן מימין ל-V */
 }
+.instructor-profile{
+  display: flex;          /* מאפשר הצגת האלמנטים בשורה אחת */
+  justify-content: space-between; /* מרווח שווה בין האלמנטים */
+  gap: 20px;
+}
+.profile-image-container {
+  flex: 0 0 30%;
+  display: flex;
+  align-items: center; /* ממרכז את התמונה אנכית */
+  justify-content: center;
+  width: 150px; /* Adjust as needed */
+  height: 150px; /* Adjust as needed */
+  overflow: hidden;
+  border-radius: 50%; /* Makes the image circular */
+  border: 2px solid #ddd; /* Optional: Adds a border around the circle */
+}
+
+.profile-image {
+  width: 100%; /* Ensures the image fits within the circular container */
+  height: 100%; /* Maintains the aspect ratio */
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+}
+.instructor-details{
+  flex: 0 0 60%;
+}
+
 
