@@ -14,6 +14,8 @@ export class CourseService {
 
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
+    console.log('API URL:', `${environment.apiUrl}/endpoint`);
+
     return this.apiService.get<Course[]>(this.apiUrl);
   }
   getCourseByCode(courseCode: number): Observable<Course> {
