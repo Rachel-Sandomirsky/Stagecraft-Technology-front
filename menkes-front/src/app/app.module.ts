@@ -14,6 +14,9 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
     CourseComponent,
     RegisterComponent,
     CourseDetailsComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
     HttpClientModule,
     RouterModule,
     CommonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTabsModule
   ],
   providers: [
     {

@@ -24,10 +24,15 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+               "styles": [
               "src/styles.css",
-              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-            ],
+              "src/app/components/dashboard/dashboard.component.css"
+          ],
+          "stylePreprocessorOptions": {
+            "includePaths": [
+              "src"
+            ]
+          },
             "scripts": []
           },
           "configurations": {
