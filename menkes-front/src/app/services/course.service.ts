@@ -14,7 +14,7 @@ export class CourseService {
 
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
-    console.log('גרסה 1);
+    console.log('גרסה 1');
 try{
     return this.apiService.get<Course[]>(this.apiUrl);
   } catch (error) {
