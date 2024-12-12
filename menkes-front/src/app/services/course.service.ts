@@ -9,7 +9,7 @@ import { ApiService } from '../api.service';
   providedIn: 'root',
 })
 export class CourseService {
-  private apiUrl = `https://menkes-2-back.onrender.com/courses`;
+  private apiUrl = 'https://menkes-2-back.onrender.com/courses';
   constructor(private apiService: ApiService) {}
 
 // Function to fetch real courses
