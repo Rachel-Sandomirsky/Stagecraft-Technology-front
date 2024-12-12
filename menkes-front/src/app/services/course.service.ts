@@ -9,17 +9,16 @@ import { ApiService } from '../api.service';
   providedIn: 'root',
 })
 export class CourseService {
+  private apiUrl = `${environment.apiUrl}/$courses`
   constructor(private apiService: ApiService) {}
 
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
-  const  apiUrl :string = "https://menkes-2-back.onrender.com/courses";
-    
-    console.log('גרסה 7');
-    console.log('API URL:', apiUrl); // וודאי שכתובת זו מודפסת
+    console.log('גרסה 8');
+    console.log('API URL:', this.apiUrl); // וודאי שכתובת זו מודפסת
 
 try{
-    return this.apiService.get<Course[]>(apiUrl);
+    return this.apiService.get<Course[]>(this.apiUrl);
   } catch (error) {
     console.error('Error fetching courses:', error);
 throw new Error
@@ -27,9 +26,7 @@ throw new Error
 
   }
   getCourseByCode(courseCode: number): Observable<Course> {
-    const uu = "https://menkes-2-back.onrender.com/courses";
-
-    return this.apiService.get<Course>(`${uu}/${courseCode}`);
+    return this.apiService.get<Course>(`${this.apiUrl}/${courseCode}`);
   }
   
 }
