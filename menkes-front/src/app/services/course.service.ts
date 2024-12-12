@@ -13,13 +13,13 @@ export class CourseService {
 
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
-    (window as any).kkk = "https://menkes-2-back.onrender.com/courses";
+  const  apiUrl :string = "https://menkes-2-back.onrender.com/courses";
     
-    console.log('גרסה 6');
-    console.log('API URL:', (window as any).kkk); // וודאי שכתובת זו מודפסת
+    console.log('גרסה 7');
+    console.log('API URL:', apiUrl); // וודאי שכתובת זו מודפסת
 
 try{
-    return this.apiService.get<Course[]>((window as any).kkk);
+    return this.apiService.get<Course[]>(apiUrl);
   } catch (error) {
     console.error('Error fetching courses:', error);
 throw new Error
@@ -27,9 +27,9 @@ throw new Error
 
   }
   getCourseByCode(courseCode: number): Observable<Course> {
-    const apiUrl = "https://menkes-2-back.onrender.com/courses";
+    const uu = "https://menkes-2-back.onrender.com/courses";
 
-    return this.apiService.get<Course>(`${apiUrl}/${courseCode}`);
+    return this.apiService.get<Course>(`${uu}/${courseCode}`);
   }
   
 }
