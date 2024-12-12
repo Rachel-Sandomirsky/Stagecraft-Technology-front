@@ -3,16 +3,16 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-@Injectable()
-export class ApiKeyInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const apiKey = environment.apiKey;
-    const clonedRequest = req.clone({
-      setHeaders: {
-        'x-api-key': apiKey
-      }
-    });
+// @Injectable()
+// export class ApiKeyInterceptor implements HttpInterceptor {
+//   // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+//   //   const apiKey = environment.apiKey;
+//   //   // const clonedRequest = req.clone({
+//   //   //   setHeaders: {
+//   //   //     'x-api-key': apiKey
+//   //   //   }
+  //   // });
 
-    return next.handle(clonedRequest);
-  }
-}
+  //   // return next.handle(clonedRequest);
+  // }
+// }
