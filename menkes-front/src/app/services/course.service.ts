@@ -9,12 +9,12 @@ import { ApiService } from '../api.service';
   providedIn: 'root',
 })
 export class CourseService {
-  private apiUrl = `${environment.apiUrl}/$courses`
+  private apiUrl = `${environment.apiUrl}/courses`
   constructor(private apiService: ApiService) {}
 
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
-    console.log('גרסה 8');
+    console.log('גרסה 9');
     console.log('API URL:', this.apiUrl); // וודאי שכתובת זו מודפסת
 
 try{
