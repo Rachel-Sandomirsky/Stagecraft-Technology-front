@@ -1,0 +1,74 @@
+/* עיצוב כללי */
+body {
+  font-family: var(--font-family, "Arial", sans-serif);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  margin: 0;
+  padding: 0;
+  direction: rtl; /* תמיכה בעברית */
+}
+
+.add-course {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: right;
+}
+
+h2 {
+  text-align: center;
+  color: #ffcf00; /* צהוב */
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* עיצוב תוויות ושדות */
+form label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
+  color: var(--color-black);
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border: 1px solid #ffcf00; /* מסגרת צהובה בפוקוס */
+  box-shadow: 0 0 4px #ffcf00;
+}
+
+
+
+button[type="submit"] {
+  background-color: #ffcf00; /* כפתור צהוב */
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #000;
+  color: #ffcf00;
+}
