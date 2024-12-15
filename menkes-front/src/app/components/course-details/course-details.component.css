@@ -1,34 +1,40 @@
 .course-details {
   background-color: black;
   color: white;
-  position: relative; /* שיניתי מ-static ל-relative */
+  position: relative; 
   display: block;
   width: 80%;
-  height: auto; /* משנה את הגובה באופן דינמי */
+  height: auto; 
   z-index: 1;
   margin-top: 20px;
   padding: 20px;
+  direction: rtl;
 }
 
 h1 {
-  margin-top: 50px;
-  font-size: 24px;
+  margin-top: 100px;
+  font-size: 35px;
   font-weight: bold;
   margin-bottom: 15px;
-  text-align: left; /* מיישר את הכותרת לשמאל */
+  text-align: right; 
+  direction: rtl;
 }
 
 h2 {
   font-size: 20px;
-  text-align: left; /* מיישר את החלק של נושאים לשמאל */
+  text-align: right; 
   font-weight: bold;
   margin-bottom: 10px;
 }
+h3{
+  font-size: 25px;
+}
+
 
 
 .course-sidebar {
   width: 100%;
-  max-width: 300px; /* מקסימום רוחב */
+  max-width: 300px;
   border: 1px solid #ddd;
   padding: 15px;
   border-radius: 8px;
@@ -46,39 +52,45 @@ h2 {
   text-align: center;
 }
 ul {
-  list-style-type: none; /* מסיר את הנקודות ברשימה */
-  padding-left: 0; /* מסיר את הרווח בצד שמאל */
+  list-style-type: none; 
+  padding-left: 0; 
 }
 
 li::before {
-  content: '✓'; /* מוסיף את ה-V הצהוב */
-  color: yellow; /* צבע צהוב */
-  font-size: 20px; /* גודל ה-V */
+  content: '✓'; 
+  color: #ffcf00;
+  font-size: 20px; 
   margin-right: 10px;
-  font-weight: bold; /* רווח קטן מימין ל-V */
+  font-weight: bold; 
 }
 .instructor-profile{
-  display: flex;          /* מאפשר הצגת האלמנטים בשורה אחת */
-  justify-content: space-between; /* מרווח שווה בין האלמנטים */
+  margin-top: 10px;
+  display: flex;          
+  justify-content: space-between; 
   gap: 20px;
+  border-color: white;
+  border: double;
+  border-bottom-color: #ffcf00;
+  border-top-color: #ffcf00;;
+  padding: 10px 30px;
+  border-width: 5px;
 }
 .profile-image-container {
   flex: 0 0 30%;
   display: flex;
-  align-items: center; /* ממרכז את התמונה אנכית */
+  align-items: center; 
   justify-content: center;
-  width: 150px; /* Adjust as needed */
-  height: 150px; /* Adjust as needed */
+  width: 100px; 
+  height: 230px; 
   overflow: hidden;
-  border-radius: 50%; /* Makes the image circular */
-  border: 2px solid #ddd; /* Optional: Adds a border around the circle */
-}
-
+  border-radius: 70%; 
+  border: 2px solid #ddd;
+  }
 .profile-image {
-  width: 100%; /* Ensures the image fits within the circular container */
-  height: 100%; /* Maintains the aspect ratio */
-  object-fit: cover; /* Ensures the image fills the container without distortion */
-}
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+ }
 .instructor-details{
   flex: 0 0 60%;
 }
