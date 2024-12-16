@@ -4,13 +4,14 @@ import { CourseListComponent } from './components/course-list/course-list.compon
 import { RegisterComponent } from './components/register/register.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component'; 
+import { AppComponent } from './app.component';
 
-const routes: Routes = [
+export const routes: Routes = [
+  { path: '', component:CourseListComponent }, // ברירת מחדל ל-Dashboard
   { path: 'dashboard', component: DashboardComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'register/:course', component: RegisterComponent }, 
-  { path: 'courses/:code', component: CourseDetailsComponent }, 
-  { path: 'course-list', component: CourseListComponent }, 
+  { path: 'courses/:code', component: CourseDetailsComponent },
+  { path: 'register/:course', component: RegisterComponent },
+  { path: 'courses', component: CourseListComponent },
 ];
 
 

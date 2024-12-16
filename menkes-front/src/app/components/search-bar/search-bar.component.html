@@ -1,13 +1,20 @@
-<div class="search-bar">
-    <span class="search-icon">
-      <i class="fas fa-search"></i>
-    </span>
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      (input)="onSearch()"
-      placeholder="חיפוש"
-      class="search-input"
-    />
+<header class="navbar" >
+  <div class="navbar-left">
+      <a routerLink="" (click)="onLogoClick()"><img class="logo" src="assets/img/logo1.png" alt="Logo" /></a>
+      <span class="categories">Categories</span>
   </div>
-  
+  <div class="navbar-center">
+      <div class="search-bar">
+          <span class="search-icon">
+              <i class="fas fa-search"></i>
+            </span>
+            <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="חיפוש" class="search-input" />
+      </div>
+    </div>
+    <div class="navbar-right">
+      <i class="fa fa-shopping-cart"></i>
+      <button class="login">Log in</button>
+      <button class="signup">Sign up</button>
+      <i class="fa fa-globe"></i>
+    </div>
+</header>

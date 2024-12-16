@@ -1,39 +1,110 @@
+/* כללי Header */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+  height: 50px;
+}
+
+/* צד שמאל */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.categories {
+  font-size: 17px;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* מרכז */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
 .search-bar {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 400px; /* הגדרת רוחב מקסימלי */
-    margin: 10px auto;
-    background-color: #f9f9f9; /* רקע בהיר */
-    border: 1px solid #ddd;
-    border-radius: 50px; /* מעגל את הקצוות */
-    padding: 5px 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* הצללה */
-  }
-  
-  .search-icon {
-    color: #aaa;
-    font-size: 16px;
-    margin-right: 10px;
-  }
-  
-  .search-input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    background-color: transparent;
-  }
-  
-  .search-input::placeholder {
-    color: #ccc;
-  }
-  
-  .search-bar:hover {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15); /* הצללה בה-hover */
-  }
-  
-  .search-bar:focus-within {
-    border-color: #007bff; /* צבע מסגרת בכחול בעת פוקוס */
-  }
-  
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 650px;
+  height: 30px;
+  background-color: #f9f9f9;
+}
+
+.search-bar input {
+  border: none;
+  padding: 5px 10px;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+}
+
+.search-bar button {
+  border: none;
+  background: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.search-bar i {
+  color: #666;
+}
+
+/* צד ימין */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-right span {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.navbar-right i {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login {
+  border: solid;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.signup {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 0;
+  cursor: pointer;
+  height: 40px;
+
+}

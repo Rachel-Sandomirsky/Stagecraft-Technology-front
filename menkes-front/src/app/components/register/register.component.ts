@@ -2,24 +2,51 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { CourseService } from 'src/app/course.service';
+import { CourseService } from 'src/app/services/course.service';
+import { ModalService } from 'src/app/services/modal.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
+
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  animations: [
+    trigger('fade', [
+      state('open', style({ opacity: 1, transform: 'translateY(0)' })),
+      state('closed', style({ opacity: 0, transform: 'translateY(-20px)' })),
+      transition('open => closed', [animate('0.3s ease-in')]),
+      transition('closed => open', [animate('0.3s ease-out')]),
+    ]),
+  ],
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
   courseName!: string; // Course name for display purposes only
   courseId!: number; // Course ID to be sent to the server
+  isOpen = false;
+  modalState='closed';
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private http: HttpClient,
-    private courseService: CourseService // Service for courses
-  ) {}
+    private courseService: CourseService, // Service for courses
+    private modalService: ModalService
+  ) {
+    this.modalService.modalState$.subscribe((state) => {
+      this.isOpen = state;
+      this.modalState=state ? 'open' :'closed';
+    });
+  }
+  closeModal() {
+    this.modalState = 'closed'; // מצב אנימציה ל"סגירה"
+    setTimeout(() => {
+      this.modalService.closeModal(); // חזרה למיקום לאחר סיום האנימציה
+    }, 300); // תיאום לזמן האנימציה
+  }
+
 
   ngOnInit(): void {
     // Extract course name from the route
@@ -83,4 +110,6 @@ export class RegisterComponent implements OnInit {
   get phone() {
     return this.registrationForm.get('phone');
   }
+
+
 }
