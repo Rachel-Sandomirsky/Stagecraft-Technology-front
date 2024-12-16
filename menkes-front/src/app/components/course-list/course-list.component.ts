@@ -3,6 +3,7 @@ import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { CourseComponent } from "../course/course.component";
 
 @Component({
   selector: 'app-course-list',
@@ -18,8 +19,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
         animate('300ms ease-in', style({ opacity: 0, transform: 'translateX(-100%)' }))
       ]),      
     ]),
-  ],
-})
+  ]})
 export class CourseListComponent implements OnInit {
   courses: Course[] = []; // The initial list of courses is empty
   filteredCourses: Course[] = [];
