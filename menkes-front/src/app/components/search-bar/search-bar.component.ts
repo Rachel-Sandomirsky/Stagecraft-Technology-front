@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -6,14 +7,30 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-  @Output() search = new EventEmitter<string>(); // אירוע חיפוש
-  searchTerm: string = ''; // ערך שדה החיפוש
 
-  onSearch(): void {
-    this.search.emit(this.searchTerm); // שליחת האירוע עם ערך החיפוש
-  }
-  onLogoClick(): void {
-    console.log('Logo clicked!');
-  }
+  searchTerm: string = '';
   
+  @Output() search = new EventEmitter<string>(); // Emit search term to parent component
+
+  constructor(private router: Router) {}
+
+  onLogoClick(): void {
+    this.router.navigate(['/']);  // Navigate to home page
+  }
+
+  // Emit the search term to the parent component
+  onSearch(searchTerm: string | null): void {
+    if (searchTerm) {
+      console.log("Searching for: ", searchTerm); // For debugging purposes
+      this.search.emit(searchTerm);  // Emit the search term to the parent component
+    }
+  }
+
+  onLoginClick() {
+    this.router.navigate(['/login']);  // Navigate to login page
+  }
+
+  onSignupClick() {
+    this.router.navigate(['/signup']);  // Navigate to signup page
+  }
 }

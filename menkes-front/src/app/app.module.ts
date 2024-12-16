@@ -13,7 +13,10 @@ import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-//import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     RegisterComponent,
     CourseDetailsComponent,
     SearchBarComponent,
+    SignupComponent,
+    LoginComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,15 +39,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
-    BrowserAnimationsModule
   ],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: ApiKeyInterceptor,
-  //     multi: true,
-  //   },
-  // ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiKeyInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

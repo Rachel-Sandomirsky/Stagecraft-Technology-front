@@ -7,14 +7,13 @@
   background-color: white;
   border-bottom: 1px solid #ddd;
   font-family: Arial, sans-serif;
-  position: fixed; 
-  top: 0; 
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; 
+  z-index: 1000; /* This will keep the search bar on top of the main content */
   height: 50px;
 }
-
 /* צד שמאל */
 .navbar-left {
   display: flex;
