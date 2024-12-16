@@ -7,6 +7,6 @@ export class User {
     public role: string,
     public is_approved: boolean,
     public code: number,
-    public token?: string 
+    public access_token?: string 
   ) {}
 }

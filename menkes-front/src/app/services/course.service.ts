@@ -16,15 +16,9 @@ export class CourseService {
   getCourses(): Observable<Course[]> {
     console.log('גרסה 9');
     console.log('API URL:', this.apiUrl); // וודאי שכתובת זו מודפסת
-
-try{
     return this.apiService.get<Course[]>(this.apiUrl);
-  } catch (error) {
-    console.error('Error fetching courses:', error);
-throw new Error
 }
 
-  }
   getCourseByCode(courseCode: number): Observable<Course> {
     return this.apiService.get<Course>(`${this.apiUrl}/${courseCode}`);
   }

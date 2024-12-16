@@ -12,9 +12,19 @@
     </div>
   </div>
   <div class="navbar-right">
-    <i class="fa fa-shopping-cart"></i>
-    <button class="login" (click)="onLoginClick()">Log in</button>
-    <button class="signup" (click)="onSignupClick()">Sign up</button>
+    <div *ngIf="(userService.user$ | async) as user; else notLoggedIn">
+      <div class="user-info">
+      <button class="login"  (click)="onLogout()">התנתק</button>
+      <p class="username">שלום,  <span class="username">{{ user.username }}</span></p>
+    </div>
+    </div>
+
+    <ng-template #notLoggedIn>
+      <i class="fa fa-shopping-cart"></i>
+    <button class="login" (click)="onLoginClick()">כניסה</button>
+    <button class="signup" (click)="onSignupClick()">הרשמה</button>
     <i class="fa fa-globe"></i>
+    </ng-template>
+    
   </div>
 </header>

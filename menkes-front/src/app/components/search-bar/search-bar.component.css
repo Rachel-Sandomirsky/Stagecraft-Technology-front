@@ -107,3 +107,16 @@
   height: 40px;
 
 }
+
+/* עיצוב שם המשתמש */
+.username {
+  font-weight: bold;
+  color:black; /* צבע כחול */
+}
+.user-info {
+  display: flex;
+  align-items: center; /* יישור אנכי */
+  gap: 10px; /* מרווח בין הטקסט לכפתור */
+  padding: 10px 15px;
+  font-family: Arial, sans-serif;
+}

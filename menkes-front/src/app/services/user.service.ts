@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../models/user';
+import { ApiService } from '../api.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,14 +12,16 @@ import { User } from '../models/user';
 export class UserService {
   private resetCode: number | null = null;
   private expirationTime: number | null = null;
+  public userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
 
-  private apiUrl = 'http://localhost:3000';  // apiUrl כללית
+  private apiUrl = environment.apiUrl;  // apiUrl כללית
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   // פונקציה לשליחת קוד אימות למייל
   sendPasswordResetCode(email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/users/password_reset_code`, { email }).pipe(
+    return this.apiService.post(`${this.apiUrl}/users/password_reset_code`, { email }).pipe(
       tap((response: any) => {
         this.resetCode = response.resetCode;  // שומר את קוד האימות
         this.expirationTime = Date.now() + 5 * 60 * 1000;  // שומר את זמן התוקף
@@ -40,20 +44,41 @@ export class UserService {
 
   // התחברות של משתמש
   getUserByEmailAndPass(email: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/users/login`, { email, password });
+   return this.apiService.post<User>(`${this.apiUrl}/auth`, { email, password }).pipe(
+    tap((user) => {
+      console.log("user: " + user.username);
+      this.userSubject.next(user);
+    })
+  );    
+}
+public logout():void{
+  const user = this.userSubject.getValue(); // שליפת הערך הנוכחי של המשתמש
+  console.log(user);
+  if (user && user.email && user.access_token) {
+    this.apiService.post<any>(`${this.apiUrl}/logout`, { 
+      email: user.email, 
+      token: user.access_token 
+    }).subscribe({
+      next: (response) => {
+        console.log('Logout successful:', response.message);
+        this.userSubject.next(null); 
+      },
+      error: (err) => {
+        console.error('Error during logout:', err.error?.message || err.message);
+      }
+    });
+  } else {
+    console.error('User or token not found.');
   }
+
+}
 
   // יצירת משתמש חדש
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/sign-up`, user);  // עדכון לנתיב '/sign-up'
-  }
-
-  // פונקציות נוספות לנהל את המשתמשים
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/users`);
+    return this.apiService.post<User>(`${this.apiUrl}/sign-up`, user);  // עדכון לנתיב '/sign-up'
   }
 
   getUserByCode(code: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/users/${code}`);
+    return this.apiService.get<User>(`${this.apiUrl}/users/${code}`);
   }
 }
