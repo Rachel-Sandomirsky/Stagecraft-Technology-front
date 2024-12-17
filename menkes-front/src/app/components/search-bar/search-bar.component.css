@@ -1,4 +1,4 @@
-/* כללי Header */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -7,21 +7,21 @@
   background-color: white;
   border-bottom: 1px solid #ddd;
   font-family: Arial, sans-serif;
-  position: fixed; 
-  top: 0; 
+  position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; 
+  z-index: 1000;
   height: 50px;
 }
 
-/* צד שמאל */
 .navbar-left {
   display: flex;
   align-items: center;
 }
 
 .logo {
+  border-radius: 8px;
   height: 40px;
   margin-right: 10px;
 }
@@ -33,7 +33,7 @@
   font-weight: bold;
 }
 
-/* מרכז */
+
 .navbar-center {
   flex: 1;
   display: flex;
@@ -71,7 +71,7 @@
   color: #666;
 }
 
-/* צד ימין */
+
 .navbar-right {
   display: flex;
   align-items: center;
@@ -91,6 +91,7 @@
 
 .login {
   border: solid;
+  border-radius: 4px;
   background-color: transparent;
   color: #333;
   font-size: 14px;
@@ -102,9 +103,22 @@
   background-color: #333;
   color: white;
   border: none;
+  border-radius: 4px;
   padding: 5px 10px;
-  border-radius: 0;
   cursor: pointer;
   height: 40px;
 
+}
+
+/* עיצוב שם המשתמש */
+.username {
+  font-weight: bold;
+  color:black; /* צבע כחול */
+}
+.user-info {
+  display: flex;
+  align-items: center; /* יישור אנכי */
+  gap: 10px; /* מרווח בין הטקסט לכפתור */
+  padding: 10px 15px;
+  font-family: Arial, sans-serif;
 }

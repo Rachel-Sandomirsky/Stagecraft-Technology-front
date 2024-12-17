@@ -1,17 +1,14 @@
+.course-container{
+  padding-top: 50px; /* מתאים לגובה של הבר העליון */
+
+}
 .course-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  direction: rtl; /* שינוי הכיוון של הרשימה */
-}
-
-.course-container {
-  display: flex;
+  gap: 1.5rem; 
   justify-content: center;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row; /* שים לב לשינוי פה */
   height: 100%;
   direction: rtl; /* מוודא שכל התוכן בקומפוננטה יתחיל מימין */
 }
@@ -29,34 +26,27 @@
 }
 
 .course-details-container {
-  background-color: #000000;
+  background-color: white;
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  direction: rtl; /* כיוון מימין לשמאל */
-  text-align: right; /* מיישר את התוכן פנימה לימין */
+  gap: 5px;
+  direction: rtl;
 }
 
 .course-card {
-  height: 555px;
-  margin-right: 150px;
-  margin-top: 63px;
-  direction: rtl; /* יישור פנימי לימין */
-}
-
-.course-details {
-  direction: rtl;
-  margin-right: 100px;
-  text-align: right; /* יישור טקסט לימין */
+  height: 120%;
+  margin-right:2%;
+  margin-top: 2%;
+  margin-left: -3%;
 }
 
 .back-button {
+  border: 2px solid;
+  border-radius: 12px;
   margin-top: 10px;
   padding: 10px 20px;
   background-color: #000000;
   color: white;
-  border: solid;
-  border-radius: 0;
   cursor: pointer;
   margin-right: 523px;
   margin-bottom: 30px;
@@ -68,4 +58,20 @@
 
 .course-list.hidden {
   display: none;
+}
+
+.course-list-header {
+  padding-top: 6rem; 
+  display: flex;
+  justify-content: flex-end; 
+  padding-right: 2rem;
+}
+
+.course-list-header h2 {
+  font-size: 2rem; 
+  font-weight: bold;
+  color: #333; 
+  text-align: right; 
+  border-bottom: 2px solid #ffcf00; 
+  padding-bottom: 0.5rem; 
 }

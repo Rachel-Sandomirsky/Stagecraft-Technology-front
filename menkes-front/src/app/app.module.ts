@@ -19,7 +19,11 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
-
+import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { DeshboardCoursesListComponent } from './components/deshboard-courses-li
     SearchBarComponent,
     AddCourseComponent,
     DashboardComponent,
-    DeshboardCoursesListComponent
+    DeshboardCoursesListComponent,
+    SignupComponent,
+    LoginComponent,
+    ResetPasswordComponent,
+    RecommendationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,16 +50,14 @@ import { DeshboardCoursesListComponent } from './components/deshboard-courses-li
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
-    MatTabsModule,
-    
   ],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: ApiKeyInterceptor,
-  //     multi: true,
-  //   },
-  // ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiKeyInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

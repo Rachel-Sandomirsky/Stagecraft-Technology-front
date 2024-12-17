@@ -1,37 +1,51 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient ) {
+  private apiUrl = 'http://localhost:3000'; 
+
+  constructor(private http: HttpClient) {}
+
+  // פונקציה לקבלת נתונים מ-API
+  get<T>(url: string) {
+    const headers = new HttpHeaders().set('x-api-key', 'your-api-key-here'); 
+    return this.http.get<T>(url, { headers }).pipe(catchError(this.handleError));
   }
 
-  get<T>(url:string) {
-    return this.http.get<T>(url).pipe(catchError(this.handleError));
-  }
-
-  getByParams<T>(url:string, params: { [key: string]: string | number }) {
+  // פונקציה לקבלת נתונים מ-API עם פרמטרים
+  getByParams<T>(url: string, params: { [key: string]: string | number }) {
     const httpParams = new HttpParams({ fromObject: params });
-    return this.http.get<T>(url, { params: httpParams }).pipe(catchError(this.handleError));
+    const headers = new HttpHeaders().set('x-api-key', 'your-api-key-here'); 
+    return this.http.get<T>(url, { params: httpParams, headers }).pipe(catchError(this.handleError));
   }
 
-  post<T>(url:string, body: any) {
-    return this.http.post<T>(url, body).pipe(catchError(this.handleError));
+  // פונקציה לשלוח נתונים ל-API
+  post<T>(url: string, body: any) {
+    const headers = new HttpHeaders().set('x-api-key', 'your-api-key-here'); 
+    return this.http.post<T>(url, body, { headers }).pipe(catchError(this.handleError));
   }
 
-  put<T>(url:string, body: any) {
-    return this.http.put<T>(url, body).pipe(catchError(this.handleError));
+  // פונקציה לעדכן נתונים ב-API
+  put<T>(url: string, body: any) {
+    const headers = new HttpHeaders().set('x-api-key', 'your-api-key-here'); 
+    return this.http.put<T>(url, body, { headers }).pipe(catchError(this.handleError));
   }
 
-  delete<T>(url:string) {
-    return this.http.delete<T>(url).pipe(catchError(this.handleError));
+  // פונקציה למחוק נתונים ב-API
+  delete<T>(url: string) {
+    const headers = new HttpHeaders().set('x-api-key', 'your-api-key-here'); 
+    return this.http.delete<T>(url, { headers }).pipe(catchError(this.handleError));
   }
 
+  // פונקציה לטיפול בשגיאות של הבקשות ל-API
   private handleError(error: HttpErrorResponse) {
     console.error('API Error:', error);
-    return throwError(() => new Error('An error occurred with the API.'));
+
+    return throwError(() => error.error ? error: new Error('An error occurred with the API.'));
   }
 }

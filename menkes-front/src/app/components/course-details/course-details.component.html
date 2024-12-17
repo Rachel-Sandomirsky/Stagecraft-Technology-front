@@ -1,31 +1,32 @@
-<div class="course-details">
-  <h1 >{{ course.title }}</h1>
-  <p >{{ course.description }}</p>
-  <div class="course-meta">
-    <!-- <p><strong>Rating:</strong> {{ course.rating || 'N/A' }} ({{ course.reviews || 0 }} reviews)</p> -->
+<div class="course-container">
+  <div class="course-details">
+    <h1 class="course-title">{{ course.title }}</h1>
+    <p class="course-description">{{ course.description }}</p>
+    <div class="course-meta">
+      <!-- ניתן להוסיף דירוג אם קיים -->
+    </div>
+    <h2 class="topics-title">נושאים הנלמדים בקורס זה:</h2>
+    <div class="topics-info">
+      <ul>
+        <li *ngFor="let topic of course.topics"> {{ topic }}</li>
+      </ul>
+    </div>
   </div>
-<div>
-  <h2>נושאים הנלמדים בקורס זה:</h2>
-  <div class="topics-info">
-    <ul>
-      <li *ngFor="let topic of course.topics"> {{ topic }}</li>
-    </ul>
+  <div class="instructor-card">
+    <div class="card-header">
+      <img src="assets/img/miri menkes.jpeg" alt="מנחה הקורס" class="instructor-image" />
+    </div>
+    <div class="card-body">
+      <h3 class="instructor-name">מנחת הקורס : מירי מנקס</h3>
+      <p class="instructor-description">
+        טכנאית במה מובילה עם למעלה מ-15 שנות ניסיון בתחום הסאונד וההפקות. שילוב ייחודי בין דיוק טכני ויצירתיות גבוהה להפקת אירועים ברמה הגבוהה ביותר.
+      </p>
+    </div>
   </div>
+  
 </div>
-<div class="instructor-profile">
-  <div class="instructor-details">
-    <h3 style="text-decoration: underline;">מנחה: מירי מנקס</h3>
-    <p>      מירי מנקס היא טכנאית במה מובילה ומוערכת, עם למעלה מ-15 שנות ניסיון עשיר בתעשיית האירועים וההפקות. בעבודתה, מירי התמקצעה בתפעול מערכות תאורה, סאונד, ובימוי מאחורי הקלעים, ועבדה במגוון רחב של הפקות – מאירועי תרבות ובידור ועד לכנסים מקצועיים ותערוכות גדולות.
-      לאורך הקריירה שלה, מירי נודעה ביכולותיה הגבוהות לשלב בין דיוק טכני לבין יצירתיות ומענה לצרכים המשתנים של הלקוחות. יכולות אלה, יחד עם התשוקה שלה לתחום, הפכו אותה לאחת מהדמויות הבולטות בתחום טכנאות הבמה.
-      כבר 5 שנים שמירי מעבירה את הידע והניסיון הרב שלה לדור הבא של טכנאי הבמה. כמנחה וכמורה, מירי ידועה בגישה המקצועית, בהסברים הברורים שלה וביכולת להפוך מושגים טכניים למובנים ונגישים. היא שמה דגש על למידה מעשית ומספקת לתלמידיה כלים פרקטיים להתמודדות עם אתגרי השטח.
-      אם אתם מחפשים ללמוד ממומחית אמיתית, עם ניסיון עשיר ורקע מקצועי מרשים, הקורסים של מירי מנקס הם הבחירה המושלמת עבורכם.
-    </p>
-  </div>
-  <div class="profile-image-container" style="margin-top: 70px;">
-    <img src="assets\img\miri menkes.jpeg" alt="Profile of Miri Mankes" class="profile-image" />
-  </div>
-</div>
+
+
 <ng-template #loading>
-<p>Loading course details...</p>
+  <p>Loading course details...</p>
 </ng-template>
-</div>

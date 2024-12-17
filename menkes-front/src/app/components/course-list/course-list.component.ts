@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
-import { CourseService } from 'src/app/services/course.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CourseComponent } from "../course/course.component";
+import { CourseService } from 'src/app/services/course.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-course-list',
@@ -16,40 +17,34 @@ import { CourseComponent } from "../course/course.component";
         animate('300ms ease-out', style({ opacity: 1, transform: 'translateX(0)' })),
       ]),
       transition(':leave', [
-        animate('300ms ease-in', style({ opacity: 0, transform: 'translateX(-100%)' }))
-      ]),      
+        animate('300ms ease-in', style({ opacity: 0, transform: 'translateX(100%)' })),
+      ]),
     ]),
   ]})
 export class CourseListComponent implements OnInit {
   courses: Course[] = []; // The initial list of courses is empty
-  filteredCourses: Course[] = [];
-  selectedCourse: Course | null = null;
- 
+  filteredCourses: Course[] = []; 
 
-  constructor(private courseService: CourseService, private router: ActivatedRoute) {}
+  constructor(private courseService: CourseService, private router: Router,private searchService: SearchService) {}
 
   ngOnInit(): void {
-
-    // const courseCode=+ActivatedRoute.snapshot.paramMap.get('code')
     // Attempt to fetch courses from the API
-
     this.courseService.getCourses().subscribe({
       next: (data: Course[]) => { // Defined data type
         this.courses = data;
         this.filteredCourses = data;
-
-        const courseCode=+this.router.snapshot.paramMap.get('code')!;
-        if(courseCode){
-          this.selectCourse(courseCode);
-        }
       },
       error: (error) => {
         console.error('Failed to load courses from API:', error);
         // If an error occurs, a message can be shown to the user
       }
     });
-  }
+
+    this.searchService.currentSearchTerm.subscribe((searchTerm) => {
+      this.filterCourses(searchTerm);
+    });  }
   
+  // Update function to handle search properly
   filterCourses(searchTerm: string): void {
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
     this.filteredCourses = this.courses.filter((course) =>
@@ -67,16 +62,14 @@ export class CourseListComponent implements OnInit {
       )
     );
   }
+  
+  selectedCourse: Course | null = null;
 
-  // selectCourse(course: Course): void {
-  //   this.selectedCourse = course;
-  // }
-  selectCourse(course: any) {
+  selectCourse(course: Course): void {
     this.selectedCourse = course;
   }
 
-  clearSelection() {
+  clearSelection(): void {
     this.selectedCourse = null;
   }
-  
 }

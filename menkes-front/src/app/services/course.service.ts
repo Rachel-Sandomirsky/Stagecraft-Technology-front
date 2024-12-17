@@ -14,14 +14,11 @@ export class CourseService {
 
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
-try{
+    console.log('גרסה 9');
+    console.log('API URL:', this.apiUrl); // וודאי שכתובת זו מודפסת
     return this.apiService.get<Course[]>(this.apiUrl);
-  } catch (error) {
-    console.error('Error fetching courses:', error);
-throw new Error
 }
 
-  }
   getCourseByCode(courseCode: number): Observable<Course> {
     return this.apiService.get<Course>(`${this.apiUrl}/${courseCode}`);
   }

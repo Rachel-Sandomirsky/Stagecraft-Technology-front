@@ -1,20 +1,29 @@
-<header class="navbar" >
+<header class="navbar">
   <div class="navbar-left">
-      <a routerLink="" (click)="onLogoClick()"><img class="logo" src="assets/img/logo1.png" alt="Logo" /></a>
-      <span class="categories">Categories</span>
+    <a routerLink="" (click)="onLogoClick()"><img class="logo" src="assets/img/logo1.png" alt="Logo" /></a>
   </div>
   <div class="navbar-center">
-      <div class="search-bar">
-          <span class="search-icon">
-              <i class="fas fa-search"></i>
-            </span>
-            <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="חיפוש" class="search-input" />
-      </div>
+    <div class="search-bar">
+      <span class="search-icon">
+        <i class="fas fa-search"></i>
+      </span>
+      <input type="text" [(ngModel)]="searchTerm" (input)="onSearch(searchTerm)" placeholder="חיפוש" class="search-input" />
     </div>
-    <div class="navbar-right">
+  </div>
+  <div class="navbar-right">
+    <div *ngIf="(userService.user$ | async) as user; else notLoggedIn">
+      <div class="user-info">
+      <button class="login"  (click)="onLogout()">התנתק</button>
+      <p class="username">שלום,  <span class="username">{{ user.username }}</span></p>
+    </div>
+    </div>
+
+    <ng-template #notLoggedIn>
       <i class="fa fa-shopping-cart"></i>
-      <button class="login">Log in</button>
-      <button class="signup">Sign up</button>
-      <i class="fa fa-globe"></i>
-    </div>
+    <button class="login" (click)="onLoginClick()">כניסה</button>
+    <button class="signup" (click)="onSignupClick()">הרשמה</button>
+    <!-- <i class="fa fa-globe"></i> -->
+    </ng-template>
+    
+  </div>
 </header>
