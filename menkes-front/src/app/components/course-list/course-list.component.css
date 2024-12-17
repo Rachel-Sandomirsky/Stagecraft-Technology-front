@@ -27,32 +27,26 @@
 }
 
 .course-details-container {
-  background-color: #000000;
+  background-color: white;
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 5px;
   direction: rtl;
 }
 
 
 .course-card {
-  height:555px;
-  margin-right: 150px;
-  margin-top: 63px;
-}
-
-.course-details {
-  direction: rtl;
-  margin-right: 100px;
+  margin-right:2%;
+  margin-top: 2%;
 }
 
 .back-button {
+  border: 2px solid;
+  border-radius: 12px;
   margin-top: 10px;
   padding: 10px 20px;
   background-color: #000000;
   color: white;
-  border: solid;
-  border-radius: 0;
   cursor: pointer;
   margin-right: 523px;
   margin-bottom: 30px;
