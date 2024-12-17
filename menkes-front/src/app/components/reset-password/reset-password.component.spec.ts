@@ -9,7 +9,7 @@ describe('ResetPasswordComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ResetPasswordComponent],
-      imports: [ReactiveFormsModule]  // נוספנו את ReactiveFormsModule
+      imports: [ReactiveFormsModule]  
     });
     fixture = TestBed.createComponent(ResetPasswordComponent);
     component = fixture.componentInstance;
@@ -22,6 +22,6 @@ describe('ResetPasswordComponent', () => {
 
   it('should initialize the form correctly', () => {
     expect(component.resetPasswordForm).toBeTruthy();
-    expect(component.resetPasswordForm?.valid).toBeFalsy(); // לא תקין עד למילוי כל השדות
+    expect(component.resetPasswordForm?.valid).toBeFalsy(); 
   });
 });

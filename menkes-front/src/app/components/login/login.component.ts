@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';  // אין צורך ב-ReactiveFormsModule כאן
-import { Router } from '@angular/router';  // ייבוא של Router
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { Router } from '@angular/router'; 
 import { Location } from '@angular/common';
-import { UserService } from 'src/app/services/user.service';  // שירות המשתמש שלך
-
+import { UserService } from 'src/app/services/user.service'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,33 +31,33 @@ export class LoginComponent {
 
       this.userService.getUserByEmailAndPass(credentials.email, credentials.password).subscribe(
         (response: any) => {
-          // אם ההתחברות הצליחה, שימור טוקן ושימוש בו בהמשך
+       
           if (response && response.token) {
-            localStorage.setItem('token', response.token);  // תוודא ששרת מחזיר טוקן
-            this.router.navigate([this.location.path() || '/']);  // ניווט לדף האחרון
+            localStorage.setItem('token', response.token);  
+            this.router.navigate([this.location.path() || '/']);
           } else {
             this.errorMessage = 'שגיאה בהתחברות';
           }
         },
         (error) => {
-          // טיפול בשגיאה
+       
           this.errorMessage = 'שם המשתמש או הסיסמה שגויים';
         }
       );
     }
   }
 
-  // פונקציה לשכחת סיסמה
+
   onForgotPassword(): void {
     this.router.navigate(['/reset-password']);
   }
 
   goBack() {
-    // אם יש היסטוריה בדפדפן, חזור אחורה
+   
     if (window.history.length > 1) {
       this.location.back();
     } else {
-      // אם אין היסטוריה, נווט לדף הבית של הפרויקט שלך
+   
       this.router.navigate(['/courses']);
     }
   }

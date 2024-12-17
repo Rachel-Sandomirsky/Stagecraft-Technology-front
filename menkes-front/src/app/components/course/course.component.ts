@@ -6,19 +6,19 @@ import { ModalService } from 'src/app/services/modal.service';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  styleUrls: ['./course.component.css'],
 })
 export class CourseComponent {
   @Input() course!: Course;
 
-  constructor(private router: Router, private modelService:ModalService) {}
+  constructor(private router: Router, private modalService: ModalService) {}
 
-  // register(course: Course): void {
-  //   this.router.navigate(['/register', course.title]); // Navigate using the course title
-  //   console.log('Navigating to /register/' + course.title);
-  // }
-
-  registerForCourse() {
-    this.modelService.openModal(); // פותח את החלונית
+  registerForCourse(): void {
+    try {
+      console.log('Registering for course:', this.course.title);
+      this.modalService.openModal(); 
+    } catch (error) {
+      console.error('Error during course registration:', error);
+    }
   }
 }

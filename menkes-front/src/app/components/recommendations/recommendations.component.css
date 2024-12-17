@@ -1,0 +1,86 @@
+.recommendations-container {
+  margin: 2rem auto;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.recommendations-container h2 {
+  font-size: 1.8rem;
+  color: #ffcf00;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.recommendations-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.recommendation-card {
+  position: relative;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  text-align: right;
+  width: 280px;
+  height: 150px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  overflow: hidden;
+}
+
+/* מסגרת צבעונית לכל הצדדים */
+.recommendation-card::before,
+.recommendation-card::after {
+  content: "";
+  position: absolute;
+  border: 3px solid transparent;
+  border-image-source: linear-gradient(to right, #ffcf00, #ffeb3b, #000);
+  border-image-slice: 1;
+  animation: spinBorder 3s linear infinite;
+  pointer-events: none;
+}
+
+.recommendation-card::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+@keyframes spinBorder {
+  0% {
+    border-image-source: linear-gradient(to right, #ffcf00, #ffeb3b, #000);
+  }
+  100% {
+    border-image-source: linear-gradient(to left, #ffcf00, #ffeb3b, #000);
+  }
+}
+
+.recommendation-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.recommendation-card h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.recommendation-card .feedback {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.recommendation-card .student {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #000;
+  margin-top: 0.5rem;
+}

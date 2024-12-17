@@ -1,4 +1,4 @@
-/* כללי Header */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -11,10 +11,10 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* This will keep the search bar on top of the main content */
+  z-index: 1000;
   height: 50px;
 }
-/* צד שמאל */
+
 .navbar-left {
   display: flex;
   align-items: center;
@@ -32,7 +32,7 @@
   font-weight: bold;
 }
 
-/* מרכז */
+
 .navbar-center {
   flex: 1;
   display: flex;
@@ -70,7 +70,7 @@
   color: #666;
 }
 
-/* צד ימין */
+
 .navbar-right {
   display: flex;
   align-items: center;

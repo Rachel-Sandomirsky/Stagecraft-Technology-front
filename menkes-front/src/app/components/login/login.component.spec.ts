@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import { ReactiveFormsModule } from '@angular/forms';  // הייבוא של ReactiveFormsModule
-import { RouterTestingModule } from '@angular/router/testing';  // חשוב עבור בדיקות ניווט
+import { ReactiveFormsModule } from '@angular/forms';  
+import { RouterTestingModule } from '@angular/router/testing'; 
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -11,8 +11,8 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       imports: [
-        ReactiveFormsModule,   // חשוב לוודא שהמודול הזה מיובא
-        RouterTestingModule,   // מאפשר ביצוע בדיקות ניווט
+        ReactiveFormsModule,
+        RouterTestingModule,   
       ]
     })
     .compileComponents();
@@ -29,11 +29,11 @@ describe('LoginComponent', () => {
   });
 
   it('should call onForgotPassword when the link is clicked', () => {
-    spyOn(component, 'onForgotPassword');  // התמקדות בבדיקת קריאת הפונקציה
+    spyOn(component, 'onForgotPassword'); 
 
     const link = fixture.debugElement.nativeElement.querySelector('a');
-    link.click();  // חיקוי של קליק על הקישור לשכחת סיסמה
+    link.click(); 
 
-    expect(component.onForgotPassword).toHaveBeenCalled();  // ווידוא שהפונקציה קראה
+    expect(component.onForgotPassword).toHaveBeenCalled();  
   });
 });

@@ -32,11 +32,11 @@ export class SignupComponent {
       const user = this.signupForm.value;
       this.userService.createUser(user).subscribe(
         (response) => {
-          // אחרי הרשמה מוצלחת, ניווט לדף הלוגין
+       
           this.router.navigate(['/login']);
         },
         (error) => {
-          console.log('Error:', error); // הוספת הדפסה של השגיאה
+          console.log('Error:', error);
           if (error.error.message === 'המייל כבר קיים במערכת') {
             this.errorMessage = 'המייל כבר קיים במערכת';
           } else {

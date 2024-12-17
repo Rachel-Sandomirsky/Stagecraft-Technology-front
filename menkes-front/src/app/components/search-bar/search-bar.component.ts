@@ -10,27 +10,27 @@ export class SearchBarComponent {
 
   searchTerm: string = '';
   
-  @Output() search = new EventEmitter<string>(); // Emit search term to parent component
+  @Output() search = new EventEmitter<string>(); 
 
   constructor(private router: Router) {}
 
   onLogoClick(): void {
-    this.router.navigate(['/']);  // Navigate to home page
+    this.router.navigate(['/']); 
   }
 
-  // Emit the search term to the parent component
+ 
   onSearch(searchTerm: string | null): void {
     if (searchTerm) {
-      console.log("Searching for: ", searchTerm); // For debugging purposes
-      this.search.emit(searchTerm);  // Emit the search term to the parent component
+      console.log("Searching for: ", searchTerm); 
+      this.search.emit(searchTerm);  
     }
   }
 
   onLoginClick() {
-    this.router.navigate(['/login']);  // Navigate to login page
+    this.router.navigate(['/login']);  
   }
 
   onSignupClick() {
-    this.router.navigate(['/signup']);  // Navigate to signup page
+    this.router.navigate(['/signup']);  
   }
 }

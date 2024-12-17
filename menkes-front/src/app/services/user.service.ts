@@ -11,7 +11,7 @@ export class UserService {
   private resetCode: number | null = null;
   private expirationTime: number | null = null;
 
-  private apiUrl = 'http://localhost:3000';  // apiUrl כללית
+  private apiUrl = 'http://localhost:3000';  
 
   constructor(private http: HttpClient) {}
 
@@ -19,8 +19,8 @@ export class UserService {
   sendPasswordResetCode(email: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/password_reset_code`, { email }).pipe(
       tap((response: any) => {
-        this.resetCode = response.resetCode;  // שומר את קוד האימות
-        this.expirationTime = Date.now() + 5 * 60 * 1000;  // שומר את זמן התוקף
+        this.resetCode = response.resetCode;  
+        this.expirationTime = Date.now() + 5 * 60 * 1000; 
       })
     );
   }
@@ -28,13 +28,13 @@ export class UserService {
   // פונקציה לאימות קוד האימות
   verifyResetCode(code: number): boolean {
     if (this.resetCode === null || this.expirationTime === null) {
-      return false;  // אם אין קוד או זמן תוקף שמורים
+      return false;  
     }
 
     if (this.resetCode === code && this.expirationTime > Date.now()) {
-      return true;  // אם הקוד נכון וזמן התוקף לא פג
+      return true;  
     } else {
-      return false;  // אם הקוד שגוי או הזמן פג
+      return false;  
     }
   }
 
@@ -45,7 +45,7 @@ export class UserService {
 
   // יצירת משתמש חדש
   createUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiUrl}/sign-up`, user);  // עדכון לנתיב '/sign-up'
+    return this.http.post<User>(`${this.apiUrl}/sign-up`, user);  
   }
 
   // פונקציות נוספות לנהל את המשתמשים
