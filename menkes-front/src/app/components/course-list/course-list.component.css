@@ -4,17 +4,19 @@
   gap: 1rem;
   justify-content: center;
   transition: transform 0.5s ease, opacity 0.5s ease;
+
 }
 
 .course-container {
   display: flex;
-  justify-content: center; /* מיישר את האלמנטים באמצע */
+  justify-content: center;
   width: 100%;
   flex-direction: column;
+  height: 100%;
 }
 
 .course-item {
-  width: 48%; /* משנה ל-48% כדי להשאיר מרווח ביניהם */
+  width: 48%;
   margin: 1%;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -26,18 +28,22 @@
 
 .course-details-container {
   background-color: #000000;
-  display: flex;          /* מאפשר הצגת האלמנטים בשורה אחת */
-  justify-content: space-between; /* מרווח שווה בין האלמנטים */
+  display: flex;
+  justify-content: space-between;
   gap: 20px;
+  direction: rtl;
 }
 
 
 .course-card {
-  flex: 0 0 30%;           /* כרטיס הקורס יתפוס 30% מהמרחב */
+  height:555px;
+  margin-right: 150px;
+  margin-top: 63px;
 }
 
 .course-details {
-  flex: 0 0 50%;           /* פרטי הקורס יתפוסו 65% מהמרחב */
+  direction: rtl;
+  margin-right: 100px;
 }
 
 .back-button {
@@ -48,6 +54,8 @@
   border: solid;
   border-radius: 0;
   cursor: pointer;
+  margin-right: 523px;
+  margin-bottom: 30px;
 }
 
 .back-button:hover {
@@ -55,5 +63,5 @@
 }
 
 .course-list.hidden {
-  display: none; /* הסרת התצוגה של רשימת הקורסים */
+  display: none;
 }

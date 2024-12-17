@@ -6,6 +6,8 @@ import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
