@@ -7,9 +7,7 @@ describe('CourseListComponent', () => {
   let fixture: ComponentFixture<CourseListComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [CourseListComponent]
-    })
+    await TestBed.configureTestingModule({    })
     .compileComponents();
 
     fixture = TestBed.createComponent(CourseListComponent);

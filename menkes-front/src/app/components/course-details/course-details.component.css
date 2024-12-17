@@ -29,7 +29,7 @@
 /* כרטיס המנחה */
 .instructor-card {
   margin-top: 3%;
-  height: 75%;
+  height: 80%;
 
   flex: 1;
   max-width: 300px;
