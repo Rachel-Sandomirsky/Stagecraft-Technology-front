@@ -1,10 +1,8 @@
-<br>
-<br>
-<br>
-<br>
-<br>
 <div class="registration-form" *ngIf="isOpen">
   <div class="modal-content" [@fade]="modalState">
+
+    <!-- אייקון סגירה בראש המסך בצד ימין -->
+    <div class="close-icon" (click)="navigateToCourseDetails()">✖</div>
 
     <h1>כיף שבחרת להירשם!</h1>
     <h2>הרשמה לקורס: {{ courseName }}</h2>
@@ -43,8 +41,6 @@
       </label>
 
       <button type="submit" [disabled]="registrationForm.invalid">שלח</button>
-      <button class="close-button" (click)="closeModal()">סגור</button>
-
     </form>
   </div>
 </div>

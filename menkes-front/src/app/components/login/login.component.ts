@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';  // אין צורך ב-ReactiveFormsModule כאן
-import { Router } from '@angular/router';  // ייבוא של Router
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { Router } from '@angular/router'; 
 import { Location } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';  // שירות המשתמש שלך
 import { User } from 'src/app/models/user';
@@ -49,17 +49,17 @@ export class LoginComponent {
     }
   }
 
-  // פונקציה לשכחת סיסמה
+
   onForgotPassword(): void {
     this.router.navigate(['/reset-password']);
   }
 
   goBack() {
-    // אם יש היסטוריה בדפדפן, חזור אחורה
+   
     if (window.history.length > 1) {
       this.location.back();
     } else {
-      // אם אין היסטוריה, נווט לדף הבית של הפרויקט שלך
+   
       this.router.navigate(['/courses']);
     }
   }

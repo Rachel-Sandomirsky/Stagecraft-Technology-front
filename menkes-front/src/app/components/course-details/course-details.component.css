@@ -13,13 +13,14 @@
 
 /* כרטיס התוכן המרכזי */
 .course-details {
-  margin-top: 8%;
+  margin-top: 3%;
   flex: 2; /* תופס את כל רוחב האמצע */
   display: flex;
   flex-direction: column;
   justify-content: center; /* ממורכז אנכית */
   background-color: #f2f2f2; /* רקע אפור */
   border-radius: 8px;
+  height: 65%;
   padding: 50px 30px; /* ריווח פנימי */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -27,7 +28,9 @@
 
 /* כרטיס המנחה */
 .instructor-card {
-  margin-top: 8%;
+  margin-top: 3%;
+  height: 75%;
+
   flex: 1;
   max-width: 300px;
   background-color: #ffffff;
@@ -44,7 +47,6 @@
   background-color: #fff;
   border: 2px solid #ffcc00; /* מסגרת צהובה */
   border-radius: 8px;
-  padding: 20px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

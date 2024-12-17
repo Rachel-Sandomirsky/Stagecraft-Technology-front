@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'register/:course', component: RegisterComponent },
   { path: 'courses/:code', component: CourseDetailsComponent },
-  { path: '', component :CourseListComponent},
+  { path: '', component : CourseListComponent},
   { path: 'reset-password', component: ResetPasswordComponent },
 
 ];

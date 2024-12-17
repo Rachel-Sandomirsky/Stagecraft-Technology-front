@@ -1,17 +1,14 @@
+.course-container{
+  padding-top: 50px; /* מתאים לגובה של הבר העליון */
+
+}
 .course-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-
-}
-
-.course-container {
-  display: flex;
+  gap: 1.5rem; 
   justify-content: center;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row; /* שים לב לשינוי פה */
   height: 100%;
 }
 
@@ -36,8 +33,10 @@
 
 
 .course-card {
+  height: 120%;
   margin-right:2%;
   margin-top: 2%;
+  margin-left: -3%;
 }
 
 .back-button {
@@ -58,4 +57,20 @@
 
 .course-list.hidden {
   display: none;
+}
+
+.course-list-header {
+  padding-top: 6rem; 
+  display: flex;
+  justify-content: flex-end; 
+  padding-right: 2rem;
+}
+
+.course-list-header h2 {
+  font-size: 2rem; 
+  font-weight: bold;
+  color: #333; 
+  text-align: right; 
+  border-bottom: 2px solid #ffcf00; 
+  padding-bottom: 0.5rem; 
 }

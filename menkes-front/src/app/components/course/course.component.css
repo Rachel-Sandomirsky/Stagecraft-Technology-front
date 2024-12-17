@@ -1,16 +1,15 @@
 .course-card {
-  width: 18.75rem; 
-  height: 70%;
+  margin-top: 30px;
+    width: 18.75rem; 
+  height: 90%; /* הגובה יותאם לפי התוכן */
+
   border: 2px solid #ffcc00;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   background-color: #fff;
   box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
   text-align: center;
-  padding: 1rem;
   display: flex;
-  margin-top:25%;
   flex-direction: column;
   justify-content: space-between; 
   box-sizing: border-box; 
@@ -22,10 +21,9 @@
 }
 
 .course-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2); 
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
-
 
 .course-image {
   width: 100%;
@@ -36,60 +34,55 @@
 }
 
 .course-title {
-  font-size: 1.2em; 
-  margin-top: 0.625rem;
-  color: #000;
-  font-weight: bolder;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.625rem 1rem 0.5rem;
+  text-align: center;
 }
 
-.course-description {
-  font-size: 1em;
-  color: #333;
-  margin: 0.625rem 0;
-  flex-grow: 1;
-  overflow: hidden;
+.course-title:hover::after {
+  content: attr(data-description); /* הצגת התיאור */
+  position: absolute;
+  top: 120%; /* הצגת התיאור מתחת לכותרת */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12.5rem;
+  padding: 0.625rem;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.9rem;
+  border-radius: 0.313rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
   white-space: normal;
-  text-overflow: ellipsis; 
+  z-index: 10;
 }
 
 .course-details {
-  font-size: 1em;
-  color: #000;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.9375rem;
-}
-
-.course-price {
-  font-weight: bold;
-  color: #ffcf00;
-}
-
-.course-rating {
-  font-size: 0.9em; 
-  color: #ffcf00;
+  padding: 0.625rem 1rem;
+  font-size: 0.8rem;
+  color: #777;
 }
 
 .register-button {
-  width: 100%;
-  padding: 0.75rem; 
+  display: block;
+  width: calc(100% - 2rem);
+  margin: 0.625rem auto;
+  padding: 0.625rem;
   background-color: #ffcf00;
-  color: black; 
+  color: #000;
   border: none;
-  border-radius: 0.25rem; 
-  cursor: pointer;
-  font-size: 1em;
+  border-radius: 0.313rem;
+  font-size: 1rem;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 0.625rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .register-button:hover {
-  background-color: #e6b800; 
-  transform: translateY(-0.1875rem); 
-}
-
-.register-button:disabled {
-  background-color: #aaa;
-  cursor: not-allowed;
+  background-color: #e5b800;
 }

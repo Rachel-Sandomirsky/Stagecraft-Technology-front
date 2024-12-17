@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SignupComponent } from './signup.component';
-import { ReactiveFormsModule } from '@angular/forms';  // הייבוא של ReactiveFormsModule
-import { RouterTestingModule } from '@angular/router/testing';  // עבור בדיקות נווטות
+import { ReactiveFormsModule } from '@angular/forms';  
+import { RouterTestingModule } from '@angular/router/testing';  
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -11,8 +11,8 @@ describe('SignupComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SignupComponent ],
       imports: [
-        ReactiveFormsModule,  // הוספת ReactiveFormsModule
-        RouterTestingModule   // חשוב אם יש ניווטים בקומפוננטה
+        ReactiveFormsModule,  
+        RouterTestingModule  
       ]
     })
     .compileComponents();
@@ -29,15 +29,15 @@ describe('SignupComponent', () => {
   });
 
   it('should call onSignup when the form is valid', () => {
-    spyOn(component, 'onSignup');  // התמקדות בבדיקת קריאת הפונקציה
+    spyOn(component, 'onSignup');  
 
     component.signupForm.setValue({
       username: 'testuser',
       email: 'test@example.com',
       password: 'password123'
     });
-    fixture.debugElement.nativeElement.querySelector('button').click();  // חיקוי של הקלקה על כפתור ההרשמה
+    fixture.debugElement.nativeElement.querySelector('button').click();  
 
-    expect(component.onSignup).toHaveBeenCalled();  // ווידוא שהפונקציה קראה
+    expect(component.onSignup).toHaveBeenCalled(); 
   });
 });

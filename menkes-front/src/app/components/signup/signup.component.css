@@ -8,38 +8,35 @@
   max-width: 25rem;
   text-align: center;
   box-sizing: border-box;
-  
-  /* Centering the container on the page */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2000; /* Make sure the form is on top of other components */
+  z-index: 2000; 
 }
 
-/* Title */
 h2 {
   color: #000000;
   font-size: 1.5rem;
   margin-bottom: 1.25rem;
 }
 
-/* General style for the fields */
+
 .form-container div {
   margin-bottom: 1.25rem;
   text-align: left;
 }
 
-/* Style for labels */
 label {
   color: #000000;
   font-size: 0.875rem;
   font-weight: bold;
   display: block;
   margin-bottom: 0.3125rem;
+  text-align: right;
 }
 
-/* Input fields */
+
 input {
   width: 100%;
   padding: 0.625rem;
@@ -50,19 +47,19 @@ input {
   box-sizing: border-box;
 }
 
-/* Input field with error */
+
 input.ng-invalid.ng-touched {
   border-color: #ff0000;
 }
 
-/* Error messages */
+
 .error-message {
   color: #ff0000;
   font-size: 0.75rem;
   margin-top: 0.3125rem;
 }
 
-/* Button */
+
 button {
   background-color: #ffcf00;
   color: #000000;
@@ -85,7 +82,6 @@ button:hover {
   background-color: #e6b800;
 }
 
-/* Close button */
 button.close-btn {
   width: 10%;
   top: 10px; 
@@ -103,7 +99,6 @@ button.close-btn:hover {
 }
 
 
-/* Link to signup or login form */
 .link {
   margin-top: 1.25rem;
   font-size: 0.875rem;
@@ -118,14 +113,14 @@ button.close-btn:hover {
   text-decoration: underline;
 }
 
-/* General error messages */
+
 .error {
   color: #ff0000;
   font-size: 0.875rem;
   margin-top: 0.625rem;
 }
 
-/* Eye icon for password visibility */
+
 .eye-icon {
   background: none;
   border: none;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; // נוספה תלות ב-Router
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CourseService } from 'src/app/services/course.service';
@@ -21,30 +21,24 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
-  courseName!: string; // Course name for display purposes only
-  courseId!: number; // Course ID to be sent to the server
+  courseName!: string;
+  courseId!: number;
   isOpen = false;
-  modalState='closed';
+  modalState = 'closed';
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private http: HttpClient,
-    private courseService: CourseService, // Service for courses
-    private modalService: ModalService
+    private courseService: CourseService,
+    private modalService: ModalService,
+    private router: Router // הוספנו Router
   ) {
     this.modalService.modalState$.subscribe((state) => {
       this.isOpen = state;
-      this.modalState=state ? 'open' :'closed';
+      this.modalState = state ? 'open' : 'closed';
     });
   }
-  closeModal() {
-    this.modalState = 'closed'; // מצב אנימציה ל"סגירה"
-    setTimeout(() => {
-      this.modalService.closeModal(); // חזרה למיקום לאחר סיום האנימציה
-    }, 300); // תיאום לזמן האנימציה
-  }
-
 
   ngOnInit(): void {
     // Extract course name from the route
@@ -75,26 +69,32 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     if (this.registrationForm.valid) {
       const formData = {
-        ...this.registrationForm.getRawValue(), // Form data
-        courseId: this.courseId, // Add course ID to the submitted data
+        ...this.registrationForm.getRawValue(), 
+        courseId: this.courseId,
       };
 
-      console.log('Form Data to be sent:', formData); // Log data to the console
+      console.log('Form Data to be sent:', formData);
 
       // Send the data to the server
       this.http.post('http://localhost:3000/register', formData).subscribe(
         (response) => {
-          console.log('Response from server:', response); // Server response
+          console.log('Response from server:', response);
           alert('Form submitted successfully!');
         },
         (error) => {
-          console.error('Error sending form:', error); // Error while submitting
+          console.error('Error sending form:', error);
           alert('An error occurred while submitting the form.');
         }
       );
     } else {
       alert('Please fill out the form correctly.');
     }
+  }
+
+  // פונקציה להעברת המשתמש לקומפוננטת course-details
+  navigateToCourseDetails() {
+    this.isOpen = false;
+    this.router.navigate(['/course-details']);
   }
 
   get fullName() {
@@ -108,6 +108,4 @@ export class RegisterComponent implements OnInit {
   get phone() {
     return this.registrationForm.get('phone');
   }
-
-
 }

@@ -17,6 +17,7 @@ import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     SignupComponent,
     LoginComponent,
     ResetPasswordComponent,
+    RecommendationsComponent,
   ],
   imports: [
     BrowserModule,
