@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
 import { Router } from '@angular/router'; 
 import { Location } from '@angular/common';
-import { UserService } from 'src/app/services/user.service'; 
+import { UserService } from 'src/app/services/user.service';  // שירות המשתמש שלך
+import { User } from 'src/app/models/user';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,18 +32,18 @@ export class LoginComponent {
       const credentials = this.loginForm.value;
 
       this.userService.getUserByEmailAndPass(credentials.email, credentials.password).subscribe(
-        (response: any) => {
-       
-          if (response && response.token) {
-            localStorage.setItem('token', response.token);  
-            this.router.navigate([this.location.path() || '/']);
+        (response: User) => {
+          console.log('username: ' + response.access_token);
+          if (response && response.access_token) {
+            this.router.navigate(['/']);
+            this.errorMessage = null;
+            // ניווט לדף האחרון
           } else {
             this.errorMessage = 'שגיאה בהתחברות';
           }
         },
-        (error) => {
-       
-          this.errorMessage = 'שם המשתמש או הסיסמה שגויים';
+        (err) => {
+          this.errorMessage = err.error?.message || 'שגיאה כללית בהתחברות.';
         }
       );
     }

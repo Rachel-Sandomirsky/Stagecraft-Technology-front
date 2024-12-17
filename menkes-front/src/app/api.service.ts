@@ -45,6 +45,7 @@ export class ApiService {
   // פונקציה לטיפול בשגיאות של הבקשות ל-API
   private handleError(error: HttpErrorResponse) {
     console.error('API Error:', error);
-    return throwError(() => new Error('An error occurred with the API.'));
+
+    return throwError(() => error.error ? error: new Error('An error occurred with the API.'));
   }
 }
