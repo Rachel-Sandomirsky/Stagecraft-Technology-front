@@ -1,4 +1,3 @@
-
 .registration-form {
   width: 100%; 
   margin: 2rem auto;
@@ -15,7 +14,6 @@
   z-index: 1000;
   overflow-x: hidden; /* מבטל גלילה אופקית */
   overflow-y: auto; /* מאפשר גלילה אנכית */
-
 }
 
 .modal-content {
@@ -28,20 +26,22 @@
   transform: translateY(0);
   transition: transform 1s ease, opacity 1s ease;
   margin-left: 10px;
+  position: relative; /* מאפשר מיקום אבסולוטי של אייקון הסגירה */
 }
 
-.close-button {
-  background-color: #ffcf00;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 20px;
+/* אייקון הסגירה */
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: #000;
   cursor: pointer;
-  margin-top: 15px;
+  transition: color 0.3s ease;
 }
 
-.close-button:hover {
-  background-color: #ffcf00;
+.close-icon:hover {
+  color: #ffcf00;
 }
 
 .registration-form h1 {
@@ -104,7 +104,6 @@ button {
   cursor: pointer;
   font-size: 1rem; 
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
   display: block;
 }
 
@@ -132,4 +131,3 @@ button:disabled {
 .error-message span {
   display: block; 
 }
-

@@ -13,10 +13,11 @@ import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { MatTabsModule } from '@angular/material/tabs';
-
+import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     RegisterComponent,
     CourseDetailsComponent,
     SearchBarComponent,
-    DashboardComponent
+    SignupComponent,
+    LoginComponent,
+    ResetPasswordComponent,
+    RecommendationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,16 +41,14 @@ import { MatTabsModule } from '@angular/material/tabs';
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
-    MatTabsModule,
-    
   ],
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: ApiKeyInterceptor,
-  //     multi: true,
-  //   },
-  // ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiKeyInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

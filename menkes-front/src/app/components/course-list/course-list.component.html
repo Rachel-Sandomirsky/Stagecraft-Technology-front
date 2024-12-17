@@ -6,11 +6,11 @@
 
   <div class="course-details-container" *ngIf="selectedCourse">
     <div class="course-card">
-    <app-course [course]="selectedCourse"></app-course>
-  </div>
-  <div class="course-details">
-    <app-course-details [course]="selectedCourse"></app-course-details>
-    <button class="back-button" (click)="clearSelection()">חזרה לרשימת הקורסים המלאה</button>
-  </div>
+      <app-course [course]="selectedCourse"></app-course>
+    </div>
+    <div class="course-details">
+      <app-course-details [course]="selectedCourse"></app-course-details>
+      <button class="back-button" (click)="clearSelection()">חזרה לרשימת הקורסים</button>
+    </div>
   </div>
 </div>

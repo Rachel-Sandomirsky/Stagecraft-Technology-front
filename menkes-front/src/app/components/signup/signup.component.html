@@ -1,0 +1,44 @@
+<div class="form-container" dir="rtl">
+  <!-- אייקון "איקס" לחזרה לדף הקודם -->
+  <button class="close-btn" (click)="goBack()">×</button>
+  
+  <h2>הרשמה</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+    <div>
+      <label for="username">שם משתמש:</label>
+      <input id="username" formControlName="username" type="text" placeholder="הכנס שם משתמש" />
+      <div *ngIf="signupForm.get('username')?.invalid && signupForm.get('username')?.touched" class="error-message">
+        שם המשתמש נדרש וחייב לכלול אותיות ומספרים בלבד.
+      </div>
+    </div>
+    <div>
+      <label for="email">אימייל:</label>
+      <input id="email" formControlName="email" type="email" placeholder="הכנס כתובת אימייל" />
+      <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched" class="error-message">
+        כתובת אימייל אינה תקינה.
+      </div>
+    </div>
+    <div>
+      <label for="password">סיסמה:</label>
+      <div class="password-container">
+        <input 
+          id="password" 
+          formControlName="password" 
+          [type]="isPasswordVisible ? 'text' : 'password'" 
+          placeholder="הכנס סיסמה" 
+        />
+        <div class="eye-icon" (click)="togglePasswordVisibility()">
+          <i class="fa" [ngClass]="isPasswordVisible ? 'fa-eye-slash' : 'fa-eye'"></i>
+        </div>
+      </div>
+      <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched" class="error-message">
+        הסיסמה חייבת להיות באורך של לפחות 8 תווים.
+      </div>
+    </div>
+    <button type="submit" [disabled]="signupForm.invalid">הרשם</button>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  </form>
+  <p class="link">
+    כבר יש לך חשבון? <a routerLink="/login">התחבר</a>
+  </p>
+</div>
