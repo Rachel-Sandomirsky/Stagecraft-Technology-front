@@ -1,74 +1,86 @@
-/* עיצוב כללי */
-body {
-  font-family: var(--font-family, "Arial", sans-serif);
-  background-color: var(--color-white);
-  color: var(--color-black);
-  margin: 0;
-  padding: 0;
-  direction: rtl; /* תמיכה בעברית */
-}
-
+/* סגנון כולל לטופס */
 .add-course {
   max-width: 600px;
   margin: 50px auto;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: var(--color-white);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #fffdfa;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   text-align: right;
+  animation: fadeIn 1s ease-out;
 }
 
+/* כותרת */
 h2 {
   text-align: center;
-  color: #ffcf00; /* צהוב */
-  font-size: 26px;
+  color: #ffcf00;
+  font-size: 28px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ffcf00;
+  padding-bottom: 10px;
 }
 
-/* עיצוב תוויות ושדות */
+/* תוויות */
 form label {
-  font-size: 14px;
-  font-weight: bold;
+  display: block;
   margin-bottom: 5px;
-  display: inline-block;
-  color: var(--color-black);
+  font-weight: bold;
+  color: #333;
 }
 
-form input,
-form textarea {
+/* שדות input */
+form input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
+  padding: 12px;
+  margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
   box-sizing: border-box;
-  background-color: #f9f9f9;
+  background-color: #fdfdfd;
+  transition: all 0.3s ease-in-out;
 }
 
-form input:focus,
-form textarea:focus {
+form input:focus {
+  border-color: #ffcf00;
+  box-shadow: 0 0 4px rgba(255, 207, 0, 0.7);
   outline: none;
-  border: 1px solid #ffcf00; /* מסגרת צהובה בפוקוס */
-  box-shadow: 0 0 4px #ffcf00;
 }
 
-
-
+/* כפתור שליחה */
 button[type="submit"] {
-  background-color: #ffcf00; /* כפתור צהוב */
+  background-color: #ffcf00;
   color: #000;
   font-size: 16px;
   font-weight: bold;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+button[type="submit"]:hover:enabled {
   background-color: #000;
   color: #ffcf00;
+  transform: scale(1.05);
+}
+
+/* אנימציית Fade-In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

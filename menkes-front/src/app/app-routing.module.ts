@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
+import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
 
 export const routes: Routes = [
   { path: '', component: CourseListComponent }, // ברירת מחדל ל-Dashboard
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'register/:course', component: RegisterComponent },
   { path: 'courses', component: CourseListComponent },
   { path: 'add-course', component: AddCourseComponent },
+  {path:'dashboard-courses',component:DeshboardCoursesListComponent}
 ];
 
 @NgModule({

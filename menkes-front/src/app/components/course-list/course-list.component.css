@@ -4,7 +4,7 @@
   gap: 1rem;
   justify-content: center;
   transition: transform 0.5s ease, opacity 0.5s ease;
-
+  direction: rtl; /* שינוי הכיוון של הרשימה */
 }
 
 .course-container {
@@ -13,12 +13,14 @@
   width: 100%;
   flex-direction: column;
   height: 100%;
+  direction: rtl; /* מוודא שכל התוכן בקומפוננטה יתחיל מימין */
 }
 
 .course-item {
   width: 48%;
   margin: 1%;
   cursor: pointer;
+  text-align: right; /* מיישר את כל התוכן לימין */
   transition: transform 0.3s ease;
 }
 
@@ -31,19 +33,21 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  direction: rtl;
+  direction: rtl; /* כיוון מימין לשמאל */
+  text-align: right; /* מיישר את התוכן פנימה לימין */
 }
 
-
 .course-card {
-  height:555px;
+  height: 555px;
   margin-right: 150px;
   margin-top: 63px;
+  direction: rtl; /* יישור פנימי לימין */
 }
 
 .course-details {
   direction: rtl;
   margin-right: 100px;
+  text-align: right; /* יישור טקסט לימין */
 }
 
 .back-button {

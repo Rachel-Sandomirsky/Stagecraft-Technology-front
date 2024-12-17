@@ -1,62 +1,101 @@
+/* כלליים */
+body {
+  font-family: "Assistant", Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: black; /* צבע רקע עדין וקל יותר */
+}
+
+/* דשבורד */
 .dashboard-container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
   padding: 5%;
-  background: linear-gradient(to bottom right, #ffcf00, #fff7d6);
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .dashboard-header {
-  text-align: center;
   margin-bottom: 5%;
-  color: #333;
-  font-family: 'Assistant', Arial, sans-serif;
 }
 
 .dashboard-header h1 {
-  font-size: 3em;
+  font-size: 2.5em;
   margin: 0;
-  color: #000;
+  color: #2a3d4f; /* צבע כהה אך לא שחור */
 }
 
 .dashboard-header p {
   font-size: 1.2em;
-  color: #666;
-  margin: 10px 0 0;
+  color: #7b8d9e; /* צבע אפור-כחול בהיר */
+  margin-top: 10px;
 }
 
+/* טאב */
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 2%;
+  gap: 3%; /* הגדלת המרווח בין הטאבים */
   margin-bottom: 5%;
 }
-
 .tab-button {
-  background-color: #ffcf00;
-  color: #000;
+  background: none;
   border: none;
-  padding: 2% 4%;
-  font-size: 1.2em;
-  border-radius: 5px;
+  padding: 12px 25px; /* הגדלתי את הפדינגים */
+  font-size: 18px; /* הגדלתי את גודל הפונט */
+  color: #4a6572;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: normal;
+  letter-spacing: 0.5px; /* הוספתי ריווח בין האותיות כדי לשפר את הקריאות */
 }
 
+/* הדגשה של הטאב הנבחר או כאשר עוברים עליו */
+.tab-button.active,
 .tab-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #ffcf00; /* צבע צהוב בהיר */
+  font-weight: bold;
 }
 
+/* פס תחתון כאשר הטאב פעיל */
+.tab-button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #ffcf00; /* צבע צהוב כהה */
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.tab-button.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* תוכן */
 .content-box {
   background-color: #fff;
   color: #333;
   padding: 5%;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Assistant", Arial, sans-serif;
   text-align: center;
-  font-family: 'Assistant', Arial, sans-serif;
+}
+
+/* כל תוכן של טאב */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
 }

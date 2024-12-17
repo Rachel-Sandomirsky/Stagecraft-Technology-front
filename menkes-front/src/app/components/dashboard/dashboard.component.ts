@@ -8,13 +8,9 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
   activeTab: string = 'requests';
-
   constructor(private router: Router) {}
 
   selectTab(tab: string) {
     this.activeTab = tab;
-  }
-  navigateToAddCourse() {
-    this.router.navigate(['/add-course']);
   }
 }

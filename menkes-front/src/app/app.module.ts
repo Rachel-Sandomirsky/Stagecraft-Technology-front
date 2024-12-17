@@ -18,6 +18,7 @@ import { AddCourseComponent } from './components/add-course/add-course.component
 // import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     CourseDetailsComponent,
     SearchBarComponent,
     AddCourseComponent,
-    DashboardComponent
+    DashboardComponent,
+    DeshboardCoursesListComponent
   ],
   imports: [
     BrowserModule,
