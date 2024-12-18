@@ -12,6 +12,9 @@ export class SearchBarComponent {
   searchTerm: string = '';
   
   @Output() search = new EventEmitter<string>(); 
+  @Output() closeModal = new EventEmitter<void>(); // לסגירת הטשטוש
+  @Output() openLogin = new EventEmitter<void>(); // פתיחת login
+  @Output() openSignup = new EventEmitter<void>(); // פתיחת signup
 
   constructor(private router: Router, public userService: UserService,private searchService:SearchService) {}
 
@@ -29,12 +32,16 @@ export class SearchBarComponent {
     }
   }
 
-  onLoginClick() {
-    this.router.navigate(['/login']); 
-    console.log("user name", this.userService.user$) // Navigate to login page
-  }
 
-  onSignupClick() {
-    this.router.navigate(['/signup']);  
+onLoginClick() {
+  this.openLogin.emit();
+}
+
+onSignupClick() {
+  this.openSignup.emit();
+}
+
+  close() {
+    this.closeModal.emit(); // סוגר את הטשטוש
   }
 }

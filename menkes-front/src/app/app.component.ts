@@ -10,7 +10,9 @@ import { UserService } from './services/user.service';
 })
 
 export class AppComponent implements OnDestroy {
-  isLoginOrSignupOpen: boolean = false;
+  isLoginOrSignupOpen: boolean = false; // לטשטוש המסך
+  isLoginOpen: boolean = false; // האם להציג את ה-login
+  isSignupOpen: boolean = false; // האם להציג את ה-signup
   title = 'Match';
 
   constructor(private userService: UserService) {
@@ -30,15 +32,28 @@ export class AppComponent implements OnDestroy {
     }
   }
 
-  onLoginOrSignupOpen() {
+  onLoginClick() {
     this.isLoginOrSignupOpen = true;
+    this.isLoginOpen = true;
+    this.isSignupOpen = false;
+  }
+
+  onSignupClick() {
+    this.isLoginOrSignupOpen = true;
+    this.isSignupOpen = true;
+    this.isLoginOpen = false;
   }
 
   onCloseLoginOrSignup() {
     this.isLoginOrSignupOpen = false;
+    this.isLoginOpen = false;
+    this.isSignupOpen = false;
   }
 
-  ngOnDestroy(): void {
-    window.removeEventListener('beforeunload', this.handleUnload.bind(this));
+  ngOnDestroy(): void {}
+
+  ngOnInit() {
+    console.log('Initial isLoginOrSignupOpen:', this.isLoginOrSignupOpen);
   }
-}              
+  
+}
