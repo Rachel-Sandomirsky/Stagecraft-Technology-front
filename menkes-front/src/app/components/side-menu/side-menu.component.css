@@ -1,0 +1,30 @@
+/* תפריט צדדי */
+.side-menu {
+    margin-top: 5%;
+    position: fixed;
+    border-radius: 4px;
+    top: 0;
+    right: 0; /* מיקום בצד ימין */
+    height: 100vh;
+    width: 4%; /* רוחב התפריט */
+    background-color:white; /* צבע רקע */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: -1px 0 3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .menu-item {
+    color: dimgrey;
+    text-decoration: none;
+    margin: 15px 0;
+    font-size: 24px; /* גודל האייקונים */
+    transition: color 0.3s ease;
+  }
+  
+  .menu-item:hover {
+    color: #ffcc00; /* צבע בעת ריחוף */
+  }
+  

@@ -1,0 +1,11 @@
+<div class="side-menu">
+    <a routerLink="" class="menu-item" title="Home">
+        <i class="fas fa-home"></i>
+      </a>
+    
+      <!-- קישור לדשבורד (4 ריבועים כמו Windows) -->
+      <a *ngIf="isAdmin" routerLink="/dashboard" class="menu-item" title="Dashboard">
+        <i class="fas fa-th-large"></i>
+      </a>
+  </div>
+  

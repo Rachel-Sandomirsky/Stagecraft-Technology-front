@@ -47,6 +47,7 @@ export class UserService {
    return this.apiService.post<User>(`${this.apiUrl}/auth`, { email, password }).pipe(
     tap((user) => {
       console.log("user: " + user.username);
+      console.log("role: " + user.role);
       this.userSubject.next(user);
     })
   );    
@@ -81,4 +82,14 @@ public logout():void{
   getUserByCode(code: string): Observable<User> {
     return this.apiService.get<User>(`${this.apiUrl}/users/${code}`);
   }
+
+
+getRole(): string {
+  const user = this.userSubject.getValue(); 
+  if(user)
+  {
+    return user.role;
+  }
+  return ''; // החזרת ה-Role הנוכחי
+}
 }

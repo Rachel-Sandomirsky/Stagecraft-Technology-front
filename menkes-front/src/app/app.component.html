@@ -3,6 +3,9 @@
   <app-course-list></app-course-list>
   <app-recommendations></app-recommendations>
 </div> -->
+<app-side-menu></app-side-menu>
+<div class="content-area">
 <app-search-bar></app-search-bar>
 <router-outlet (activate)="onLoginOrSignupOpen()" (deactivate)="onCloseLoginOrSignup()"></router-outlet>
 <!-- <router-outlet (activate)="onLoginOrSignupOpen()" (deactivate)="onCloseLoginOrSignup()"></router-outlet> -->
+</div>
