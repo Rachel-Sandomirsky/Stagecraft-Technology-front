@@ -22,5 +22,13 @@ export class CourseService {
   getCourseByCode(courseCode: number): Observable<Course> {
     return this.apiService.get<Course>(`${this.apiUrl}/${courseCode}`);
   }
+
+
+  addCourse(course:Course)
+  {
+    return this.apiService.post(this.apiUrl,course)
+  }
+
+
   
 }

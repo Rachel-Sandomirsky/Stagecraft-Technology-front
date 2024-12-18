@@ -6,17 +6,23 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddCourseComponent } from './components/add-course/add-course.component';
+import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
+import { AppComponent } from './app.component';
 
-const routes: Routes = [
+export const routes: Routes = [
+  { path: '', component: CourseListComponent }, // ברירת מחדל ל-Dashboard
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'courses/:code', component: CourseDetailsComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'register/:course', component: RegisterComponent },
-  { path: 'courses/:code', component: CourseDetailsComponent },
-  { path: '', component : CourseListComponent},
-  { path: 'reset-password', component: ResetPasswordComponent },
-
+  { path: 'courses', component: CourseListComponent },
+  { path: 'add-course', component: AddCourseComponent },
+  {path:'dashboard-courses',component:DeshboardCoursesListComponent}
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -4,3 +4,8 @@
     user-select: none; /* מונע בחירה */
   }
   
+  .content-area {
+    margin-right: 70px; /* משאיר מרווח מצד ימין */
+    padding: 20px;
+  }
+  

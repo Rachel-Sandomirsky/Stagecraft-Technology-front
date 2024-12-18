@@ -1,0 +1,86 @@
+/* סגנון כולל לטופס */
+.add-course {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #fffdfa;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: right;
+  animation: fadeIn 1s ease-out;
+}
+
+/* כותרת */
+h2 {
+  text-align: center;
+  color: #ffcf00;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ffcf00;
+  padding-bottom: 10px;
+}
+
+/* תוויות */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* שדות input */
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fdfdfd;
+  transition: all 0.3s ease-in-out;
+}
+
+form input:focus {
+  border-color: #ffcf00;
+  box-shadow: 0 0 4px rgba(255, 207, 0, 0.7);
+  outline: none;
+}
+
+/* כפתור שליחה */
+button[type="submit"] {
+  background-color: #ffcf00;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+button[type="submit"]:hover:enabled {
+  background-color: #000;
+  color: #ffcf00;
+  transform: scale(1.05);
+}
+
+/* אנימציית Fade-In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

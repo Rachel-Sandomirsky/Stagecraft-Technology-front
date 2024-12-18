@@ -13,11 +13,18 @@ import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AddCourseComponent } from './components/add-course/add-course.component';
+//import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+// import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
 import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +34,14 @@ import { RecommendationsComponent } from './components/recommendations/recommend
     RegisterComponent,
     CourseDetailsComponent,
     SearchBarComponent,
+    AddCourseComponent,
+    DashboardComponent,
+    DeshboardCoursesListComponent,
     SignupComponent,
     LoginComponent,
     ResetPasswordComponent,
     RecommendationsComponent,
+    SideMenuComponent,
   ],
   imports: [
     BrowserModule,

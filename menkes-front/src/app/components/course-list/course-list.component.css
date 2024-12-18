@@ -10,12 +10,14 @@
   width: 100%;
   flex-direction: row; /* שים לב לשינוי פה */
   height: 100%;
+  direction: rtl; /* מוודא שכל התוכן בקומפוננטה יתחיל מימין */
 }
 
 .course-item {
   width: 48%;
   margin: 1%;
   cursor: pointer;
+  text-align: right; /* מיישר את כל התוכן לימין */
   transition: transform 0.3s ease;
 }
 
@@ -30,7 +32,6 @@
   gap: 5px;
   direction: rtl;
 }
-
 
 .course-card {
   height: 120%;

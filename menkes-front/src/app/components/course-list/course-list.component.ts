@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CourseComponent } from "../course/course.component";
 import { CourseService } from 'src/app/services/course.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-course-list',
@@ -24,7 +25,7 @@ export class CourseListComponent implements OnInit {
   courses: Course[] = []; // The initial list of courses is empty
   filteredCourses: Course[] = []; 
 
-  constructor(private courseService: CourseService, private router: Router) {}
+  constructor(private courseService: CourseService, private router: Router,private searchService: SearchService) {}
 
   ngOnInit(): void {
     // Attempt to fetch courses from the API
@@ -38,7 +39,10 @@ export class CourseListComponent implements OnInit {
         // If an error occurs, a message can be shown to the user
       }
     });
-  }
+
+    this.searchService.currentSearchTerm.subscribe((searchTerm) => {
+      this.filterCourses(searchTerm);
+    });  }
   
   // Update function to handle search properly
   filterCourses(searchTerm: string): void {

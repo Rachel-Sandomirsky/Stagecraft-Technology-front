@@ -1,0 +1,15 @@
+<div class="courses-container" dir="rtl">
+
+  <div class="add-course">
+    <button (click)="onAddCourseClick()">
+      <span class="plus-icon">+</span> הוספת קורס חדש
+    </button>
+  </div>
+
+  <ul class="courses-list">
+    <li *ngFor="let course of courses" class="course-item">
+      <h2 class="course-name">{{ course.title }}</h2>
+      <p class="course-description">{{ course.description }}</p>
+    </li>
+  </ul>
+</div>

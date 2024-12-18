@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service'; 
 @Component({
   selector: 'app-search-bar',
@@ -12,7 +13,7 @@ export class SearchBarComponent {
   
   @Output() search = new EventEmitter<string>(); 
 
-  constructor(private router: Router, public userService: UserService) {}
+  constructor(private router: Router, public userService: UserService,private searchService:SearchService) {}
 
   onLogoClick(): void {
     this.router.navigate(['']); 
@@ -21,10 +22,10 @@ export class SearchBarComponent {
     this.userService.logout();
   }
   // Emit the search term to the parent component
-  onSearch(searchTerm: string | null): void {
-    if (searchTerm) {
-      console.log("Searching for: ", searchTerm); 
-      this.search.emit(searchTerm);  
+  onSearch(searchTerm: string): void { 
+    if (searchTerm){
+      console.log("Searching for: ", searchTerm);     
+      this.searchService.updateSearchTerm(searchTerm);
     }
   }
 

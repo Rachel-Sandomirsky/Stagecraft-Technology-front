@@ -4,11 +4,26 @@
     <p>ניהול הרשמות, יצירת קורסים והוספת תכנים</p>
   </div>
   <div class="tabs">
-    <button class="tab-button">בקשות הרשמה</button>
-    <button class="tab-button">יצירת קורסים</button>
-    <button class="tab-button">הוספת תוכן לקורסים חדשים</button>
+    <button class="tab-button" [ngClass]="{active: activeTab === 'requests'}" (click)="selectTab('requests')">
+      בקשות הרשמה
+    </button>
+    <button class="tab-button" [ngClass]="{active: activeTab === 'courses'}" (click)="selectTab('courses')">
+      הקורסים שלנו
+    </button>
   </div>
   <div class="content-box">
-    <p>כאן יוצגו בקשות הרשמה.</p>
+    <div *ngIf="activeTab === 'requests'" class="tab-content active">
+      <p>כאן יוצגו בקשות הרשמה.</p>
+    </div>
+    <div *ngIf="activeTab === 'courses'" class="tab-content active">
+      <app-deshboard-courses-list (addCourse)="selectTab('addCourse')"></app-deshboard-courses-list>
+    </div>
+    <div *ngIf="activeTab === 'content'">
+      <p>כאן תוכל להוסיף תוכן לקורסים.</p>
+    </div>
+    <div *ngIf="activeTab === 'addCourse'">
+      <app-add-course></app-add-course>
+
   </div>
 </div>
+

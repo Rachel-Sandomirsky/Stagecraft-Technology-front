@@ -1,0 +1,78 @@
+.courses-container {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  
+    .course-list-title {
+      font-size: 2.5em; /* גודל כותרת גדול */
+      font-weight: bold;
+      color: #333; /* צבע טקסט כהה */
+      text-align: center; /* יישור למרכז */
+      margin-bottom: 20px; /* רווח תחתון */
+      transition: transform 0.3s ease; /* אנימציה של שינוי גודל */
+    }
+    
+    /* שינוי גודל הכותרת כשהיא במצב hover */
+    .course-list-title:hover {
+      transform: scale(1.1); /* הגדלת הגודל ב-10% */
+      color: #ffcf00; /* שינוי צבע הכותרת לצהוב */
+    }
+  
+    .add-course {
+      text-align: right;
+      margin-bottom: 15px;
+  
+      button {
+        background-color: #ffcf00;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+  
+        .plus-icon {
+          font-size: 24px;
+          margin-right: 5px;
+        }
+  
+        &:hover {
+          background-color: #d4ac0d;
+        }
+      }
+    }
+  
+    .courses-list {
+      list-style: none;
+      padding: 0;
+  
+      .course-item {
+        border: 1px solid #ffcf00;;
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+        .course-name {
+          font-size: 20px;
+          color: #000;
+          margin: 0;
+        }
+  
+        .course-description {
+          font-size: 14px;
+          color: #333;
+        }
+      }
+    }
+  }
+  

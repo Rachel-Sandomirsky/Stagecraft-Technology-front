@@ -1,0 +1,43 @@
+<div class="add-course">
+  <h2> : הוספת קורס</h2>
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+    <!-- כותרת -->
+    <div>
+      <label for="title">כותרת הקורס:</label>
+      <input id="title" formControlName="title" type="text" required />
+    </div>
+
+    <!-- תיאור -->
+    <div>
+      <label for="description">תיאור הקורס:</label>
+      <input id="description" formControlName="description" type="text" required />
+    </div>
+
+    <!-- תמונה -->
+    <div>
+      <label for="image">תמונה:</label>
+      <input
+        id="image"
+        formControlName="image"
+        type="text"
+        placeholder="assets/pic1.jpg"
+        required
+      />
+    </div>
+
+    <!-- מחיר -->
+    <div>
+      <label for="price">מחיר:</label>
+      <input id="price" formControlName="price" type="number" required />
+    </div>
+
+    <!-- נושאים -->
+    <div>
+      <label for="topicsInput">נושאים (מופרדים בפסיקים):</label>
+      <input id="topicsInput" formControlName="topicsInput" type="text" required />
+    </div>
+
+    <!-- כפתור -->
+    <button type="submit" [disabled]="courseForm.invalid">שלח</button>
+  </form>
+</div>
