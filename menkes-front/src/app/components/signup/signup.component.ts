@@ -10,7 +10,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-  @Output() closeModal = new EventEmitter<void>();
+  @Output() openLogin = new EventEmitter<void>(); // לפתיחת הטשטוש
+  @Output() closeModal = new EventEmitter<void>(); // לסגירת הטשטוש
 
   signupForm: FormGroup;
   errorMessage: string | null = null;
@@ -61,4 +62,22 @@ export class SignupComponent {
     const passwordField = <HTMLInputElement>document.getElementById('password');
     passwordField.type = this.isPasswordVisible ? 'text' : 'password';
   }
+
+  onClose() {
+    this.closeModal.emit(); // מודיע ל-AppComponent לסגור את הטשטוש
+    this.router.navigate(['/'], { skipLocationChange: true });
+  }
+  
+  onLoginClick() {
+    this.openLogin.emit(); // מפעיל את הטשטוש
+  }
+
+  onSignupClick() {
+    this.openLogin.emit(); // מפעיל את הטשטוש
+  }
+
+  close() {
+    this.closeModal.emit(); // סוגר את הטשטוש
+  }
+
 }

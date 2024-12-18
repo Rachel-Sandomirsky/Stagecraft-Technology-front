@@ -13,6 +13,7 @@ import { User } from 'src/app/models/user';
 export class LoginComponent {
   @Output() closeModal = new EventEmitter<void>();
 
+
   loginForm: FormGroup;
   errorMessage: string | null = null;
   isPasswordVisible: boolean = false;
@@ -65,5 +66,9 @@ export class LoginComponent {
     this.isPasswordVisible = !this.isPasswordVisible;
     const passwordField = <HTMLInputElement>document.getElementById('password');
     passwordField.type = this.isPasswordVisible ? 'text' : 'password';
+  }
+
+  onClose() {
+    this.closeModal.emit();
   }
 }

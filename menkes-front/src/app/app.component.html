@@ -3,9 +3,13 @@
   <app-course-list></app-course-list>
   <app-recommendations></app-recommendations>
 </div> -->
-<app-side-menu></app-side-menu>
-<div class="content-area">
-<app-search-bar></app-search-bar>
-<router-outlet (activate)="onLoginOrSignupOpen()" (deactivate)="onCloseLoginOrSignup()"></router-outlet>
-<!-- <router-outlet (activate)="onLoginOrSignupOpen()" (deactivate)="onCloseLoginOrSignup()"></router-outlet> -->
-</div>                                                                           
+
+<div class="content-area" [ngClass]="{'blurred': isLoginOrSignupOpen}">
+  <app-side-menu></app-side-menu>
+  <app-search-bar (openLogin)="onLoginClick()" (openSignup)="onSignupClick()"></app-search-bar>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- הצגת קומפוננטות login ו-signup באופן מותנה -->
+<app-login *ngIf="isLoginOpen" (closeModal)="onCloseLoginOrSignup()"></app-login>
+<app-signup *ngIf="isSignupOpen" (closeModal)="onCloseLoginOrSignup()"></app-signup>
