@@ -1,7 +1,7 @@
 <div class="recommendations-container">
   <h2>המלצות סטודנטים</h2>
   <div class="recommendations-list">
-    <div class="recommendation-card" *ngFor="let recommendation of recommendations">
+    <div class="recommendation-card" *ngFor="let recommendation of currentRecommendations">
       <h3>{{ recommendation.course }}</h3>
       <p class="feedback">"{{ recommendation.feedback }}"</p>
       <p class="student">- {{ recommendation.student }}</p>

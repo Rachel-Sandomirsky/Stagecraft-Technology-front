@@ -41,4 +41,4 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
     window.removeEventListener('beforeunload', this.handleUnload.bind(this));
   }
-}
+}              

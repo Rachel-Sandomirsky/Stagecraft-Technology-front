@@ -15,13 +15,11 @@
   z-index: 2000;
 }
 
-
 h2 {
   color: #000000; 
   font-size: 1.5rem;
   margin-bottom: 1.25rem;
 }
-
 
 .form-container div {
   margin-bottom: 1.25rem;
@@ -37,7 +35,6 @@ label {
   text-align: right;
 }
 
-
 input {
   width: 100%;
   padding: 0.625rem;
@@ -49,11 +46,9 @@ input {
   text-align: right;
 }
 
-
 input.ng-invalid.ng-touched {
   border-color: #ff0000;
 }
-
 
 .error-message {
   color: #ff0000;
@@ -82,7 +77,6 @@ button:disabled {
 button:hover {
   background-color: #e6b800;
 }
-
 
 .link {
   margin-top: 1.25rem;
@@ -147,4 +141,82 @@ button.close-btn:hover {
 
 .eye-icon:hover {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1rem 1.25rem;
+    max-width: 20rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  .form-container div {
+    margin-bottom: 1rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+
+  .link {
+    font-size: 0.8rem;
+  }
+
+  .forgot-password-link a {
+    font-size: 0.8rem;
+  }
+
+  .eye-icon {
+    font-size: 1rem;
+  }
+
+  button.close-btn {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 0.75rem 1.25rem;
+    max-width: 18rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .form-container div {
+    margin-bottom: 0.75rem;
+  }
+
+  input {
+    font-size: 0.85rem;
+  }
+
+  button {
+    font-size: 0.85rem;
+  }
+
+  .link {
+    font-size: 0.75rem;
+  }
+
+  .forgot-password-link a {
+    font-size: 0.75rem;
+  }
+
+  .eye-icon {
+    font-size: 1rem;
+  }
+
+  button.close-btn {
+    font-size: 16px;
+  }
 }

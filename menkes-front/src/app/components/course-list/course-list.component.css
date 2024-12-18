@@ -1,23 +1,34 @@
-.course-container{
-  padding-top: 50px; /* מתאים לגובה של הבר העליון */
-
-}
 .course-list {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem; 
   justify-content: center;
   width: 100%;
-  flex-direction: row; /* שים לב לשינוי פה */
+  flex-direction: row; 
   height: 100%;
-  direction: rtl; /* מוודא שכל התוכן בקומפוננטה יתחיל מימין */
+  direction: rtl;
+}
+
+.course-list-header {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+.course-list-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: right;
+  border-bottom: 2px solid #ffcf00;
+  padding-bottom: 0.5rem;
 }
 
 .course-item {
   width: 48%;
   margin: 1%;
   cursor: pointer;
-  text-align: right; /* מיישר את כל התוכן לימין */
+  text-align: right; 
   transition: transform 0.3s ease;
 }
 
@@ -35,7 +46,7 @@
 
 .course-card {
   height: 120%;
-  margin-right:2%;
+  margin-right: 2%;
   margin-top: 2%;
   margin-left: -3%;
 }
@@ -61,7 +72,7 @@
 }
 
 .course-list-header {
-  padding-top: 6rem; 
+  padding-top: 5rem; 
   display: flex;
   justify-content: flex-end; 
   padding-right: 2rem;
@@ -74,4 +85,69 @@
   text-align: right; 
   border-bottom: 2px solid #ffcf00; 
   padding-bottom: 0.5rem; 
+}
+
+@media (max-width: 768px) {
+  .course-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .course-item {
+    width: 90%;
+    margin: 1rem 0;
+  }
+
+  .course-list-header h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .back-button {
+    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-list-header {
+    padding-top: 4rem;
+  }
+
+  .course-item {
+    width: 100%;
+  }
+
+  .course-list-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .course-details-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back-button {
+    margin-top: 1rem;
+    width: 90%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .course-item {
+    width: 23%;
+  }
+
+  .course-list {
+    gap: 2rem;
+  }
+
+  .course-list-header {
+    padding-right: 4rem;
+  }
+
+  .course-list-header h2 {
+    font-size: 2.5rem;
+  }
 }

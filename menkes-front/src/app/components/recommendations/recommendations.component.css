@@ -6,9 +6,9 @@
 
 .recommendations-container h2 {
   font-size: 1.8rem;
-  color: #ffcf00;
+  color: #333333; 
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.1); 
 }
 
 .recommendations-list {
@@ -31,7 +31,6 @@
   overflow: hidden;
 }
 
-/* מסגרת צבעונית לכל הצדדים */
 .recommendation-card::before,
 .recommendation-card::after {
   content: "";
@@ -83,4 +82,71 @@
   font-weight: bold;
   color: #000;
   margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .recommendations-container {
+    margin: 1.5rem auto;
+  }
+
+  .recommendations-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .recommendation-card {
+    width: 90%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .recommendation-card h3 {
+    font-size: 1rem;
+  }
+
+  .recommendation-card .feedback {
+    font-size: 0.85rem;
+  }
+
+  .recommendation-card .student {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .recommendations-container {
+    margin: 1rem auto;
+  }
+
+  .recommendations-container h2 {
+    font-size: 1.2rem;
+  }
+
+  .recommendation-card {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .recommendation-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .recommendation-card .feedback {
+    font-size: 0.8rem;
+  }
+
+  .recommendation-card .student {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .recommendations-container {
+    max-width: 1200px;
+  }
+
+  .recommendation-card {
+    width: 280px;
+    height: 150px;
+  }
 }
