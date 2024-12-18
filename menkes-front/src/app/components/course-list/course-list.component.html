@@ -1,4 +1,8 @@
 <div class="course-container">
+  <div class="course-list-header">
+    <h2>הקורסים שלנו</h2>
+  </div>
+
   <div class="course-list" *ngIf="!selectedCourse">
     <!-- <app-search-bar (search)="filterCourses($event)"></app-search-bar> -->
     <app-course *ngFor="let course of filteredCourses" [course]="course" (click)="selectCourse(course)"></app-course>

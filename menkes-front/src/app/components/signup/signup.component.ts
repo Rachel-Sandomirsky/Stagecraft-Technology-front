@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  @Output() closeModal = new EventEmitter<void>();
+
   signupForm: FormGroup;
   errorMessage: string | null = null;
   isPasswordVisible: boolean = false;
@@ -32,8 +34,8 @@ export class SignupComponent {
       const user = this.signupForm.value;
       this.userService.createUser(user).subscribe(
         (response) => {
-       
           this.router.navigate(['/login']);
+          this.closeModal.emit(); // סגירת הטשטוש
         },
         (error) => {
           console.log('Error:', error);
@@ -46,11 +48,13 @@ export class SignupComponent {
       );
     }
   }
-  
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
+      window.history.replaceState({}, '', '/');
+    });
   }
+  
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;

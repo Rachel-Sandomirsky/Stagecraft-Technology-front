@@ -1,13 +1,9 @@
-
 .navbar {
   display: flex;
-  border-radius: 15px;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: black;
+  background-color: white;
   border-bottom: 1px solid #ddd;
   font-family: Arial, sans-serif;
   position: fixed;
@@ -24,7 +20,6 @@
 }
 
 .logo {
-  border-radius: 8px;
   height: 40px;
   margin-right: 10px;
 }
@@ -35,7 +30,6 @@
   cursor: pointer;
   font-weight: bold;
 }
-
 
 .navbar-center {
   flex: 1;
@@ -74,7 +68,6 @@
   color: #666;
 }
 
-
 .navbar-right {
   display: flex;
   align-items: center;
@@ -93,35 +86,131 @@
 }
 
 .login {
-  border: none;
-  border-radius: 8px;
-  background-color:#666;
-  color: white;
+  border: solid;
+  background-color: transparent;
+  color: #333;
   font-size: 14px;
   cursor: pointer;
   height: 40px;
+  width: 60px;
+  border-radius: 0.313rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .signup {
   background-color: #333;
   color: white;
   border: none;
-  border-radius: 8px;
   padding: 5px 10px;
+  border-radius: 0.313rem;
   cursor: pointer;
   height: 40px;
-
+  width: 60px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* עיצוב שם המשתמש */
+.login:hover {
+  background-color: #333; /* צבע רקע שחור כשלוחצים על כפתור הלוגין */
+  color: white; /* טקסט לבן */
+}
+
+.signup:hover {
+  background-color: transparent; /* צבע רקע שקוף כשלוחצים על כפתור ההרשמה */
+  color: #333; /* טקסט שחור */
+  border: 2px solid #333; /* מסגרת שחורה */
+}
+
+
 .username {
   font-weight: bold;
-  color:white ; /* צבע כחול */
+  color: black; 
 }
+
 .user-info {
   display: flex;
-  align-items: center; /* יישור אנכי */
-  gap: 10px; /* מרווח בין הטקסט לכפתור */
+  align-items: center;
+  gap: 10px;
   padding: 10px 15px;
   font-family: Arial, sans-serif;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+  }
+
+  .navbar {
+    padding: 10px;
+    height: auto;
+  }
+
+  .navbar-left {
+    flex: 1;
+  }
+
+  .navbar-right {
+    gap: 10px;
+  }
+
+  .login, .signup {
+    font-size: 12px;
+  }
+
+  .logo {
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-bar {
+    width: 100%;
+  }
+
+  .navbar {
+    height: auto;
+    padding: 8px 15px;
+  }
+
+  .categories {
+    font-size: 14px;
+  }
+
+  .navbar-right span {
+    font-size: 12px;
+  }
+
+  .logo {
+    height: 30px;
+  }
+
+  .login, .signup {
+    height: 35px;
+    font-size: 12px;
+  }
+
+  .user-info {
+    padding: 5px 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .search-bar {
+    width: 650px;
+  }
+
+  .navbar {
+    height: 50px;
+  }
+
+  .logo {
+    height: 40px;
+  }
+
+  .categories {
+    font-size: 17px;
+  }
+
+  .navbar-right {
+    gap: 15px;
+  }
 }
