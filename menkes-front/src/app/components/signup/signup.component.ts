@@ -30,10 +30,13 @@ export class SignupComponent {
   onSignup() {
     if (this.signupForm.valid) {
       const user = this.signupForm.value;
-      this.userService.createUser(user).subscribe(
+      const { username, email, password } = this.signupForm.value;
+
+      this.userService.sendVerificationCode({ username, email, password }).subscribe(
         (response) => {
-       
-          this.router.navigate(['/login']);
+          this.router.navigate(['/verify-email'], {
+            queryParams: { username, email, password },
+          });
         },
         (error) => {
           console.log('Error:', error);
@@ -46,7 +49,6 @@ export class SignupComponent {
       );
     }
   }
-  
 
   goBack() {
     this.location.back();

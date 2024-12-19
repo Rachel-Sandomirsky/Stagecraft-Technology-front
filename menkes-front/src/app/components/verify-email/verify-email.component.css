@@ -1,0 +1,164 @@
+/* עיצוב הקומפוננטה הכללי */
+.form-container {
+  background: #ffffff; /* רקע לבן */
+  border: 0.125rem solid #e0e0e0; /* מסגרת עדינה בגוון אפור בהיר */
+  border-radius: 0.625rem; /* פינות מעוגלות */
+  box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1); /* צל עדין */
+  padding: 1.25rem 1.875rem; /* ריווח פנימי */
+  width: 100%; /* התאמה לכל רוחב */
+  max-width: 25rem; /* רוחב מקסימלי */
+  text-align: center; /* יישור למרכז */
+  box-sizing: border-box; /* מודל גודל כולל */
+  position: fixed; /* מיקום קבוע */
+  top: 50%; /* מרכז אנכי */
+  left: 50%; /* מרכז אופקי */
+  transform: translate(-50%, -50%); /* מיקום מושלם במרכז */
+  z-index: 2000; /* קדימות */
+}
+
+/* כותרת */
+h2 {
+  color: #000000; /* צבע שחור */
+  font-size: 1.5rem; /* גודל כותרת */
+  margin-bottom: 1.25rem; /* ריווח תחתון */
+}
+
+/* כל אלמנט div */
+.form-container div {
+  margin-bottom: 1.25rem; /* ריווח תחתון */
+  text-align: left; /* יישור לימין */
+}
+
+/* תוויות (labels) */
+label {
+  color: #000000; /* צבע שחור */
+  font-size: 0.875rem; /* גודל טקסט קטן */
+  font-weight: bold; /* מודגש */
+  display: block; /* יישור שורה חדשה */
+  margin-bottom: 0.3125rem; /* ריווח תחתון */
+  text-align: right; /* יישור לימין */
+}
+
+/* שדה קלט (inputs) */
+input {
+  width: 100%; /* התאמה לרוחב */
+  padding: 0.625rem; /* ריווח פנימי */
+  margin: 0.3125rem 0 0.625rem 0; /* ריווח חיצוני */
+  border: 0.125rem solid #ccc; /* מסגרת אפורה בהירה */
+  border-radius: 0.3125rem; /* פינות מעוגלות */
+  font-size: 0.875rem; /* גודל טקסט */
+  box-sizing: border-box; /* מודל גודל כולל */
+}
+
+/* שדה קלט לא חוקי */
+input.ng-invalid.ng-touched {
+  border-color: #ff0000; /* מסגרת אדומה */
+}
+
+/* הודעות שגיאה */
+.error-message {
+  color: #ff0000; /* צבע אדום */
+  font-size: 0.75rem; /* טקסט קטן */
+  margin-top: 0.3125rem; /* ריווח עליון */
+}
+
+/* כפתורים */
+button {
+  background-color: #ffcf00; /* רקע צהוב */
+  color: #000000; /* טקסט שחור */
+  font-size: 1rem; /* גודל טקסט */
+  padding: 0.625rem 1.25rem; /* ריווח פנימי */
+  border: none; /* ללא מסגרת */
+  border-radius: 0.3125rem; /* פינות מעוגלות */
+  cursor: pointer; /* סמן עכבר מותאם */
+  width: 100%; /* התאמה לרוחב */
+  margin-top: 0.625rem; /* ריווח עליון */
+  transition: background-color 0.3s; /* מעבר חלק */
+}
+
+button:disabled {
+  background-color: #cccccc; /* רקע אפור */
+  cursor: not-allowed; /* סמן מותאם */
+}
+
+button:hover {
+  background-color: #e6b800; /* רקע כהה יותר */
+}
+
+/* כפתור "איקס" מעוצב */
+button.close-btn {
+    position: absolute; /* ממקם את הכפתור */
+    top: 0.5rem; /* מיקום מהחלק העליון */
+    right: 0.5rem; /* מיקום מהחלק הימני */
+    width: 2rem; /* גודל הכפתור */
+    height: 2rem;
+    background-color: #ffcf00; /* רקע צהוב */
+    color: #000; /* טקסט שחור */
+    border: none; /* בלי מסגרת */
+    font-size: 1.5rem; /* גודל האיקס */
+    font-weight: bold; /* מודגש */
+    display: flex; /* מרכז את האיקס */
+    justify-content: center; /* אופקי */
+    align-items: center; /* אנכי */
+    border-radius: 0.25rem; /* מעגל פינות */
+    cursor: pointer; /* סמן יד */
+    transition: transform 0.2s ease;
+    z-index: 1000; /* שומר את הכפתור קדמי */
+  }
+  
+  button.close-btn:hover {
+    background-color: #e6b800; /* שינוי צבע בריחוף */
+    transform: scale(1.1); /* הגדלה קטנה */
+  }
+  
+  button.close-btn:active {
+    transform: scale(0.95); /* הקטנה קטנה בלחיצה */
+  }
+
+/* טיימר בצבע אדום */
+p.timer {
+  font-size: 1rem; /* גודל טקסט */
+  color: #ff0000; /* אדום */
+  font-weight: bold; /* מודגש */
+  text-align: center; /* יישור למרכז */
+}
+
+p.timer span {
+  font-size: 1.2rem; /* טקסט מעט גדול יותר */
+}
+
+/* לינקים */
+.link {
+  margin-top: 1.25rem; /* ריווח עליון */
+  font-size: 0.875rem; /* גודל טקסט קטן */
+}
+
+.link a {
+  color: #ffcf00; /* צבע צהוב */
+  text-decoration: none; /* ללא קו תחתון */
+}
+
+.link a:hover {
+  text-decoration: underline; /* קו תחתון בריחוף */
+}
+
+/* הודעות שגיאה */
+.error {
+  color: #ff0000; /* צבע אדום */
+  font-size: 0.875rem; /* גודל טקסט קטן */
+  margin-top: 0.625rem; /* ריווח עליון */
+}
+
+/* אייקון עין */
+.eye-icon {
+  background: none; /* בלי רקע */
+  border: none; /* בלי מסגרת */
+  font-size: 1.2rem; /* גודל אייקון */
+  position: absolute; /* מיקום מוחלט */
+  cursor: pointer; /* סמן מותאם */
+  opacity: 0.7; /* שקיפות קלה */
+}
+
+.eye-icon:hover {
+  opacity: 1; /* ללא שקיפות */
+}
