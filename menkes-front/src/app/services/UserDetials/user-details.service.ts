@@ -23,10 +23,10 @@ export class UserDetailsService {
 
   getUnapprovedUsers() {
 
-    return this.apiService.get<RequestsUserDto[]>(`${this.apiUrl}/dashboard`);
+    return this.apiService.get<RequestsUserDto[]>(`${this.apiUrl}/dashboard/awaitingApproval`);
   }
 
   approveUser(user_Code: number,course_Code:number) {
-    return this.apiService.put(`${this.apiUrl}/dashboard`, {user_code:user_Code,course_code:course_Code});
+    return this.apiService.post(`${this.apiUrl}/dashboard/UserConfirmation`, {user_code:user_Code,course_code:course_Code});
   }
 }

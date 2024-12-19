@@ -51,7 +51,7 @@ export class UserDetailsComponent implements OnInit {
        console.error(error);
       }
     });
-    this.users = this.users.filter(user =>( user.user_code !== userCode)&&(user.course_code !== courseCode));
+    this.users = this.users.filter(user =>( user.user_code !== userCode)||(user.course_code !== courseCode));
     
   }
 }
