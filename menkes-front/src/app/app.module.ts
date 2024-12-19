@@ -25,6 +25,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     ResetPasswordComponent,
     RecommendationsComponent,
     SideMenuComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
+   
   ],
   providers: [
     {
