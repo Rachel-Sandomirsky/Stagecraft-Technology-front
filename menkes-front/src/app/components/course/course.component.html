@@ -13,10 +13,10 @@
     </span>
   </div>
   <button
-    class="register-button"
-    [routerLink]="['/register', course.title]"
-    (click)="registerForCourse()"
-  >
-    הירשם לקורס
-  </button>
+  class="register-button"
+  [routerLink]="['/courses', course.code]"
+>
+  הירשם לקורס
+</button>
+
 </div>

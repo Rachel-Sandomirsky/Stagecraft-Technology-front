@@ -10,8 +10,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./verify-email.component.css'],
 })
 export class VerifyEmailComponent implements OnInit, OnDestroy {
+  isModalVisible: boolean = true; // מציין אם המודאל מופיעה (רקע מטושטש)
   verificationCode: string = '';
-  isCodeValid: boolean = false; // האם הקוד שהוזן תקין (בעל 5 תווים)
+  isCodeValid: boolean = false;
   isTimeExpired: boolean = false;
   minutesLeft: number = 10;
   secondsLeft: number = 0;
@@ -29,11 +30,10 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.username = params['username']; // שמירה של השם
-      this.email = params['email']; // שמירה של המייל
-      this.password = params['password']; // שמירה של הסיסמה
+      this.username = params['username'];
+      this.email = params['email'];
+      this.password = params['password'];
     });
-    // שליחה לשרת לאימות קוד
     this.startTimer();
   }
 
@@ -46,11 +46,10 @@ export class VerifyEmailComponent implements OnInit, OnDestroy {
       this.userService.verifyCode(this.email, this.verificationCode).subscribe(
         (response) => {
           alert('הקוד נכון! אימות הצליח.');
-
-          this.userService.addUser( {username: this.username, email: this.email,password: this.password}).subscribe(
+          this.userService.addUser({ username: this.username, email: this.email, password: this.password }).subscribe(
             (addUserResponse) => {
               alert('המשתמש נוסף בהצלחה!');
-              this.router.navigate(['/login']); // או כל דף אחר שתרצי לנווט אליו
+              this.router.navigate(['/login']);
             },
             (error) => {
               alert('אירעה שגיאה בהוספת המשתמש');

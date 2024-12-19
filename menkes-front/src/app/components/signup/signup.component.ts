@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -10,6 +10,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
+  @Output() openLogin = new EventEmitter<void>(); // לפתיחת הטשטוש
+  @Output() closeModal = new EventEmitter<void>(); // לסגירת הטשטוש
+
   signupForm: FormGroup;
   errorMessage: string | null = null;
   isPasswordVisible: boolean = false;
@@ -34,6 +37,7 @@ export class SignupComponent {
 
       this.userService.sendVerificationCode({ username, email, password }).subscribe(
         (response) => {
+          this.closeModal.emit(); // סוגר את הטשטוש
           this.router.navigate(['/verify-email'], {
             queryParams: { username, email, password },
           });
@@ -51,12 +55,33 @@ export class SignupComponent {
   }
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
+      window.history.replaceState({}, '', '/');
+    });
   }
+  
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
     const passwordField = <HTMLInputElement>document.getElementById('password');
     passwordField.type = this.isPasswordVisible ? 'text' : 'password';
   }
+
+  onClose() {
+    this.closeModal.emit(); // מודיע ל-AppComponent לסגור את הטשטוש
+    this.router.navigate(['/'], { skipLocationChange: true });
+  }
+  
+  onLoginClick() {
+    this.openLogin.emit(); // מפעיל את הטשטוש
+  }
+
+  onSignupClick() {
+    this.openLogin.emit(); // מפעיל את הטשטוש
+  }
+
+  close() {
+    this.closeModal.emit(); // סוגר את הטשטוש
+  }
+
 }

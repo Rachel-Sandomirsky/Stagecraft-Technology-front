@@ -1,9 +1,10 @@
 .blurred {
-    filter: blur(5px); /* רמת הטשטוש */
-    pointer-events: none; /* לא מאפשר אינטראקציה */
-    user-select: none; /* מונע בחירה */
-  }
-  
+  filter: blur(5px); /* רמת הטשטוש */
+  pointer-events: none; /* לא מאפשר אינטראקציה */
+  user-select: none; /* מונע בחירה */
+  opacity: 0.5; /* מוסיף שקיפות */
+}
+
   .content-area {
     margin-right: 70px; /* משאיר מרווח מצד ימין */
     padding: 20px;

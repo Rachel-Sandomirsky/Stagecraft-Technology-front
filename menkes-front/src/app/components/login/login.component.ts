@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
-import { Router } from '@angular/router'; 
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { UserService } from 'src/app/services/user.service';  // שירות המשתמש שלך
+import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -11,6 +11,9 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  @Output() closeModal = new EventEmitter<void>();
+
+
   loginForm: FormGroup;
   errorMessage: string | null = null;
   isPasswordVisible: boolean = false;
@@ -36,8 +39,8 @@ export class LoginComponent {
           console.log('username: ' + response.access_token);
           if (response && response.access_token) {
             this.router.navigate(['/']);
+            this.closeModal.emit(); // סגירת הטשטוש
             this.errorMessage = null;
-            // ניווט לדף האחרון
           } else {
             this.errorMessage = 'שגיאה בהתחברות';
           }
@@ -49,24 +52,23 @@ export class LoginComponent {
     }
   }
 
-
   onForgotPassword(): void {
     this.router.navigate(['/reset-password']);
   }
-
   goBack() {
-   
-    if (window.history.length > 1) {
-      this.location.back();
-    } else {
-   
-      this.router.navigate(['/courses']);
-    }
+    this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
+      window.history.replaceState({}, '', '/');
+    });
   }
+  
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
     const passwordField = <HTMLInputElement>document.getElementById('password');
     passwordField.type = this.isPasswordVisible ? 'text' : 'password';
+  }
+
+  onClose() {
+    this.closeModal.emit();
   }
 }
