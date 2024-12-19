@@ -27,6 +27,7 @@ export class UserDetailsService {
   }
 
   approveUser(user_Code: number,course_Code:number) {
+   
     return this.apiService.post(`${this.apiUrl}/dashboard/UserConfirmation`, {user_code:user_Code,course_code:course_Code});
   }
 }
