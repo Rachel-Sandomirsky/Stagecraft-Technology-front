@@ -1,0 +1,11 @@
+
+<div *ngIf="users.length === 0">אין משתמשים זמינים</div>
+<div *ngFor="let user of users">
+  <div class="user-card">
+    <h3>{{ user.user_name }}</h3>
+    <p>Email: {{ user.email }}</p>
+    <p>Titel of course: {{ user.title}}</p>
+    <button (click)="approveUser(user.user_code,user.course_code)">אשר משתמש</button>
+  </div>
+  
+</div>
