@@ -20,6 +20,7 @@ export class CourseService {
 }
 
   getCourseByCode(courseCode: number): Observable<Course> {
+    console.log('Requesting course by code:', courseCode);
     return this.apiService.get<Course>(`${this.apiUrl}/${courseCode}`);
   }
 

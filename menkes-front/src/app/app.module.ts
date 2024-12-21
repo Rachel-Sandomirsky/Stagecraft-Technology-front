@@ -14,8 +14,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddCourseComponent } from './components/add-course/add-course.component';
-//import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
-// import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
@@ -31,8 +29,8 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
     AppComponent,
     CourseListComponent,
     CourseComponent,
-    RegisterComponent,
     CourseDetailsComponent,
+    RegisterComponent,
     SearchBarComponent,
     AddCourseComponent,
     DashboardComponent,

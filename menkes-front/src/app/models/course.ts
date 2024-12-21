@@ -1,4 +1,5 @@
 export class Course {
+    isRegistered: any;
     constructor(
       public title: string,
       public code: number,

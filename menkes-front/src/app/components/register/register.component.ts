@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; // נוספה תלות ב-Router
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-
-
+import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-register',
@@ -22,30 +21,37 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ],
 })
 export class RegisterComponent implements OnInit {
+  @Input() courseName: string = ''; // מקבל את שם הקורס כפרמטר
+  @Input() courseId: number = 0; // קבלת מזהה הקורס כפרמטר
   registrationForm!: FormGroup;
-  courseName!: string;
-  courseId!: number;
-  isOpen = false;
-  modalState = 'closed';
+  isOpen = false; // פתיחה ידנית לצורך בדיקה
+  modalState = 'open'; // מצב המודל הוא פתוח כברירת מחדל
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private http: HttpClient,
     private courseService: CourseService,
-    private modalService: ModalService,
-    private router: Router // הוספנו Router
+    public modalService: ModalService,
+    private router: Router
   ) {
+    // Subscription to modal state
     this.modalService.modalState$.subscribe((state) => {
+      console.log('Modal state updated:', state);
       this.isOpen = state;
       this.modalState = state ? 'open' : 'closed';
+      console.log('isOpen:', this.isOpen);
     });
   }
 
   ngOnInit(): void {
-    // Extract course name from the route
-    this.courseName = this.route.snapshot.paramMap.get('course') || 'Unknown Course';
-
+    console.log('Component initialized. isOpen:', this.isOpen);
+    console.log('Course name received in register component:', this.courseName);
+  
+    if (!this.courseName) {
+      console.error('Course name is not provided to the component');
+    }
+  
     // Initialize the registration form
     this.registrationForm = this.fb.group({
       fullName: [
@@ -67,11 +73,11 @@ export class RegisterComponent implements OnInit {
       course: [{ value: this.courseName, disabled: true }], // Disabled field for display
     });
   }
-
+  
   onSubmit(): void {
     if (this.registrationForm.valid) {
       const formData = {
-        ...this.registrationForm.getRawValue(), 
+        ...this.registrationForm.getRawValue(),
         courseId: this.courseId,
       };
 
@@ -93,10 +99,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  // פונקציה להעברת המשתמש לקומפוננטת course-details
-  navigateToCourseDetails() {
-    this.isOpen = false;
-    this.router.navigate(['/course-details']);
+  closeRegisterModal(): void {
+    this.modalService.closeModal(); // סגירת המודל דרך השירות
   }
 
   get fullName() {
