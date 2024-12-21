@@ -21,11 +21,11 @@ import { fakeAsync } from '@angular/core/testing';
   ],
 })
 export class RegisterComponent implements OnInit {
-  @Input() courseName: string = ''; // מקבל את שם הקורס כפרמטר
-  @Input() courseId: number = 0; // קבלת מזהה הקורס כפרמטר
+  @Input() courseName: string = ''; 
+  @Input() courseId: number = 0; 
   registrationForm!: FormGroup;
-  isOpen = false; // פתיחה ידנית לצורך בדיקה
-  modalState = 'open'; // מצב המודל הוא פתוח כברירת מחדל
+  isOpen = false; 
+  modalState = 'open'; 
 
   constructor(
     private route: ActivatedRoute,
@@ -100,7 +100,7 @@ export class RegisterComponent implements OnInit {
   }
 
   closeRegisterModal(): void {
-    this.modalService.closeModal(); // סגירת המודל דרך השירות
+    this.modalService.closeModal(); 
   }
 
   get fullName() {

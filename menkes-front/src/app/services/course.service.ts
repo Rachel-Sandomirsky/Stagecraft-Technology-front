@@ -15,7 +15,7 @@ export class CourseService {
 // Function to fetch real courses
   getCourses(): Observable<Course[]> {
     console.log('גרסה 9');
-    console.log('API URL:', this.apiUrl); // וודאי שכתובת זו מודפסת
+    console.log('API URL:', this.apiUrl); 
     return this.apiService.get<Course[]>(this.apiUrl);
 }
 
