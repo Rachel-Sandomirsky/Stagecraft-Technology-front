@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'; // נוספה תלות ב-Router
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-
-
 
 @Component({
   selector: 'app-register',
@@ -21,20 +19,22 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ]),
   ],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnChanges {
+  @Input() courseName: string = ''; 
+  @Input() courseId: number = 0; 
+  @Input() userData: any = {}; 
+
   registrationForm!: FormGroup;
-  courseName!: string;
-  courseId!: number;
-  isOpen = false;
-  modalState = 'closed';
+  isOpen = false; 
+  modalState = 'open'; 
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private http: HttpClient,
     private courseService: CourseService,
-    private modalService: ModalService,
-    private router: Router // הוספנו Router
+    public modalService: ModalService,
+    private router: Router
   ) {
     this.modalService.modalState$.subscribe((state) => {
       this.isOpen = state;
@@ -43,41 +43,75 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Extract course name from the route
-    this.courseName = this.route.snapshot.paramMap.get('course') || 'Unknown Course';
+    console.log('Received userData:', this.userData);
+    console.log('Received courseName:', this.courseName);
 
-    // Initialize the registration form
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges called with changes:', changes);
+  
+    if (this.registrationForm) {
+      if (changes['userData'] && changes['userData'].currentValue) {
+        console.log('Patching userData to form...');
+        
+        const email = changes['userData'].currentValue.email || '';
+        if (email) {
+          this.registrationForm.get('email')?.enable();
+          this.registrationForm.patchValue({ email });
+          this.registrationForm.get('email')?.disable(); 
+        } else {
+          console.error('Email is missing in userData:', changes['userData'].currentValue);
+        }
+  
+        console.log('Updated form values with userData:', this.registrationForm.value);
+      }
+  
+      if (changes['courseName'] && changes['courseName'].currentValue) {
+        console.log('Patching courseName to form...');
+        this.registrationForm.patchValue({
+          course: changes['courseName'].currentValue,
+        });
+        console.log('Updated form values with courseName:', this.registrationForm.value);
+      }
+    }
+  }
+  
+  initializeForm(): void {
     this.registrationForm = this.fb.group({
       fullName: [
-        '',
+        '', 
         [
           Validators.required,
-          Validators.pattern(/^[a-zA-Zא-ת\s]+$/), // Only letters and spaces
+          Validators.pattern(/^[a-zA-Zא-ת\s]+$/), 
           Validators.minLength(2),
         ],
       ],
-      email: ['', [Validators.required, Validators.email]], // Valid email
+      email: [
+        { value: this.userData?.email || '', disabled: true },
+        [Validators.required, Validators.email],
+      ],
       phone: [
         '',
         [
           Validators.required,
-          Validators.pattern(/^0[2-9]\d{7,8}$/), // Israeli phone number format
+          Validators.pattern(/^0[2-9]\d{7,8}$/), 
         ],
       ],
-      course: [{ value: this.courseName, disabled: true }], // Disabled field for display
+      course: [{ value: this.courseName, disabled: true }],
     });
   }
 
   onSubmit(): void {
     if (this.registrationForm.valid) {
       const formData = {
-        ...this.registrationForm.getRawValue(), 
+        ...this.registrationForm.getRawValue(),
         courseId: this.courseId,
       };
 
       console.log('Form Data to be sent:', formData);
 
-      // Send the data to the server
       this.http.post('http://localhost:3000/register', formData).subscribe(
         (response) => {
           console.log('Response from server:', response);
@@ -93,10 +127,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  // פונקציה להעברת המשתמש לקומפוננטת course-details
-  navigateToCourseDetails() {
-    this.isOpen = false;
-    this.router.navigate(['/course-details']);
+  closeRegisterModal(): void {
+    this.modalService.closeModal(); 
   }
 
   get fullName() {

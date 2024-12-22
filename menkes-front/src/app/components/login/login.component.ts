@@ -21,7 +21,6 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private location: Location,
     private userService: UserService
   ) {
     this.loginForm = this.fb.group({
@@ -59,6 +58,7 @@ export class LoginComponent {
     this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
       window.history.replaceState({}, '', '/');
     });
+    
   }
   
 
@@ -71,4 +71,5 @@ export class LoginComponent {
   onClose() {
     this.closeModal.emit();
   }
+
 }

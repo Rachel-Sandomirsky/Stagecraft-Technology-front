@@ -72,11 +72,13 @@ export class SignupComponent {
     this.router.navigate(['/'], { skipLocationChange: true });
   }
   
-  onLoginClick() {
+
+  onSignupClick() {
     this.openLogin.emit(); // מפעיל את הטשטוש
   }
 
-  onSignupClick() {
+  
+  onLoginClick() {
     this.openLogin.emit(); // מפעיל את הטשטוש
   }
 

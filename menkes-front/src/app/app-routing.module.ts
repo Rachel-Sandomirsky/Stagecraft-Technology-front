@@ -19,13 +19,13 @@ export const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'register/:course', component: RegisterComponent },
+  { path: 'register/:course', component: RegisterComponent }, // גישה ל-Register לפי שם הקורס
   { path: 'courses', component: CourseListComponent },
   { path: 'add-course', component: AddCourseComponent },
   {path:'dashboard-courses',component:DeshboardCoursesListComponent},
-  {path:'verify-email',component:VerifyEmailComponent}
+  {path:'verify-email',component:VerifyEmailComponent},
+  { path: 'course-details/:code', component: CourseDetailsComponent }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

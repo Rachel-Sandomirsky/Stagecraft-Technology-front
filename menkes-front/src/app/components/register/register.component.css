@@ -1,133 +1,131 @@
 .registration-form {
-  width: 100%; 
-  margin: 2rem auto;
-  transition: all 0.3s ease-in-out; 
-  direction: rtl; 
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  overflow-x: hidden; /* מבטל גלילה אופקית */
-  overflow-y: auto; /* מאפשר גלילה אנכית */
+  width: 100% !important;
+  margin: 0 auto;
+  padding: 1.25rem;
+  background: #fff;
+  border-radius: 0.5rem;
 }
 
 .modal-content {
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  border-style: solid;
-  border-color: #000;
-  width: 700px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transform: translateY(0);
-  transition: transform 1s ease, opacity 1s ease;
-  margin-left: 10px;
-  position: relative; /* מאפשר מיקום אבסולוטי של אייקון הסגירה */
+  width: 100% !important;
+  text-align: right !important;
 }
 
-/* אייקון הסגירה */
 .close-icon {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5rem;
-  color: #000;
-  cursor: pointer;
-  transition: color 0.3s ease;
+  position: absolute !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  font-size: 1.5rem !important;
+  color: #000 !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease !important;
 }
 
 .close-icon:hover {
-  color: #ffcf00;
+  color: #ffcf00 !important;
 }
 
-.registration-form h1 {
-  font-size: 1.2rem;
+.form-title {
+  direction: rtl;
   text-align: center;
-  color:#000000;
-  margin-bottom: 1rem; 
+  font-size: 1.5rem;
+  color: #000;
+  margin-bottom: 1rem;
 }
 
-/* Form Title */
-h2 {
-  text-align: center; 
-  font-size: 1.5em;
-  margin-bottom: 1rem; 
-  color: #ffcf00; 
-  font-family: 'Arial', sans-serif;
-  font-weight: 600;
+.form-subtitle {
+  direction: rtl;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ffcf00;
+  margin-bottom: 1.25rem;
 }
 
-/* Labels */
-label {
-  display: block;
-  font-size: 1em;
-  margin-bottom: 0.375rem; 
-  color: #000; 
-  text-align: right;
-}
-
-/* Input Fields */
-input {
-  width: calc(100% - 2rem); 
-  padding: 0.5rem; 
-  margin: 0.5rem auto;
-  border: 0.0625rem solid #ccc; 
-  border-radius: 0; 
-  font-size: 0.9rem; 
-  transition: border-color 0.3s ease;
-  text-align: right; 
-  display: block;
-  box-sizing: border-box;
-}
-
-/* Input Hover Effect */
-input:focus {
-  border-color: #ffcf00; 
-  outline: none;
-  box-shadow: 0 0 0.25rem rgba(255, 207, 0, 0.5); 
-}
-
-/* Button */
-button {
-  width: calc(100% - 2rem);
-  margin: 1rem auto; 
-  padding: 0.75rem; 
-  background-color:#ffcf00; 
-  color: white; 
-  border: none;
-  border-radius: 0; 
-  border-color: #000;
-  cursor: pointer;
-  font-size: 1rem; 
+.form-subtitle span {
+  direction: rtl;
   font-weight: bold;
-  display: block;
+}
+
+label {
+  direction: rtl;
+  display: block !important;
+  font-size: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  color: #000 !important;
+  text-align: right !important;
+}
+
+input {
+  width: 100% !important;
+  padding: 0.625rem !important;
+  margin-bottom: 1rem !important;
+  border: 1px solid #ccc !important;
+  border-radius: 0.25rem !important;
+  font-size: 1rem !important;
+  box-sizing: border-box !important;
+  text-align: right !important;
+  direction: rtl;
+}
+
+input:focus {
+  border-color: #ffcf00 !important;
+  outline: none !important;
+  box-shadow: 0 0 0.3125rem rgba(255, 207, 0, 0.5) !important;
+}
+
+button {
+  width: 100% !important;
+  padding: 0.625rem !important;
+  background-color: #ffcf00 !important;
+  border: none !important;
+  border-radius: 0.25rem !important;
+  font-size: 1rem !important;
+  color: white !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
 }
 
 button:hover {
-  background-color:#ffcf00; 
-  border-color: #000;
-  transform: scale(1.05);
+  background-color: #e6b800 !important;
+  transform: scale(1.05) !important;
 }
 
-/* Disabled Button */
 button:disabled {
-  background-color: #aaa;
-  cursor: not-allowed;
+  background-color: #aaa !important;
+  cursor: not-allowed !important;
 }
 
-/* Error Messages */
 .error-message {
-  color: red;
-  font-size: 0.9em;
-  margin-top: 0.3125rem; 
-  margin-bottom: 0.625rem; 
-  text-align: right; 
+  color: red !important;
+  font-size: 0.9rem !important;
+  text-align: right !important;
+  margin-bottom: 1rem !important;
 }
 
-.error-message span {
-  display: block; 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .registration-form {
+    padding: 1rem;
+  }
+
+  .form-title {
+    font-size: 1.25rem;
+  }
+
+  .form-subtitle {
+    font-size: 1.25rem;
+  }
+
+  input {
+    padding: 0.5rem;
+  }
+
+  button {
+    padding: 0.75rem;
+  }
+
+  .error-message {
+    font-size: 0.8rem;
+  }
 }
