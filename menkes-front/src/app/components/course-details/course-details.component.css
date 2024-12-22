@@ -221,12 +221,13 @@
 
 /* Registration button */
 .register-button {
-  margin-top: 0.9375rem; /* 15px => 0.9375rem */
-  padding: 0.5rem; /* 8px => 0.5rem */
+  position: relative; /* חשוב למקם את הכפתור כהורה */
+  margin-top: 0.9375rem; /* שמירה על מרווח */
+  padding: 0.5rem;
   background-color: #ffcc00;
   color: white;
   border: none;
-  border-radius: 0.3125rem; /* 5px => 0.3125rem */
+  border-radius: 0.3125rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   font-size: 0.9rem;
@@ -271,3 +272,7 @@
     margin-bottom: 1.5rem;
   }
 }
+
+
+
+
