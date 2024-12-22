@@ -19,19 +19,24 @@
     </div>
   </div>
   <div class="navbar-right">
+    <!-- משתמש מחובר -->
     <div *ngIf="(userService.user$ | async) as user; else notLoggedIn">
       <div class="user-profile">
-        <div class="profile-wrapper">
-          <i class="fa fa-user-circle profile-icon"></i>
-          <span class="user-name">{{ user.username }}</span>
-        </div>
-        <button class="login" (click)="onLogout()">התנתק</button>
+        <i
+          class="fa fa-user-circle profile-icon"
+          (click)="toggleProfileModal()"
+        ></i>
+        <span class="status">מחובר</span>
       </div>
-      
-      
-      
+      <!-- חלונית פרופיל -->
+      <app-profile-modal
+        *ngIf="isProfileModalOpen"
+        [user]="user"
+        (close)="toggleProfileModal()"
+      ></app-profile-modal>
     </div>
 
+    <!-- משתמש לא מחובר -->
     <ng-template #notLoggedIn>
       <i class="fa fa-shopping-cart"></i>
       <button class="login" (click)="onLoginClick()">כניסה</button>

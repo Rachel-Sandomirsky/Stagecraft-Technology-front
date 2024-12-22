@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -19,11 +19,11 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
     ]),
   ],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnChanges {
   @Input() courseName: string = ''; 
   @Input() courseId: number = 0; 
-  @Input() userData: any = {}; // קלט חדש לתמיכה בפרטי המשתמש
-  
+  @Input() userData: any = {}; 
+
   registrationForm!: FormGroup;
   isOpen = false; 
   modalState = 'open'; 
@@ -43,35 +43,66 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.courseName) {
-      console.error('Course name is not provided to the component');
-    }
+    console.log('Received userData:', this.userData);
+    console.log('Received courseName:', this.courseName);
 
-    // Initialize the registration form with default or user data
+    this.initializeForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges called with changes:', changes);
+  
+    if (this.registrationForm) {
+      if (changes['userData'] && changes['userData'].currentValue) {
+        console.log('Patching userData to form...');
+        
+        const email = changes['userData'].currentValue.email || '';
+        if (email) {
+          this.registrationForm.get('email')?.enable();
+          this.registrationForm.patchValue({ email });
+          this.registrationForm.get('email')?.disable(); 
+        } else {
+          console.error('Email is missing in userData:', changes['userData'].currentValue);
+        }
+  
+        console.log('Updated form values with userData:', this.registrationForm.value);
+      }
+  
+      if (changes['courseName'] && changes['courseName'].currentValue) {
+        console.log('Patching courseName to form...');
+        this.registrationForm.patchValue({
+          course: changes['courseName'].currentValue,
+        });
+        console.log('Updated form values with courseName:', this.registrationForm.value);
+      }
+    }
+  }
+  
+  initializeForm(): void {
     this.registrationForm = this.fb.group({
       fullName: [
-        this.userData?.fullName || '', // Default to user data if available
+        '', 
         [
           Validators.required,
-          Validators.pattern(/^[a-zA-Zא-ת\s]+$/), // Only letters and spaces
+          Validators.pattern(/^[a-zA-Zא-ת\s]+$/), 
           Validators.minLength(2),
         ],
       ],
       email: [
-        { value: this.userData?.email || '', disabled: !!this.userData?.email }, // Default to user data and disable if available
+        { value: this.userData?.email || '', disabled: true },
         [Validators.required, Validators.email],
       ],
       phone: [
-        this.userData?.phone || '',
+        '',
         [
           Validators.required,
-          Validators.pattern(/^0[2-9]\d{7,8}$/), // Israeli phone number format
+          Validators.pattern(/^0[2-9]\d{7,8}$/), 
         ],
       ],
-      course: [{ value: this.courseName, disabled: true }], // Disabled field for display
+      course: [{ value: this.courseName, disabled: true }],
     });
   }
-  
+
   onSubmit(): void {
     if (this.registrationForm.valid) {
       const formData = {
@@ -81,7 +112,6 @@ export class RegisterComponent implements OnInit {
 
       console.log('Form Data to be sent:', formData);
 
-      // Send the data to the server
       this.http.post('http://localhost:3000/register', formData).subscribe(
         (response) => {
           console.log('Response from server:', response);
