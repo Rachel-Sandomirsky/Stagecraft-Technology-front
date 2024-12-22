@@ -11,23 +11,28 @@ import { UserService } from 'src/app/services/user.service';
 export class SearchBarComponent {
 
   searchTerm: string = '';
-  
-  @Output() search = new EventEmitter<string>(); 
-  @Output() closeModal = new EventEmitter<void>(); // לסגירת הטשטוש
-  @Output() openLogin = new EventEmitter<void>(); // פתיחת login
-  @Output() openSignup = new EventEmitter<void>(); // פתיחת signup
+  isProfileModalOpen: boolean = false;
 
-  constructor(private router: Router, public userService: UserService, private searchService: SearchService) {}
+  @Output() search = new EventEmitter<string>(); 
+  @Output() closeModal = new EventEmitter<void>();
+  @Output() openLogin = new EventEmitter<void>();
+  @Output() openSignup = new EventEmitter<void>();
+
+  constructor(
+    private router: Router,
+    public userService: UserService,
+    private searchService: SearchService
+  ) {}
 
   onLogoClick(): void {
     this.router.navigate(['']); 
   }
 
   onLogout(): void {
-    this.userService.logout();
+    this.userService.logout(); 
+    this.isProfileModalOpen = false;
   }
 
-  // Emit the search term to the parent component
   onSearch(searchTerm: string): void { 
     if (searchTerm) {
       console.log("Searching for: ", searchTerm);     
@@ -43,7 +48,11 @@ export class SearchBarComponent {
     this.openSignup.emit();
   }
 
+  toggleProfileModal() {
+    this.isProfileModalOpen = !this.isProfileModalOpen;
+  }
+
   close() {
-    this.closeModal.emit(); // סוגר את הטשטוש
+    this.closeModal.emit();
   }
 }

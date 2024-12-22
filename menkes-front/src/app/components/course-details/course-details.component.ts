@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CourseDetailsComponent implements OnInit, AfterViewInit {
   course!: Course;
   showNotRegisteredMessage = false;
-  notAuthenticatedMessage = false; // משתנה להצגת ההודעה כאשר המשתמש לא מחובר
+  notAuthenticatedMessage = false; 
   modalData: any = null;
 
   constructor(
@@ -45,22 +45,32 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       console.error('Course details are not loaded yet');
       return;
     }
-
-    const user = this.userService.userSubject.getValue();
+  
+    const user = this.userService.userSubject.getValue(); 
     const isAuthenticated = !!user;
-
+  
     if (isAuthenticated) {
       console.log('User is authenticated. Opening register modal.');
-      this.modalService.openModal();
+      this.modalData = {
+        courseName: this.course.title,
+        courseId: this.course['code'],
+        userData: {
+          email: user.email,
+        },
+      };
+      console.log('Modal Data:', this.modalData); 
+      
+      this.modalService.openModal(this.modalData);
     } else {
       console.log('User is not authenticated. Showing message.');
-      this.notAuthenticatedMessage = true; // מציג את ההודעה
+      this.notAuthenticatedMessage = true;
       setTimeout(() => {
-        this.notAuthenticatedMessage = false; // מסתיר את ההודעה לאחר 15 שניות
+        this.notAuthenticatedMessage = false;
       }, 15000);
     }
   }
-
+  
+  
   closeRegisterModal(): void {
     console.log('Closing modal via ModalService');
     this.modalService.closeModal();
