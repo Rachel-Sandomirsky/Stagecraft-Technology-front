@@ -55,7 +55,6 @@ export class SignupComponent {
       window.history.replaceState({}, '', '/');
     });
   }
-  
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;

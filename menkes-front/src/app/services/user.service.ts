@@ -52,6 +52,7 @@ export class UserService {
     })
   );    
 }
+
 public logout():void{
   const user = this.userSubject.getValue(); // שליפת הערך הנוכחי של המשתמש
   console.log(user);

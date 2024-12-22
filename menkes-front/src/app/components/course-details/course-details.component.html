@@ -20,14 +20,18 @@
         <span>אתה עדיין לא רשום לקורס</span>
       </div>
     </div>
-    
-    
-    
+
     <div class="course-summary-info">
       <span class="course-rating">⭐⭐⭐⭐⭐ {{ course.rating }} ({{ course.reviews }} ביקורות)</span>
       <span class="course-price">₪{{ course.price }}</span>
     </div>
-    <button class="register-button" (click)="openRegisterModal()">הירשם לקורס</button>
+    <button class="register-button" (click)="openRegisterModal()">הירשם לקורס
+    
+      <div *ngIf="notAuthenticatedMessage" class="not-registered-popup">
+        אתה לא מחובר. נא התחבר כדי להירשם לקורס.
+      </div>
+    </button>
+    
   </div>
 
   <div class="instructor-card">

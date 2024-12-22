@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { fakeAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +22,8 @@ import { fakeAsync } from '@angular/core/testing';
 export class RegisterComponent implements OnInit {
   @Input() courseName: string = ''; 
   @Input() courseId: number = 0; 
+  @Input() userData: any = {}; // קלט חדש לתמיכה בפרטי המשתמש
+  
   registrationForm!: FormGroup;
   isOpen = false; 
   modalState = 'open'; 
@@ -35,36 +36,33 @@ export class RegisterComponent implements OnInit {
     public modalService: ModalService,
     private router: Router
   ) {
-    // Subscription to modal state
     this.modalService.modalState$.subscribe((state) => {
-      console.log('Modal state updated:', state);
       this.isOpen = state;
       this.modalState = state ? 'open' : 'closed';
-      console.log('isOpen:', this.isOpen);
     });
   }
 
   ngOnInit(): void {
-    console.log('Component initialized. isOpen:', this.isOpen);
-    console.log('Course name received in register component:', this.courseName);
-  
     if (!this.courseName) {
       console.error('Course name is not provided to the component');
     }
-  
-    // Initialize the registration form
+
+    // Initialize the registration form with default or user data
     this.registrationForm = this.fb.group({
       fullName: [
-        '',
+        this.userData?.fullName || '', // Default to user data if available
         [
           Validators.required,
           Validators.pattern(/^[a-zA-Zא-ת\s]+$/), // Only letters and spaces
           Validators.minLength(2),
         ],
       ],
-      email: ['', [Validators.required, Validators.email]], // Valid email
+      email: [
+        { value: this.userData?.email || '', disabled: !!this.userData?.email }, // Default to user data and disable if available
+        [Validators.required, Validators.email],
+      ],
       phone: [
-        '',
+        this.userData?.phone || '',
         [
           Validators.required,
           Validators.pattern(/^0[2-9]\d{7,8}$/), // Israeli phone number format
