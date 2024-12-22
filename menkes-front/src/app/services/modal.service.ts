@@ -20,8 +20,14 @@ export class ModalService {
 
   closeModal() {
     this.isModalOpen.next(false); // סוגר את החלונית
-    if(this.previousUrl){
-      this.router.navigateByUrl(this.previousUrl);
+    if (this.previousUrl) {
+      this.router.navigateByUrl(this.previousUrl).catch((error) => {
+        console.error('Navigation error:', error);
+        this.router.navigate(['/']); // נתיב ברירת מחדל במקרה של שגיאה
+      });
+    } else {
+      this.router.navigate(['/']); // נתיב ברירת מחדל אם אין כתובת קודמת
     }
   }
+  
 }

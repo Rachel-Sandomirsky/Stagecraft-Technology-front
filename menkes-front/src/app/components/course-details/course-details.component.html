@@ -1,32 +1,47 @@
-<div class="course-container">
+<div class="course-container" *ngIf="course">
   <div class="course-details">
     <h1 class="course-title">{{ course.title }}</h1>
     <p class="course-description">{{ course.description }}</p>
-    <div class="course-meta">
-      <!-- ניתן להוסיף דירוג אם קיים -->
-    </div>
     <h2 class="topics-title">נושאים הנלמדים בקורס זה:</h2>
-    <div class="topics-info">
-      <ul>
-        <li *ngFor="let topic of course.topics"> {{ topic }}</li>
-      </ul>
-    </div>
+    <ul>
+      <li *ngFor="let topic of course.topics">
+        <span>{{ topic }}</span>
+      </li>
+    </ul>
   </div>
+
+  <div class="course-summary-card">
+    <div class="course-summary-image" (click)="viewCourse()">
+      <img [src]="course.image" alt="{{ course.title }}" class="course-image" />
+      <div class="course-overlay">
+        <span>לצפייה בקורס</span>
+      </div>
+      <div *ngIf="showNotRegisteredMessage" class="not-registered-popup">
+        <span>אתה עדיין לא רשום לקורס</span>
+      </div>
+    </div>
+    
+    
+    
+    <div class="course-summary-info">
+      <span class="course-rating">⭐⭐⭐⭐⭐ {{ course.rating }} ({{ course.reviews }} ביקורות)</span>
+      <span class="course-price">₪{{ course.price }}</span>
+    </div>
+    <button class="register-button" (click)="openRegisterModal()">הירשם לקורס</button>
+  </div>
+
   <div class="instructor-card">
     <div class="card-header">
       <img src="assets/img/miri menkes.jpeg" alt="מנחה הקורס" class="instructor-image" />
     </div>
     <div class="card-body">
       <h3 class="instructor-name">מנחת הקורס : מירי מנקס</h3>
-      <p class="instructor-description">
-        טכנאית במה מובילה עם למעלה מ-15 שנות ניסיון בתחום הסאונד וההפקות. שילוב ייחודי בין דיוק טכני ויצירתיות גבוהה להפקת אירועים ברמה הגבוהה ביותר.
-      </p>
+      <p class="instructor-description">טכנאית במה מובילה עם למעלה מ-15 שנות ניסיון בתחום הסאונד וההפקות...</p>
     </div>
   </div>
-  
 </div>
 
-
-<ng-template #loading>
-  <p>Loading course details...</p>
-</ng-template>
+<div *ngIf="(modalService.modalState$ | async)" class="background-blur" (click)="closeRegisterModal()"></div>
+<div *ngIf="(modalService.modalState$ | async)" class="register-modal" (click)="$event.stopPropagation()">
+  <app-register [courseName]="course.title"></app-register>
+</div>

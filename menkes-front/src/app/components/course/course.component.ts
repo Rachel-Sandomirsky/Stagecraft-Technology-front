@@ -11,14 +11,14 @@ import { ModalService } from 'src/app/services/modal.service';
 export class CourseComponent {
   @Input() course!: Course;
 
-  constructor(private router: Router, private modalService: ModalService) {}
+  constructor(private router: Router) {}
 
-  registerForCourse(): void {
-    try {
-      console.log('Registering for course:', this.course.title);
-      this.modalService.openModal(); 
-    } catch (error) {
-      console.error('Error during course registration:', error);
-    }
-  }
+  // registerForCourse(): void {
+  //   try {
+  //     console.log('Registering for course:', this.course.title);
+  //     this.modalService.openModal(); 
+  //   } catch (error) {
+  //     console.error('Error during course registration:', error);
+  //   }
+  // }
 }
