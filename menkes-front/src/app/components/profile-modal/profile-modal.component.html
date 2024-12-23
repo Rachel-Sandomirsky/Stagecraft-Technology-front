@@ -1,0 +1,14 @@
+<div class="profile-modal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="closeModal()">×</button>
+    <div class="profile-header">
+      <i class="fa fa-user-circle profile-icon"></i>
+      <p class="user-name">{{ user.username }}</p>
+      <p class="user-email">{{ user.email }}</p>
+    </div>
+    <hr class="divider" />
+    <div class="profile-actions">
+      <button class="logout-btn" (click)="onLogout()">התנתק</button>
+    </div>
+  </div>
+</div>

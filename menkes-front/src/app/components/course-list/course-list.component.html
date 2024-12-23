@@ -1,6 +1,4 @@
 <div class="course-container">
-
-  
   <div  *ngIf="!selectedCourse">
     <div class="course-list-header">
       <h2>הקורסים שלנו</h2>
@@ -10,8 +8,10 @@
     <app-course *ngFor="let course of filteredCourses" [course]="course" (click)="selectCourse(course)"></app-course>
   </div>
   </div>
+  <app-recommendations></app-recommendations>
 
-  <div class="course-details-container" *ngIf="selectedCourse">
+  <!-- הסרתי את כפתור של הרשמה לקורס -->
+  <!-- <div class="course-details-container" *ngIf="selectedCourse">
     <div class="course-card">
       <app-course [course]="selectedCourse"></app-course>
     </div>
@@ -19,6 +19,6 @@
       <app-course-details [course]="selectedCourse"></app-course-details>
       <button class="back-button" (click)="clearSelection()">חזרה לרשימת הקורסים</button>
     </div>
-  </div>
-  <app-recommendations></app-recommendations>
+  </div> -->
+
 </div>

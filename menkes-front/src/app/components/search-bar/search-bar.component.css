@@ -74,15 +74,37 @@
   gap: 15px;
 }
 
-.navbar-right span {
-  font-size: 14px;
-  color: #333;
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
-.navbar-right i {
-  font-size: 16px;
-  cursor: pointer;
+.profile-wrapper {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+
+.profile-icon {
+  font-size: 2rem;
+  color: #333;
+}
+
+.status {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.3rem; 
+}
+
+.user-name {
+  font-size: 1rem; 
+  font-weight: bold; 
+  color: #333; 
+  text-align: center;
 }
 
 .login {
@@ -91,11 +113,12 @@
   color: #333;
   font-size: 14px;
   cursor: pointer;
-  height: 40px;
-  width: 60px;
+  height: 35px; 
+  padding: 5px 10px;
   border-radius: 0.313rem;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
 .signup {
   background-color: #333;
@@ -110,20 +133,19 @@
 }
 
 .login:hover {
-  background-color: #333; /* צבע רקע שחור כשלוחצים על כפתור הלוגין */
-  color: white; /* טקסט לבן */
+  background-color: #333; 
+  color: white; 
 }
 
 .signup:hover {
-  background-color: transparent; /* צבע רקע שקוף כשלוחצים על כפתור ההרשמה */
-  color: #333; /* טקסט שחור */
-  border: 2px solid #333; /* מסגרת שחורה */
+  background-color: transparent;
+  color: #333;
+  border: 2px solid #333; 
 }
-
 
 .username {
   font-weight: bold;
-  color: black; 
+  color: black;
 }
 
 .user-info {
@@ -152,7 +174,8 @@
     gap: 10px;
   }
 
-  .login, .signup {
+  .login,
+  .signup {
     font-size: 12px;
   }
 
@@ -183,7 +206,8 @@
     height: 30px;
   }
 
-  .login, .signup {
+  .login,
+  .signup {
     height: 35px;
     font-size: 12px;
   }

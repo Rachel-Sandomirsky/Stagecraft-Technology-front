@@ -1,0 +1,30 @@
+<!-- רקע מטושטש -->
+<div class="overlay" *ngIf="isModalVisible"></div>
+
+<!-- קומפוננטת אימות מייל -->
+<div class="form-container" dir="rtl">
+  <button class="close-btn" (click)="goBack()">×</button>
+  
+  <h2>אימות כתובת אימייל</h2>
+  <div>
+    <p>שלחנו לך קוד לאימות המייל, אנא הקלד אותו פה:</p>
+    <input 
+      type="text" 
+      placeholder="הכנס קוד אימות" 
+      [(ngModel)]="verificationCode" 
+      maxlength="5"
+      (input)="validateInput()"
+    />
+    <p class="timer" *ngIf="!isTimeExpired">
+      נותרו לך: {{ minutesLeft }}:{{ secondsLeft | number: '2.0' }} דקות
+    </p>
+    <div *ngIf="isTimeExpired" class="error-message">
+      הזמן להזנת הקוד פג, אנא נסה שוב.
+    </div>
+  </div>
+  <button 
+    [disabled]="isTimeExpired || !isCodeValid" 
+    (click)="verifyCode()">
+    אמת
+  </button>
+</div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { Router } from '@angular/router';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { CourseComponent } from "../course/course.component";
 import { CourseService } from 'src/app/services/course.service';
 import { SearchService } from 'src/app/services/search.service';
 
@@ -20,12 +19,18 @@ import { SearchService } from 'src/app/services/search.service';
         animate('300ms ease-in', style({ opacity: 0, transform: 'translateX(100%)' })),
       ]),
     ]),
-  ]})
+  ],
+})
 export class CourseListComponent implements OnInit {
   courses: Course[] = []; // The initial list of courses is empty
-  filteredCourses: Course[] = []; 
+  filteredCourses: Course[] = [];
+  selectedCourse: Course | null = null; // הוספת המשתנה selectedCourse
 
-  constructor(private courseService: CourseService, private router: Router,private searchService: SearchService) {}
+  constructor(
+    private courseService: CourseService,
+    private router: Router,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     // Attempt to fetch courses from the API
@@ -36,13 +41,13 @@ export class CourseListComponent implements OnInit {
       },
       error: (error) => {
         console.error('Failed to load courses from API:', error);
-        // If an error occurs, a message can be shown to the user
       }
     });
 
     this.searchService.currentSearchTerm.subscribe((searchTerm) => {
       this.filterCourses(searchTerm);
-    });  }
+    });
+  }
   
   // Update function to handle search properly
   filterCourses(searchTerm: string): void {
@@ -62,11 +67,10 @@ export class CourseListComponent implements OnInit {
       )
     );
   }
-  
-  selectedCourse: Course | null = null;
 
+  // Select course to navigate to the details page
   selectCourse(course: Course): void {
-    this.selectedCourse = course;
+    this.router.navigate(['/course-details', course.code]);  // Navigate to course details page with the course code
   }
 
   clearSelection(): void {

@@ -1,9 +1,6 @@
 <div class="course-card">
   <img [src]="course.image" alt="{{ course.title }}" class="course-image" />
-  <h2
-    class="course-title"
-    [attr.data-description]="course.description"
-  >
+  <h2 class="course-title" [attr.data-description]="course.description">
     {{ course.title }}
   </h2>
   <div class="course-details">
@@ -12,11 +9,4 @@
       ⭐⭐⭐⭐⭐ {{ course.rating }} ({{ course.reviews }} ביקורות)
     </span>
   </div>
-  <button
-  class="register-button"
-  [routerLink]="['/courses', course.code]"
->
-  הירשם לקורס
-</button>
-
 </div>

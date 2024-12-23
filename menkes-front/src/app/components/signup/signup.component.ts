@@ -33,10 +33,14 @@ export class SignupComponent {
   onSignup() {
     if (this.signupForm.valid) {
       const user = this.signupForm.value;
-      this.userService.createUser(user).subscribe(
+      const { username, email, password } = this.signupForm.value;
+
+      this.userService.sendVerificationCode({ username, email, password }).subscribe(
         (response) => {
-          this.router.navigate(['/login']);
-          this.closeModal.emit(); // סגירת הטשטוש
+          this.closeModal.emit(); // סוגר את הטשטוש
+          this.router.navigate(['/verify-email'], {
+            queryParams: { username, email, password },
+          });
         },
         (error) => {
           console.log('Error:', error);
@@ -68,11 +72,13 @@ export class SignupComponent {
     this.router.navigate(['/'], { skipLocationChange: true });
   }
   
-  onLoginClick() {
+
+  onSignupClick() {
     this.openLogin.emit(); // מפעיל את הטשטוש
   }
 
-  onSignupClick() {
+  
+  onLoginClick() {
     this.openLogin.emit(); // מפעיל את הטשטוש
   }
 

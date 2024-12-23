@@ -14,8 +14,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddCourseComponent } from './components/add-course/add-course.component';
-//import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
-// import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
@@ -25,6 +23,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
@@ -32,8 +32,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     AppComponent,
     CourseListComponent,
     CourseComponent,
-    RegisterComponent,
     CourseDetailsComponent,
+    RegisterComponent,
     SearchBarComponent,
     AddCourseComponent,
     DashboardComponent,
@@ -43,6 +43,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     ResetPasswordComponent,
     RecommendationsComponent,
     SideMenuComponent,
+    VerifyEmailComponent,
+    ProfileModalComponent,
     UserDetailsComponent,
   ],
   imports: [

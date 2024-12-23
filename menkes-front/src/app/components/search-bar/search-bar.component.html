@@ -1,29 +1,46 @@
 <header class="navbar">
   <div class="navbar-left">
-    <a routerLink="" (click)="onLogoClick()"><img class="logo" src="assets/img/logo1.png" alt="Logo" /></a>
+    <a routerLink="" (click)="onLogoClick()">
+      <img class="logo" src="assets/img/logo1.png" alt="Logo" />
+    </a>
   </div>
   <div class="navbar-center">
     <div class="search-bar">
       <span class="search-icon">
         <i class="fas fa-search"></i>
       </span>
-      <input type="text" [(ngModel)]="searchTerm" (input)="onSearch(searchTerm)" placeholder="חיפוש" class="search-input" />
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="onSearch(searchTerm)"
+        placeholder="חיפוש"
+        class="search-input"
+      />
     </div>
   </div>
   <div class="navbar-right">
+    <!-- משתמש מחובר -->
     <div *ngIf="(userService.user$ | async) as user; else notLoggedIn">
-      <div class="user-info">
-      <button class="login"  (click)="onLogout()">התנתק</button>
-      <p class="username">שלום,  <span class="username">{{ user.username }}</span></p>
-    </div>
+      <div class="user-profile">
+        <i
+          class="fa fa-user-circle profile-icon"
+          (click)="toggleProfileModal()"
+        ></i>
+        <span class="status">מחובר</span>
+      </div>
+      <!-- חלונית פרופיל -->
+      <app-profile-modal
+        *ngIf="isProfileModalOpen"
+        [user]="user"
+        (close)="toggleProfileModal()"
+      ></app-profile-modal>
     </div>
 
+    <!-- משתמש לא מחובר -->
     <ng-template #notLoggedIn>
       <i class="fa fa-shopping-cart"></i>
-    <button class="login" (click)="onLoginClick()">כניסה</button>
-    <button class="signup" (click)="onSignupClick()">הרשמה</button>
-    <!-- <i class="fa fa-globe"></i> -->
+      <button class="login" (click)="onLoginClick()">כניסה</button>
+      <button class="signup" (click)="onSignupClick()">הרשמה</button>
     </ng-template>
-    
   </div>
 </header>

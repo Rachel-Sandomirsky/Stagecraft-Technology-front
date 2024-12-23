@@ -1,11 +1,7 @@
-<div class="registration-form" *ngIf="isOpen">
-  <div class="modal-content" [@fade]="modalState">
-
-    <!-- אייקון סגירה בראש המסך בצד ימין -->
-    <div class="close-icon" (click)="navigateToCourseDetails()">✖</div>
-
-    <h1>כיף שבחרת להירשם!</h1>
-    <h2>הרשמה לקורס: {{ courseName }}</h2>
+<div class="registration-form">
+  <div class="modal-content">
+    <div class="close-icon" (click)="closeRegisterModal()">✖</div>
+    <h1 class="form-title">כיף שבחרת להירשם!</h1>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <label>
         שם מלא:
@@ -28,7 +24,7 @@
 
       <label>
         דוא"ל:
-        <input formControlName="email" type="email" />
+        <input formControlName="email" type="email" readonly />
       </label>
       <div *ngIf="email?.invalid && email?.touched" class="error-message">
         <span *ngIf="email?.errors?.['required']">דוא"ל נדרש.</span>

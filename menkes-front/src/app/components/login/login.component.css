@@ -14,6 +14,13 @@
   transform: translate(-50%, -50%);
   z-index: 2000;
 }
+.registration-form {
+  width: 100% !important;
+  margin: 0 auto;
+  padding: 1.25rem;
+  background: #fff;
+  border-radius: 0.5rem;
+}
 
 h2 {
   color: #000000; 
