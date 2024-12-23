@@ -12,6 +12,10 @@ export class ModalService {
   private modalData = new BehaviorSubject<any>(null); // משתנה לניהול הנתונים המועברים למודל
   modalData$ = this.modalData.asObservable(); // מאזין לשינויים בנתונים
 
+
+  private modalType = new BehaviorSubject<string | null>(null); // משתנה לניהול סוג המודל ('login', 'signup')
+  modalType$ = this.modalType.asObservable(); // מאזין לשינויים בסוג המודל
+
   private previousUrl: string = '';
 
   constructor(private router: Router) {}
@@ -36,7 +40,13 @@ export class ModalService {
     }
   }
 
+    // פונקציה חדשה למעבר בין סוגי מודלים מבלי לסגור את החלון
+    switchModalType(type: 'login' | 'signup'): void {
+      this.modalType.next(type); // משנה את סוג המודל ל-'login' או 'signup'
+    }
+
   getModalData(): any {
     return this.modalData.getValue(); // מחזיר את הנתונים הנוכחיים של המודל
   }
+
 }
