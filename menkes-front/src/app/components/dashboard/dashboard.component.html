@@ -13,7 +13,7 @@
   </div>
   <div class="content-box">
     <div *ngIf="activeTab === 'requests'" class="tab-content active">
-      <p>כאן יוצגו בקשות הרשמה.</p>
+      <app-user-details></app-user-details>
     </div>
     <div *ngIf="activeTab === 'courses'" class="tab-content active">
       <app-deshboard-courses-list (addCourse)="selectTab('addCourse')"></app-deshboard-courses-list>

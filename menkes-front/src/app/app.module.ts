@@ -25,6 +25,7 @@ import { RecommendationsComponent } from './components/recommendations/recommend
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProfileModalComponent } from './components/profile-modal/profile-modal.
     SideMenuComponent,
     VerifyEmailComponent,
     ProfileModalComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { ProfileModalComponent } from './components/profile-modal/profile-modal.
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
+   
   ],
   providers: [
     {
