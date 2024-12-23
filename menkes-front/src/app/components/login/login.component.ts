@@ -13,6 +13,7 @@ import { User } from 'src/app/models/user';
 export class LoginComponent {
   @Output() closeModal = new EventEmitter<void>();
 
+
   loginForm: FormGroup;
   errorMessage: string | null = null;
   isPasswordVisible: boolean = false;
@@ -20,7 +21,6 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private location: Location,
     private userService: UserService
   ) {
     this.loginForm = this.fb.group({
@@ -38,7 +38,7 @@ export class LoginComponent {
           console.log('username: ' + response.access_token);
           if (response && response.access_token) {
             this.router.navigate(['/']);
-            this.closeModal.emit(); 
+            this.closeModal.emit(); // סגירת הטשטוש
             this.errorMessage = null;
           } else {
             this.errorMessage = 'שגיאה בהתחברות';
@@ -54,12 +54,13 @@ export class LoginComponent {
   onForgotPassword(): void {
     this.router.navigate(['/reset-password']);
   }
-
   goBack() {
     this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
       window.history.replaceState({}, '', '/');
     });
+    
   }
+  
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
@@ -70,4 +71,5 @@ export class LoginComponent {
   onClose() {
     this.closeModal.emit();
   }
+
 }

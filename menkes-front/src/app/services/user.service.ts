@@ -1,21 +1,20 @@
+
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { User } from '../models/user';
 import { ApiService } from '../api.service';
+import { User } from '../models/user';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  private apiUrl = environment.apiUrl;  // apiUrl כללית
   private resetCode: number | null = null;
   private expirationTime: number | null = null;
   public userSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userSubject.asObservable();
-
-  private apiUrl = environment.apiUrl; // apiUrl כללית
 
   constructor(private apiService: ApiService) {
     this.restoreUserFromStorage(); // שחזור משתמש בעת טעינת האפליקציה
@@ -29,28 +28,21 @@ export class UserService {
       this.userSubject.next(user);
     }
   }
-
-  // פונקציה לשליחת קוד אימות למייל
-  sendPasswordResetCode(email: string): Observable<any> {
-    return this.apiService.post(`${this.apiUrl}/users/password_reset_code`, { email }).pipe(
-      tap((response: any) => {
-        this.resetCode = response.resetCode;
-        this.expirationTime = Date.now() + 5 * 60 * 1000;
-      })
-    );
+ 
+  // שליחת קוד אימות למייל
+  sendVerificationCode(signUpData: { username: string; email: string; password: string }): Observable<any> {
+    alert('email :'+signUpData.email)
+    return this.apiService.post(`${this.apiUrl}/sign-up/check-and-send`,signUpData);
   }
 
-  // פונקציה לאימות קוד האימות
-  verifyResetCode(code: number): boolean {
-    if (this.resetCode === null || this.expirationTime === null) {
-      return false;
-    }
+  // אימות קוד שנשלח למייל
+  verifyCode(email: string, code: string): Observable<any> {
+    return this.apiService.post(`${this.apiUrl}/sign-up/verify-code`, { email, code });
+  }
 
-    if (this.resetCode === code && this.expirationTime > Date.now()) {
-      return true;
-    } else {
-      return false;
-    }
+  // הוספת משתמש לאחר אימות קוד
+  addUser(signUpData: { username: string; email: string; password: string }): Observable<any> {
+    return this.apiService.post(`${this.apiUrl}/sign-up/add-user`, signUpData);
   }
 
   // התחברות של משתמש
@@ -65,6 +57,10 @@ export class UserService {
     );
   }
 
+  // פרטי המשתמש הנוכחי
+  getUser(): User | null {
+    return this.userSubject.getValue();
+  }
   // יציאה מהמערכת
   public logout(): void {
     const user = this.userSubject.getValue(); // שליפת הערך הנוכחי של המשתמש
@@ -87,22 +83,8 @@ export class UserService {
     }
   }
 
-  // יצירת משתמש חדש
-  createUser(user: User): Observable<User> {
-    return this.apiService.post<User>(`${this.apiUrl}/sign-up`, user); // עדכון לנתיב '/sign-up'
-  }
-
   getUserByCode(code: string): Observable<User> {
     return this.apiService.get<User>(`${this.apiUrl}/users/${code}`);
-  }
-
-  // בדיקת תפקיד המשתמש
-  getRole(): string {
-    const user = this.userSubject.getValue();
-    if (user) {
-      return user.role;
-    }
-    return ''; // החזרת ה-Role הנוכחי
   }
 
   // אימות טוקן מול השרת בעת טעינת האפליקציה מחדש
@@ -117,4 +99,9 @@ export class UserService {
         });
     }
   }
-}
+   
+  }
+
+ 
+
+
