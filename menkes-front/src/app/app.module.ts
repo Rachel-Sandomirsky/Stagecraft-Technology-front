@@ -25,6 +25,7 @@ import { RecommendationsComponent } from './components/recommendations/recommend
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProfileModalComponent } from './components/profile-modal/profile-modal.
     SideMenuComponent,
     VerifyEmailComponent,
     ProfileModalComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
