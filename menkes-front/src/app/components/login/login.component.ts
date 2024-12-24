@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { User } from 'src/app/models/user';
 })
 export class LoginComponent {
   @Output() closeModal = new EventEmitter<void>();
-
+  @Output() openLogin = new EventEmitter<void>();
 
   loginForm: FormGroup;
   errorMessage: string | null = null;
@@ -21,7 +22,9 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private location: Location,
+    private userService: UserService,
+    private modalService: ModalService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -54,13 +57,6 @@ export class LoginComponent {
   onForgotPassword(): void {
     this.router.navigate(['/reset-password']);
   }
-  goBack() {
-    this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
-      window.history.replaceState({}, '', '/');
-    });
-    
-  }
-  
 
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
@@ -69,7 +65,18 @@ export class LoginComponent {
   }
 
   onClose() {
-    this.closeModal.emit();
+    this.closeModal.emit(); // סגירת הטשטוש
+    this.modalService.closeModal(); // סגירת Modal דרך ModalService
+  }
+
+  goBack() {
+    this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
+      window.history.replaceState({}, '', '/');
+    });
+  }
+  
+  navigateToSignup() {
+    this.modalService.switchModalType('signup');
   }
 
 }

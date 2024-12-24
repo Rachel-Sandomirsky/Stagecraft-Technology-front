@@ -3,6 +3,7 @@
     <div class="close-icon" (click)="closeRegisterModal()">✖</div>
     <h1 class="form-title">כיף שבחרת להירשם!</h1>
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <!-- Full Name -->
       <label>
         שם מלא:
         <input formControlName="fullName" type="text" />
@@ -13,6 +14,7 @@
         <span *ngIf="fullName?.errors?.['minlength']">שם מלא חייב להיות לפחות 2 תווים.</span>
       </div>
 
+      <!-- Phone Number -->
       <label>
         טלפון:
         <input formControlName="phone" type="tel" />
@@ -22,6 +24,7 @@
         <span *ngIf="phone?.errors?.['pattern']">מספר הטלפון אינו תקין.</span>
       </div>
 
+      <!-- Email -->
       <label>
         דוא"ל:
         <input formControlName="email" type="email" readonly />
@@ -31,11 +34,13 @@
         <span *ngIf="email?.errors?.['email']">אנא הזן כתובת דוא"ל תקינה.</span>
       </div>
 
+      <!-- Course Name -->
       <label>
         שם הקורס:
         <input formControlName="course" type="text" readonly />
       </label>
 
+      <!-- Submit Button -->
       <button type="submit" [disabled]="registrationForm.invalid">שלח</button>
     </form>
   </div>
