@@ -55,7 +55,8 @@ export class LoginComponent {
   }
 
   onForgotPassword(): void {
-    this.router.navigate(['/reset-password']);
+    this.onClose()
+    this.router.navigate(['/forgot-password']);
   }
 
   togglePasswordVisibility() {
