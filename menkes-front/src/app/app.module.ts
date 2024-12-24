@@ -46,10 +46,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     SideMenuComponent,
     VerifyEmailComponent,
     ProfileModalComponent,
-    forget_password,
     ForgotPasswordComponent,
     UserDetailsComponent,
-    devfront
   ],
   imports: [
     BrowserModule,
