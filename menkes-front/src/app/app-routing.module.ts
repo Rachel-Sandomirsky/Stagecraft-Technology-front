@@ -26,7 +26,8 @@ export const routes: Routes = [
   {path:'dashboard-courses',component:DeshboardCoursesListComponent},
   {path:'verify-email',component:VerifyEmailComponent},
   { path: 'course-details/:code', component: CourseDetailsComponent },
-  {path:'forgot-password',component:ForgotPasswordComponent}
+  {path:'forgot-password',component:ForgotPasswordComponent},
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

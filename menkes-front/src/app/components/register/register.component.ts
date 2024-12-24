@@ -1,10 +1,22 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-register',
@@ -20,13 +32,13 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   ],
 })
 export class RegisterComponent implements OnInit, OnChanges {
-  @Input() courseName: string = ''; 
-  @Input() courseId: number = 0; 
-  @Input() userData: any = {}; 
+  @Input() courseName: string = '';
+  @Input() courseId: number = 0;
+  @Input() userData: any = {};
 
   registrationForm!: FormGroup;
-  isOpen = false; 
-  modalState = 'open'; 
+  isOpen = false;
+  modalState = 'open';
 
   constructor(
     private route: ActivatedRoute,
@@ -51,40 +63,49 @@ export class RegisterComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges called with changes:', changes);
-  
+
     if (this.registrationForm) {
       if (changes['userData'] && changes['userData'].currentValue) {
         console.log('Patching userData to form...');
-        
+
         const email = changes['userData'].currentValue.email || '';
         if (email) {
           this.registrationForm.get('email')?.enable();
           this.registrationForm.patchValue({ email });
-          this.registrationForm.get('email')?.disable(); 
+          this.registrationForm.get('email')?.disable();
         } else {
-          console.error('Email is missing in userData:', changes['userData'].currentValue);
+          console.error(
+            'Email is missing in userData:',
+            changes['userData'].currentValue
+          );
         }
-  
-        console.log('Updated form values with userData:', this.registrationForm.value);
+
+        console.log(
+          'Updated form values with userData:',
+          this.registrationForm.value
+        );
       }
-  
+
       if (changes['courseName'] && changes['courseName'].currentValue) {
         console.log('Patching courseName to form...');
         this.registrationForm.patchValue({
           course: changes['courseName'].currentValue,
         });
-        console.log('Updated form values with courseName:', this.registrationForm.value);
+        console.log(
+          'Updated form values with courseName:',
+          this.registrationForm.value
+        );
       }
     }
   }
-  
+
   initializeForm(): void {
     this.registrationForm = this.fb.group({
       fullName: [
-        '', 
+        '',
         [
           Validators.required,
-          Validators.pattern(/^[a-zA-Zא-ת\s]+$/), 
+          Validators.pattern(/^[a-zA-Zא-ת\s]+$/),
           Validators.minLength(2),
         ],
       ],
@@ -92,13 +113,7 @@ export class RegisterComponent implements OnInit, OnChanges {
         { value: this.userData?.email || '', disabled: true },
         [Validators.required, Validators.email],
       ],
-      phone: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^0[2-9]\d{7,8}$/), 
-        ],
-      ],
+      phone: ['', [Validators.required, Validators.pattern(/^0[2-9]\d{7,8}$/)]],
       course: [{ value: this.courseName, disabled: true }],
     });
   }
@@ -112,7 +127,7 @@ export class RegisterComponent implements OnInit, OnChanges {
 
       console.log('Form Data to be sent:', formData);
 
-      this.http.post('http://localhost:3000/register', formData).subscribe(
+      this.http.post('http://localhost:3000/registration', formData).subscribe(
         (response) => {
           console.log('Response from server:', response);
           alert('Form submitted successfully!');
@@ -128,7 +143,7 @@ export class RegisterComponent implements OnInit, OnChanges {
   }
 
   closeRegisterModal(): void {
-    this.modalService.closeModal(); 
+    this.modalService.closeModal();
   }
 
   get fullName() {
