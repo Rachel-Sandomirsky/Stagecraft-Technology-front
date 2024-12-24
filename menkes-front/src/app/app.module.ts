@@ -26,6 +26,7 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,10 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     SideMenuComponent,
     VerifyEmailComponent,
     ProfileModalComponent,
+    forget_password,
     ForgotPasswordComponent,
+    UserDetailsComponent,
+    devfront
   ],
   imports: [
     BrowserModule,
@@ -56,6 +60,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
+   
   ],
   providers: [
     {

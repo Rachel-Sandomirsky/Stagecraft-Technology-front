@@ -1,7 +1,8 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CourseListComponent } from "./components/course-list/course-list.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { UserService } from './services/user.service';
+import { ModalService } from './services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,26 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnDestroy, OnInit {
   isLoginOrSignupOpen: boolean = false; // לטשטוש המסך
   isLoginOpen: boolean = false; // האם להציג את ה-login
   isSignupOpen: boolean = false; // האם להציג את ה-signup
   title = 'Match';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private modalService: ModalService) {
     // האזנה לאירוע סגירת הטאב או הדפדפן
     window.addEventListener('beforeunload', this.handleUnload.bind(this));
+  }
+
+  ngOnInit() {
+    console.log('Initial isLoginOrSignupOpen:', this.isLoginOrSignupOpen);
+
+    // האזנה לשינויים במצב המודל
+    this.modalService.modalType$.subscribe((type) => {
+      this.isLoginOrSignupOpen = !!type; // טשטוש רק כאשר מודל פתוח
+      this.isLoginOpen = type === 'login';
+      this.isSignupOpen = type === 'signup';
+    });
   }
 
   handleUnload(event: BeforeUnloadEvent) {
@@ -32,28 +44,19 @@ export class AppComponent implements OnDestroy {
     }
   }
 
-  onLoginClick() {
-    this.isLoginOrSignupOpen = true;
-    this.isLoginOpen = true;
-    this.isSignupOpen = false;
-  }
-
-  onSignupClick() {
-    this.isLoginOrSignupOpen = true;
-    this.isSignupOpen = true;
-    this.isLoginOpen = false;
+  switchModal(type: 'login' | 'signup') {
+    this.modalService.switchModalType(type); // מעבר בין סוגי המודלים
   }
 
   onCloseLoginOrSignup() {
-    this.isLoginOrSignupOpen = false;
-    this.isLoginOpen = false;
-    this.isSignupOpen = false;
-  }
-
-  ngOnDestroy(): void {}
-
-  ngOnInit() {
-    console.log('Initial isLoginOrSignupOpen:', this.isLoginOrSignupOpen);
+    this.isLoginOrSignupOpen = false; // ביטול הטשטוש
+    this.isLoginOpen = false; // סגירת מודל ה-login
+    this.isSignupOpen = false; // סגירת מודל ה-signup
+    this.modalService.closeModal(); // סגירת המודל דרך השירות
   }
   
+
+  ngOnDestroy(): void {
+    window.removeEventListener('beforeunload', this.handleUnload.bind(this));
+  }
 }

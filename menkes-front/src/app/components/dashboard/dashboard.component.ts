@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  activeTab: string = 'requests';
+  activeTab: string = '';
   constructor(private router: Router) {}
 
   selectTab(tab: string) {

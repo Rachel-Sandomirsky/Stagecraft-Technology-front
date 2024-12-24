@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { UserService } from 'src/app/services/user.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit, OnChanges {
     private http: HttpClient,
     private courseService: CourseService,
     public modalService: ModalService,
+    private userService: UserService, // Added userService
     private router: Router
   ) {
     this.modalService.modalState$.subscribe((state) => {
@@ -79,6 +81,7 @@ export class RegisterComponent implements OnInit, OnChanges {
   }
   
   initializeForm(): void {
+    const user = this.userService.userSubject.getValue(); // Fetch current user data
     this.registrationForm = this.fb.group({
       fullName: [
         '', 
@@ -89,7 +92,7 @@ export class RegisterComponent implements OnInit, OnChanges {
         ],
       ],
       email: [
-        { value: this.userData?.email || '', disabled: true },
+        { value: user?.email || this.userData?.email || '', disabled: true },
         [Validators.required, Validators.email],
       ],
       phone: [
