@@ -10,17 +10,6 @@
         title="{{ selectedLesson?.title || 'בחר שיעור לצפייה' }}">
       </iframe>
     </div>
-    <!-- <div class="transcript-container">
-      <div *ngIf="filteredTranscript.length; else noTranscript">
-        <div *ngFor="let line of filteredTranscript" class="transcript-line" [class.active]="line.isActive">
-          {{ line.text }}
-        </div>
-      </div>
-      <ng-template #noTranscript>
-        <p>אין תמלול זמין לשיעור זה.</p>
-      </ng-template>
-    </div> -->
-    
   </div>
 
   <div class="lessons-list">
