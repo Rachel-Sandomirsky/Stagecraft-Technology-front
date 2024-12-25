@@ -3,157 +3,218 @@
   flex-direction: column;
   align-items: center;
   background-color: #1c1c1c;
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 700px; /* הקטנת גודל */
+  border-radius: 0.625rem;
+  padding: 1.25rem;
+  max-width: 43.75rem;
   margin: auto;
 }
 
 .course-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* יישור הכותרת לימין */
+  align-items: flex-end;
   width: 100%;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #333;
-  margin-bottom: 15px;
+  padding-bottom: 0.625rem;
+  border-bottom: 0.0625rem solid #333;
+  margin-bottom: 0.9375rem;
 }
 
 .course-title {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
-  text-align: right; /* יישור הטקסט לימין */
-  margin-bottom: 10px; /* רווח לתחתית */
-  padding-right: 10px; /* רווח קל מצד ימין */
-  direction: rtl; /* כיוון הטקסט מימין לשמאל */
+  text-align: right;
+  margin-bottom: 0.625rem;
+  padding-right: 0.625rem;
+  direction: rtl;
 }
-
 
 .video-player {
   background-color: #000;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 0.9375rem;
+  border-radius: 0.625rem;
   width: 100%;
-  max-width: 700px; /* גודל מותאם */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  margin-bottom: 20px;
+  max-width: 43.75rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.25rem;
 }
 
 .video-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-  border-radius: 10px;
+  padding-top: 56.25%;
+  border-radius: 0.625rem;
 }
 
 .video-controls {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 0.625rem;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .lessons-list {
   width: 100%;
-  max-width: 700px; /* גודל מותאם */
-  margin-top: 20px;
+  max-width: 43.75rem;
+  margin-top: 1.25rem;
 }
 
 .list-header {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: bold;
   color: #ffffff;
-  margin-bottom: 10px;
-  direction: rtl; /* כיוון יישור לימין */
-  text-align: center; /* מיקום הטקסט במרכז */
+  margin-bottom: 0.625rem;
+  direction: rtl;
+  text-align: center;
 }
 
 .scrollable-list {
   background-color: #1c1c1c;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  max-height: 300px; /* הגבלת גובה כדי להפעיל גלילה */
-  overflow-y: auto; /* גלילה אנכית תמידית */
-  overflow-x: hidden; /* ביטול גלילה אופקית */
+  padding: 0.625rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
+  max-height: 18.75rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .scrollable-list::-webkit-scrollbar {
-  width: 8px; /* רוחב סרגל הגלילה */
+  width: 0.5rem;
 }
 
 .scrollable-list::-webkit-scrollbar-track {
-  background: #333; /* צבע רקע הסרגל */
-  border-radius: 5px; /* עיגול הקצוות */
+  background: #333;
+  border-radius: 0.3125rem;
 }
 
 .scrollable-list::-webkit-scrollbar-thumb {
-  background: #555; /* צבע של הסרגל עצמו */
-  border-radius: 5px; /* עיגול הקצוות */
+  background: #555;
+  border-radius: 0.3125rem;
 }
 
 .scrollable-list::-webkit-scrollbar-thumb:hover {
-  background: #777; /* צבע בהיר יותר כשהעכבר מעל */
+  background: #777;
 }
 
 .lesson-item {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #333;
+  padding: 0.625rem;
+  border-bottom: 0.0625rem solid #333;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .lesson-item.active {
-  background-color: #444 !important; /* צבע רקע */
-  border: 2px solid #ffcf00 !important; /* מסגרת זהב */
-  color: #ffffff !important; /* צבע טקסט */
+  background-color: #444 !important;
+  border: 0.125rem solid #ffcf00 !important;
+  color: #ffffff !important;
 }
 
-
 .lesson-item:hover {
-  background-color: #333333; /* צבע רקע למעבר עכבר */
+  background-color: #333333;
 }
 
 .lesson-item.active:hover {
-  background-color: #444; /* שמירה על צבע השיעור הנבחר */
+  background-color: #444;
 }
-
 
 .lesson-content {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-direction: row-reverse; /* הופך את הסדר כך שהתמונה תהיה בצד ימין */
+  gap: 0.625rem;
+  flex-direction: row-reverse;
 }
 
 .lesson-thumbnail {
-  width: 60px;
-  height: 40px;
+  width: 3.75rem;
+  height: 2.5rem;
   object-fit: cover;
-  border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 0.3125rem;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.3);
 }
 
 .lesson-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 0.125rem;
   color: #ffffff;
-  text-align: right; /* מיישר את הטקסט לימין */
+  text-align: right;
 }
 
 .lesson-title {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: bold;
 }
 
 .lesson-duration {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #aaaaaa;
 }
 
+.transcript-container {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  padding: 0.9375rem;
+  border-radius: 0.625rem;
+  margin-top: 1.25rem;
+  max-height: 12.5rem;
+  overflow-y: auto;
+}
+
+.transcript-line {
+  margin-bottom: 0.625rem;
+  padding: 0.3125rem;
+  border-radius: 0.3125rem;
+  transition: background-color 0.3s;
+}
+
+.transcript-line.active {
+  background-color: #444444;
+  color: #ffcf00;
+}
+
+@media (max-width: 768px) {
+  .lessons-container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .video-player {
+    padding: 0.625rem;
+  }
+
+  .lessons-list {
+    margin-top: 1rem;
+  }
+
+  .lesson-thumbnail {
+    width: 3rem;
+    height: 2rem;
+  }
+
+  .lesson-title {
+    font-size: 0.8125rem;
+  }
+
+  .lesson-duration {
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-title {
+    font-size: 0.875rem;
+  }
+
+  .list-header {
+    font-size: 0.75rem;
+  }
+
+  .scrollable-list {
+    padding: 0.5rem;
+    max-height: 15rem;
+  }
+}

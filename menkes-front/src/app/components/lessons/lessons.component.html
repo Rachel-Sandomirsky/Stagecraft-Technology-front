@@ -10,7 +10,17 @@
         title="{{ selectedLesson?.title || 'בחר שיעור לצפייה' }}">
       </iframe>
     </div>
-
+    <!-- <div class="transcript-container">
+      <div *ngIf="filteredTranscript.length; else noTranscript">
+        <div *ngFor="let line of filteredTranscript" class="transcript-line" [class.active]="line.isActive">
+          {{ line.text }}
+        </div>
+      </div>
+      <ng-template #noTranscript>
+        <p>אין תמלול זמין לשיעור זה.</p>
+      </ng-template>
+    </div> -->
+    
   </div>
 
   <div class="lessons-list">
@@ -20,16 +30,14 @@
       *ngFor="let lesson of lessons" 
       [class.active]="lesson.video_url === selectedLesson?.video_url" 
       (click)="selectLesson(lesson)">
-   <div class="lesson-content">
-     <img [src]="getThumbnailUrl(lesson.video_url)" alt="תמונה ממוזערת" class="lesson-thumbnail" />
-     <div class="lesson-info">
-       <span class="lesson-title">{{ lesson.title }}</span>
-       <span class="lesson-duration">{{ lesson.duration }}</span>
-     </div>
-   </div>
- </div>
- 
-
+        <div class="lesson-content">
+          <img [src]="getThumbnailUrl(lesson.video_url)" alt="תמונה ממוזערת" class="lesson-thumbnail" />
+          <div class="lesson-info">
+            <span class="lesson-title">{{ lesson.title }}</span>
+            <span class="lesson-duration">{{ lesson.duration }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

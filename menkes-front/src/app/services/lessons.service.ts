@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Lesson } from '../models/lesson.model';
+import { Lesson, TranscriptItem } from '../models/lesson.model';
 import { environment } from 'src/environments/environment';
 import { ApiService } from '../api.service';
 
