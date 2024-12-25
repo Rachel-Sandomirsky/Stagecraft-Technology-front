@@ -26,6 +26,9 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { LessonsComponent } from './components/lessons/lessons.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
+
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     VerifyEmailComponent,
     ProfileModalComponent,
     UserDetailsComponent,
+    LessonsComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,

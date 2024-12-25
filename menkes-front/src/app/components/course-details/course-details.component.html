@@ -45,7 +45,13 @@
   </div>
 </div>
 
+<!-- open register -->
 <div *ngIf="(modalService.modalState$ | async)" class="background-blur" (click)="closeRegisterModal()"></div>
 <div *ngIf="(modalService.modalState$ | async)" class="register-modal" (click)="$event.stopPropagation()">
   <app-register [courseName]="course.title"></app-register>
+</div>
+
+<!-- open lesson -->
+<div *ngIf="isUserRegistered" #lessonSection>
+  <app-lessons [lessons]="lessons"></app-lessons>
 </div>
