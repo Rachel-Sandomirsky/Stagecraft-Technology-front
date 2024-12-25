@@ -29,7 +29,5 @@ export class CourseService {
   {
     return this.apiService.post(this.apiUrl,course)
   }
-
-
   
 }

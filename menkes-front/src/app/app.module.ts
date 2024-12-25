@@ -27,6 +27,9 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { LessonsComponent } from './components/lessons/lessons.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     ProfileModalComponent,
     ForgotPasswordComponent,
     UserDetailsComponent,
+    LessonsComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,
