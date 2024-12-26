@@ -7,6 +7,10 @@ import { environment } from 'src/environments/environment.prod';
 //import { ErrorService } from '../error/error.service';
 //import { TextsService } from '../Texts/texts.service';
 import { RequestsUserDto } from 'src/app/models/RequestsUserDto';
+import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
+import { UserService } from '../user.service';
+import { User } from 'src/app/models/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +18,16 @@ import { RequestsUserDto } from 'src/app/models/RequestsUserDto';
 export class UserDetailsService {
   private requestsUserDto :RequestsUserDto[]=[];
   private apiUrl = `${environment.apiUrl}`;
-  constructor(private apiService: ApiService) 
-  {
-
-  }
-
   
-
+  constructor(private apiService: ApiService,private user:UserService ) 
+  {
+    
+  }
+  
+  
+  //@RequiresToken()
   getUnapprovedUsers() {
-
+   
     return this.apiService.get<RequestsUserDto[]>(`${this.apiUrl}/dashboard/awaitingApproval`);
   }
 

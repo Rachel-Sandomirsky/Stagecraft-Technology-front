@@ -13,7 +13,7 @@ export class UserService {
   private resetCode: number | null = null;
   private expirationTime: number | null = null;
   public userSubject = new BehaviorSubject<User | null>(null);
-  user$ = this.userSubject.asObservable();
+  public user$ = this.userSubject.asObservable();
 
   constructor(private apiService: ApiService) {
     this.restoreUserFromStorage(); // שחזור משתמש בעת טעינת האפליקציה

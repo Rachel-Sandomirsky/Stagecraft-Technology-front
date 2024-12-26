@@ -27,6 +27,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { TokenInterceptor } from './interceptors/TokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,12 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
    
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,  
+      multi: true,  
+    },
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiKeyInterceptor,
