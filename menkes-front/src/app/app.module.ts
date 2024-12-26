@@ -28,6 +28,9 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { UserCoursesListComponent } from './components/user-courses-list/user-courses-list.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { UserRequestComponent } from './components/user-request/user-request.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { LessonsComponent } from './components/lessons/lessons.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,6 @@ import { UserRequestComponent } from './components/user-request/user-request.com
     CourseListComponent,
     CourseComponent,
     CourseDetailsComponent,
-    RegisterComponent,
     SearchBarComponent,
     AddCourseComponent,
     DashboardComponent,
@@ -47,9 +49,13 @@ import { UserRequestComponent } from './components/user-request/user-request.com
     VerifyEmailComponent,
     ProfileModalComponent,
     ForgotPasswordComponent,
-    UserDashboardComponent,
     UserCoursesListComponent,
+    UserDashboardComponent,
     UserRequestComponent,
+    RegisterComponent,
+    UserDetailsComponent,
+    LessonsComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,7 @@ import { UserRequestComponent } from './components/user-request/user-request.com
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
+   
   ],
   providers: [
     {

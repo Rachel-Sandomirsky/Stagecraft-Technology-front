@@ -40,6 +40,6 @@
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
   </form>
   <p class="link">
-    כבר יש לך חשבון? <a routerLink="/login">התחבר</a>
+    כבר יש לך חשבון? <a (click)="navigateToLogin()">התחבר</a>
   </p>
 </div>            

@@ -1,0 +1,88 @@
+/* עיצוב בסיסי לדף */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a; /* צבע רקע כהה */
+    color: #f1f1f1; /* טקסט בהיר */
+    margin: 0;
+    padding: 0;
+    padding-top: calc(60px + 33vh); /* פדינג עליון להתרחקות מהסרגל הכלים - הגדל את הערך אם יש צורך */
+  }
+  main {
+    margin-top: calc(60px + 33vh);  /* מרווח בגובה של הסרגל כלים */
+    padding: 20px;
+  }
+  
+  
+  
+  /* עיצוב ללולאת ngFor של המשתמשים */
+  .user-card {
+    background-color: #333;  /* צבע רקע כהה לכל כרטיס */
+    color: #fff; /* טקסט בהיר */
+    border-radius: 8px;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center; /* מרכז את כל הטקסט בתוך הכרטיס */
+    margin-top: 20px; /* ודא שיש מרווח בין הסרגל העליון לכרטיסים */
+  }
+  
+  /* שינוי צבע וצלליות כשמרחפים על כרטיס */
+  .user-card:hover {
+    background-color: #444; /* שינוי צבע רקע כשלוחצים על כרטיס */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* כותרת השם של המשתמש */
+  .user-card h3 {
+    font-size: 1.5rem;
+    color: #ffcc00;  /* צבע צהוב לכותרת */
+    margin: 0;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* עיצוב לפסקאות של מידע */
+  .user-card p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+    color: #ccc; /* טקסט בהיר אך לא צהוב */
+  }
+  
+  /* עיצוב לכפתור */
+  .user-card button {
+    background-color: #ffcc00; /* צבע רקע צהוב לכפתור */
+    color: #1a1a1a; /* טקסט כהה בכפתור */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .user-card button:hover {
+    background-color: #e6b800; /* צבע צהוב כהה כשלוחצים על כפתור */
+  }
+  
+  /* כללי עיצוב לרוחב של המסך */
+  .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  /* עיצוב כשיש טקסט באנגלית */
+  body, h3, p {
+    direction: ltr;
+  }
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100000px; /* או גובה הסרגל שלך */
+    z-index: 1000; /* לוודא שהסרגל הכלים נמצא מעל התוכן */
+  }

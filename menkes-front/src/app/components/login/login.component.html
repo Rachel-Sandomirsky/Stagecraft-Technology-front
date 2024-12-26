@@ -47,6 +47,6 @@
     <button type="submit" [disabled]="loginForm.invalid">התחבר</button>
   </form>
   <p class="link">
-    אין לך חשבון? <a routerLink="/signup">הרשמה</a>
+    אין לך חשבון? <a (click)="navigateToSignup()">הרשמה</a>
   </p>
 </div>             

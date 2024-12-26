@@ -1,0 +1,32 @@
+<div class="lessons-container">
+  <div class="video-player">
+    <div class="course-header">
+      <span class="course-title">{{ selectedLesson?.title || 'Course Preview Title' }}</span>
+    </div>
+    <div class="video-wrapper">
+      <iframe *ngIf="selectedLesson?.video_url" [src]="getSafeVideoUrl() | safeUrl" frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;"
+        title="{{ selectedLesson?.title || 'בחר שיעור לצפייה' }}">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="lessons-list">
+    <div class="list-header">{{ selectedLesson?.description || 'בחר שיעור לצפייה' }}</div>
+    <div class="scrollable-list">
+      <div class="lesson-item" 
+      *ngFor="let lesson of lessons" 
+      [class.active]="lesson.video_url === selectedLesson?.video_url" 
+      (click)="selectLesson(lesson)">
+        <div class="lesson-content">
+          <img [src]="getThumbnailUrl(lesson.video_url)" alt="תמונה ממוזערת" class="lesson-thumbnail" />
+          <div class="lesson-info">
+            <span class="lesson-title">{{ lesson.title }}</span>
+            <span class="lesson-duration">{{ lesson.duration }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

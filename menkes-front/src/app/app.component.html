@@ -4,12 +4,18 @@
   <app-recommendations></app-recommendations>
 </div> -->
 
+
 <div class="content-area" [ngClass]="{'blurred': isLoginOrSignupOpen}">
   <app-side-menu></app-side-menu>
-  <app-search-bar (openLogin)="onLoginClick()" (openSignup)="onSignupClick()"></app-search-bar>
+  <app-search-bar 
+    (openLogin)="switchModal('login')" 
+    (openSignup)="switchModal('signup')">
+  </app-search-bar>
   <router-outlet></router-outlet>
 </div>
 
 <!-- הצגת קומפוננטות login ו-signup באופן מותנה -->
-<app-login *ngIf="isLoginOpen" (closeModal)="onCloseLoginOrSignup()"></app-login>
-<app-signup *ngIf="isSignupOpen" (closeModal)="onCloseLoginOrSignup()"></app-signup>
+<ng-container *ngIf="isLoginOpen || isSignupOpen">
+  <app-login *ngIf="isLoginOpen" (closeModal)="onCloseLoginOrSignup()"></app-login>
+  <app-signup *ngIf="isSignupOpen" (closeModal)="onCloseLoginOrSignup()"></app-signup>
+</ng-container>
