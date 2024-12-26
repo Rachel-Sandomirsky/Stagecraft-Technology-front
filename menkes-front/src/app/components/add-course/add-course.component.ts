@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -14,7 +15,7 @@ export class AddCourseComponent {
   courseForm: FormGroup;
   topics: string[] = []; // מערך נושאים שיתעדכן בזמן אמת
 
-  constructor(private fb: FormBuilder, private courseService: CourseService) {
+  constructor(private fb: FormBuilder, private courseService: CourseService,  private router: Router) {
     // יצירת Reactive Form עם השדות הנדרשים
     this.courseForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],

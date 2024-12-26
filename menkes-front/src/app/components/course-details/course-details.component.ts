@@ -35,6 +35,8 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       next: (data: Course) => {
         this.course = data;
         console.log('Course loaded successfully:', this.course);
+        console.log('Course Image:', this.course.image);
+
 
         // בדוק אם המשתמש רשום והעלה שיעורים אם כן
         if (this.isUserRegistered) {
