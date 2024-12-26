@@ -1,0 +1,13 @@
+<div class="courses-container">
+    <h2>בקשות הרשמה לקורסים</h2>
+    <ul class="courses-list">
+      <li *ngFor="let request of userRequestList" class="course-item">
+        <div class="course-details">
+          <h3>{{ request.title }}</h3>
+          <p>{{ request.description }}</p>
+        </div>
+        <button class="view-course-btn" (click)="viewRequest(request.code)">פרטים נוספים</button>
+      </li>
+    </ul>
+  </div>
+  

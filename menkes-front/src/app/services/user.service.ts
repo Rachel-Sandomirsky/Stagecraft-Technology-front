@@ -10,8 +10,6 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   private apiUrl = environment.apiUrl; // apiUrl כללית
-  private resetCode: number | null = null;
-  private expirationTime: number | null = null;
   public userSubject = new BehaviorSubject<User | null>(null);
   user$ = this.userSubject.asObservable();
 

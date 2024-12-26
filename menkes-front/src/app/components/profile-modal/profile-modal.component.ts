@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class ProfileModalComponent {
   @Input() user: any; 
   @Output() close = new EventEmitter<void>(); 
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   closeModal() {
     this.close.emit(); 
@@ -18,6 +19,14 @@ export class ProfileModalComponent {
 
   onLogout() {
     this.userService.logout(); 
+    this.closeModal(); 
+    this.router.navigate(['/']); 
+
+    
+  }
+
+  navigateToDashboard() {
+    this.router.navigate(['/user-dashboard']); 
     this.closeModal(); 
   }
 }
