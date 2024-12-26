@@ -38,7 +38,6 @@ export class AddCourseComponent {
       // יצירת אובייקט מסוג Course
       const course = new Course(
         this.courseForm.value.title,
-        0, // קוד (ברירת מחדל)
         this.courseForm.value.description,
         this.courseForm.value.image,
         +this.courseForm.value.price, 
