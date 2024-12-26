@@ -64,7 +64,7 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       console.log('User is authenticated. Opening register modal.');
       this.modalData = {
         courseName: this.course.title,
-        courseId: this.course.,
+        courseCode: this.course.code,
         userData: {
           email: user.email,
         },
