@@ -20,16 +20,17 @@ import { DeshboardCoursesListComponent } from './components/deshboard-courses-li
 import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { RecommendationsComponent } from './components/recommendations/recommendations.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { UserCoursesListComponent } from './components/user-courses-list/user-courses-list.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { UserRequestComponent } from './components/user-request/user-request.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { LessonsComponent } from './components/lessons/lessons.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
-
 
 @NgModule({
   declarations: [
@@ -37,22 +38,24 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     CourseListComponent,
     CourseComponent,
     CourseDetailsComponent,
-    RegisterComponent,
     SearchBarComponent,
     AddCourseComponent,
     DashboardComponent,
     DeshboardCoursesListComponent,
     SignupComponent,
     LoginComponent,
-    ResetPasswordComponent,
     RecommendationsComponent,
     SideMenuComponent,
     VerifyEmailComponent,
     ProfileModalComponent,
     ForgotPasswordComponent,
+    UserCoursesListComponent,
+    UserDashboardComponent,
+    UserRequestComponent,
+    RegisterComponent,
     UserDetailsComponent,
     LessonsComponent,
-    SafeUrlPipe,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,

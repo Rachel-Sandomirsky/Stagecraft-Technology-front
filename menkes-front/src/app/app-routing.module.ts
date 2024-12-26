@@ -5,19 +5,18 @@ import { RegisterComponent } from './components/register/register.component';
 import { CourseDetailsComponent } from './components/course-details/course-details.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { DeshboardCoursesListComponent } from './components/deshboard-courses-list/deshboard-courses-list.component';
 import { AppComponent } from './app.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: CourseListComponent }, // ברירת מחדל ל-Dashboard
   { path: 'dashboard', component: DashboardComponent },
   { path: 'courses/:code', component: CourseDetailsComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'register/:course', component: RegisterComponent }, // גישה ל-Register לפי שם הקורס
@@ -26,7 +25,9 @@ export const routes: Routes = [
   {path:'dashboard-courses',component:DeshboardCoursesListComponent},
   {path:'verify-email',component:VerifyEmailComponent},
   { path: 'course-details/:code', component: CourseDetailsComponent },
-  {path:'forgot-password',component:ForgotPasswordComponent}
+  {path:'forgot-password',component:ForgotPasswordComponent},
+  { path: 'user-dashboard', component: UserDashboardComponent },
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

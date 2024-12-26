@@ -1,0 +1,30 @@
+<div class="user-dashboard-container">
+  <div class="dashboard-header">
+    <h1>הפרופיל שלי</h1>
+    <p>כאן תוכל לצפות ולנהל את הקורסים והבחנים שלך</p>
+  </div>
+  <div class="tabs">
+    <button
+      class="tab-button"
+      [ngClass]="{ active: activeTab === 'enrollCourses' }"
+      (click)="selectTab('enrollCourses')"
+    >
+      קורסים שאני רוצה להרשם
+    </button>
+    <button
+      class="tab-button"
+      [ngClass]="{ active: activeTab === 'myCourses' }"
+      (click)="selectTab('myCourses')"
+    >
+      הקורסים שלי
+    </button>
+  </div>
+  <div class="content-box">
+    <div *ngIf="activeTab === 'myCourses'" class="tab-content active">
+      <app-user-courses-list></app-user-courses-list>
+    </div>
+    <div *ngIf="activeTab === 'enrollCourses'" class="tab-content active">
+      <app-user-request></app-user-request>
+    </div>
+  </div>
+</div>

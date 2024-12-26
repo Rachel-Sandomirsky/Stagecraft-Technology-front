@@ -1,0 +1,13 @@
+<div class="courses-container">
+    <h2>הקורסים שלי</h2>
+    <ul class="courses-list">
+      <li *ngFor="let course of userCourses" class="course-item">
+        <div class="course-details">
+          <h3>{{ course.title }}</h3>
+          <p>{{ course.description }}</p>
+        </div>
+        <button class="view-course-btn" (click)="viewCourse(course.code)">לצפייה</button>
+      </li>
+    </ul>
+  </div>
+  
