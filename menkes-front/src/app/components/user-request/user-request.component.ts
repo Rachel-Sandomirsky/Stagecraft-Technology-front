@@ -19,7 +19,9 @@ userRequestList: Course[] = [];
         this.userRequestList = data;
       },
       (err) => {
-        console.log(err);
+        if(err.status===401)
+          this.router.navigate(['/reconnect'])
+         else console.log("Error ")
       }
     );
   }

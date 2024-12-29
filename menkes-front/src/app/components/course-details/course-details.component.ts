@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { ActivatedRoute } from '@angular/router';
 
 import { Router } from '@angular/router';
+import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 import { LessonsService } from 'src/app/services/lessons.service';
@@ -118,7 +119,7 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       }
     );
   }
-
+  @RequiresToken()
   private loadLessonsAndScroll(): void {
     this.lessonsService.getLessonsByCourseId(this.course.code).subscribe(
       (data) => {
@@ -138,12 +139,17 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
         }, 100); // עיכוב קצר
       },
       (error) => {
+        if(error.status===401)
+          this.router.navigate(['/reconnect'])
+         else {
         console.error('Error fetching lessons:', error);
         alert('שגיאה בטעינת השיעורים. נסה שוב מאוחר יותר.');
+         }
       }
     );
   }
 
+  @RequiresToken()
   private loadLessonsAndSetDefault(): void {
     this.lessonsService.getLessonsByCourseId(this.course.code).subscribe(
       (data) => {
@@ -157,8 +163,12 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
         }
       },
       (error) => {
+        if(error.status===401)
+          this.router.navigate(['/reconnect'])
+         else {
         console.error('Error fetching lessons:', error);
         alert('שגיאה בטעינת השיעורים. נסה שוב מאוחר יותר.');
+         }
       }
     );
   }

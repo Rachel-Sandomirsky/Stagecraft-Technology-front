@@ -20,7 +20,9 @@ export class UserCoursesListComponent {
         this.userCourses = data;
       },
       (err) => {
-        console.log(err);
+        if(err.status===401)
+          this.router.navigate(['/reconnect'])
+         else console.log("Error ")
       }
     );
   }
