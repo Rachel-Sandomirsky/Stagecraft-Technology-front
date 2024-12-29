@@ -27,4 +27,10 @@ export class UserDashboardService {
       this.apiUrl + '/course-requests/' + this.userService.getUser()?.code
     );
   }
+
+  getCourseProgress(courseCode: number): Observable<number> {
+    return this.apiService.get<number>(
+      `${this.apiUrl}/progress/${this.userService.getUser()?.code}/${courseCode}`
+    );
+  }
 }

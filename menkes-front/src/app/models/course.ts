@@ -9,6 +9,8 @@ export class Course {
       public rating: number,
       public reviews: number,
       public topics: string[],
+      public progress?: number // שדה אופציונלי עבור אחוזי התקדמות
+
     ) {}
   }
   

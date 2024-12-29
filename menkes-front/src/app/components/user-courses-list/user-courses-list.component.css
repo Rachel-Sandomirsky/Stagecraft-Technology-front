@@ -1,44 +1,118 @@
+/* כללי */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  direction: rtl; /* הכיוון יהיה מימין לשמאל */
+}
+
 .courses-container {
-  text-align: right; /* מיישר את כל התוכן לימין */
-  direction: rtl; /* הופך את הכיוון לימין לשמאל */
+  text-align: right;
   padding: 2rem;
-  background: #f9f9f9;
+  background: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.courses-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  border-bottom: 2px solid #ffcf00;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.courses-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .course-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* הכפתור יהיה בצד שמאל */
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem;
   margin-bottom: 1rem;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: right; /* מיישר את הטקסט לימין */
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-direction: row-reverse; /* משנה את סדר הכיוונים */
+}
+
+
+
+
+
+
+.course-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .course-details {
-  text-align: right; /* מיישר טקסט לימין */
+  flex: 1;
+  margin-left: 1rem; /* המרחק מהכפתור מצד שמאל */
 }
 
 .course-details h3 {
   margin: 0 0 0.5rem;
-  color: #2a3d4f;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .course-details p {
-  margin: 0 0 0.5rem;
-  color: #7b8d9e;
+  margin: 0;
+  color: #666;
+}
+
+.progress-container {
+  flex: 2;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 1.5rem;
+  margin: 0 1rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ffcf00;
+  text-align: center;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  transition: width 0.5s ease;
+  box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .view-course-btn {
-  background-color: #ffcf00;
+  background-color: #333;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1.2rem;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  order: 3; /* הכפתור יהיה מצד שמאל */
+}
+
+.view-course-btn:hover {
+  background-color: #ffcf00;
+  color: #333;
+  transform: translateY(-2px);
+}
+
+.view-course-btn:active {
+  transform: translateY(0);
 }

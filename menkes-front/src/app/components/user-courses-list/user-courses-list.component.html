@@ -1,13 +1,23 @@
 <div class="courses-container">
-    <h2>הקורסים שלי</h2>
-    <ul class="courses-list">
-      <li *ngFor="let course of userCourses" class="course-item">
-        <div class="course-details">
-          <h3>{{ course.title }}</h3>
-          <p>{{ course.description }}</p>
+  <h2>הקורסים שלי</h2>
+  <ul class="courses-list">
+    <li *ngFor="let course of userCourses" class="course-item">
+      <div class="course-details">
+        <h3>{{ course.title }}</h3>
+        <p>{{ course.description }}</p>
+      </div>
+      <div class="progress-container">
+        <div
+          class="progress-bar"
+          [attr.course-id]="course.code"
+          [style.width.%]="course.progress"
+        >
+          {{ course.progress }}%
         </div>
-        <button class="view-course-btn" (click)="viewCourse(course.code)">לצפייה</button>
-      </li>
-    </ul>
-  </div>
-  
+      </div>
+      <button class="view-course-btn" (click)="viewCourse(course.code)">
+        לצפייה
+      </button>
+    </li>
+  </ul>
+</div>

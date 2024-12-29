@@ -9,8 +9,8 @@ import { UserDashboardService } from 'src/app/services/user-dashboard.service';
   styleUrls: ['./user-courses-list.component.css'],
 })
 export class UserCoursesListComponent {
- 
   userCourses: Course[] = [];
+
   constructor(
     private router: Router,
     private userDashboardService: UserDashboardService
@@ -18,6 +18,7 @@ export class UserCoursesListComponent {
     this.userDashboardService.getUserCourses().subscribe(
       (data) => {
         this.userCourses = data;
+        this.loadCourseProgress(); // קריאת הפונקציה לטעינת התקדמות
       },
       (err) => {
         console.log(err);
@@ -25,8 +26,22 @@ export class UserCoursesListComponent {
     );
   }
 
+  loadCourseProgress() {
+    this.userCourses.forEach((course) => {
+      this.userDashboardService
+        .getCourseProgress(course.code)
+        .subscribe((progress) => {
+          course.progress = progress; // עדכון אחוזי התקדמות
+          const element = document.querySelector(`.progress-bar[course-id="${course.code}"]`);
+          if (element) {
+            (element as HTMLElement).style.setProperty('--progress-width', `${progress}%`);
+          }
+        });
+    });
+  }
+  
+
   viewCourse(courseId: number) {
-    // ניווט לדף פרטי הקורס
     this.router.navigate(['/course-details', courseId]);
   }
 }
