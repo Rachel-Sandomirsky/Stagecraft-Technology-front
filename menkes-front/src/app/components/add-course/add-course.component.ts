@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -13,7 +15,7 @@ export class AddCourseComponent {
   courseForm: FormGroup;
   topics: string[] = []; // מערך נושאים שיתעדכן בזמן אמת
 
-  constructor(private fb: FormBuilder, private courseService: CourseService) {
+  constructor(private fb: FormBuilder, private courseService: CourseService,private router: Router) {
     // יצירת Reactive Form עם השדות הנדרשים
     this.courseForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
@@ -25,14 +27,18 @@ export class AddCourseComponent {
   }
 
   // עדכון רשימת הנושאים מתוך שדה הקלט
+  
   updateTopics() {
+    
     const topicsInput = this.courseForm.get('topicsInput')?.value;
     if (topicsInput) {
       this.topics = topicsInput.split(',').map((topic: string) => topic.trim());
     }
+   
   }
 
   // שליחת הטופס לשרת
+  @RequiresToken()
   onSubmit() {
     if (this.courseForm.valid) {
       // יצירת אובייקט מסוג Course
@@ -51,9 +57,12 @@ export class AddCourseComponent {
         (response) => {
           alert('Course added successfully');
         },
-        (error) => {
-          alert('Error adding course:' + error);
-        }
+        (e: any) => {
+         
+          if(e.status===401)
+              this.router.navigate(['/reconnect'])
+          else console.log('Error adding course:' + e)}
+        
       );
     } else {
       alert('Form is invalid');

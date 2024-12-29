@@ -28,6 +28,7 @@ import { ProfileModalComponent } from './components/profile-modal/profile-modal.
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { ReconnectComponent } from './components/reconnect/reconnect.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     ProfileModalComponent,
     ForgotPasswordComponent,
     UserDetailsComponent,
+    ReconnectComponent,
   ],
   imports: [
     BrowserModule,

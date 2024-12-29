@@ -12,6 +12,7 @@ import { DeshboardCoursesListComponent } from './components/deshboard-courses-li
 import { AppComponent } from './app.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ReconnectComponent } from './components/reconnect/reconnect.component';
 
 export const routes: Routes = [
   { path: '', component: CourseListComponent }, // ברירת מחדל ל-Dashboard
@@ -26,7 +27,8 @@ export const routes: Routes = [
   {path:'dashboard-courses',component:DeshboardCoursesListComponent},
   {path:'verify-email',component:VerifyEmailComponent},
   { path: 'course-details/:code', component: CourseDetailsComponent },
-  {path:'forgot-password',component:ForgotPasswordComponent}
+  {path:'forgot-password',component:ForgotPasswordComponent},
+  {path:'reconnect',component:ReconnectComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -20,7 +20,8 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private courseService: CourseService,
     public modalService: ModalService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

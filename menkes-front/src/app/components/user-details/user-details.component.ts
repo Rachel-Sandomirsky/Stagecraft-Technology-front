@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDetailsService } from '../../services/UserDetials/user-details.service';  // מייבאים את השירות
 import { RequestsUserDto } from 'src/app/models/RequestsUserDto';
+import { Router } from '@angular/router';
+import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
 
 
 @Component({
@@ -12,12 +14,12 @@ import { RequestsUserDto } from 'src/app/models/RequestsUserDto';
 export class UserDetailsComponent implements OnInit {
   users: RequestsUserDto[]=[];
 
-  constructor(private userDetailsService: UserDetailsService) { }  // מזריקים את השירות לקומפוננטה
+  constructor(private userDetailsService: UserDetailsService,private router: Router) { }  // מזריקים את השירות לקומפוננטה
 
   ngOnInit(): void {
     this.fetchUsers();
   }
-
+  @RequiresToken()
   fetchUsers(): void {
     this.userDetailsService.getUnapprovedUsers().subscribe({
       next: (data: RequestsUserDto[]) => { 
@@ -25,14 +27,17 @@ export class UserDetailsComponent implements OnInit {
         // Defined data type
         this.users= data;
       },
-      error: (error) => {
-       console.error(error);
+      error: (e) => {
+        if(e.status===401)
+          this.router.navigate(['/reconnect'])
+         else console.log("Error ")
       }
     });
   
         
   }
-
+  
+  @RequiresToken()
   approveUser(userCode: number,courseCode:number): void {  
 
     this.userDetailsService.approveUser(userCode,courseCode).subscribe({
@@ -41,8 +46,10 @@ export class UserDetailsComponent implements OnInit {
         // Defined data type
         
       },
-      error: (error) => {
-       console.error(error);
+      error: (e) => {
+        if(e.status===401)
+          this.router.navigate(['/reconnect'])
+         else console.log("Error ")
       }
     });
     this.users = this.users.filter(user =>( user.user_code !== userCode)||(user.course_code !== courseCode));
