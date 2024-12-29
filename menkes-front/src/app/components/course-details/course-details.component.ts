@@ -35,6 +35,8 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       next: (data: Course) => {
         this.course = data;
         console.log('Course loaded successfully:', this.course);
+        console.log('Course Image:', this.course.image);
+
 
         // בדוק אם המשתמש רשום והעלה שיעורים אם כן
         if (this.isUserRegistered) {
@@ -64,7 +66,7 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       console.log('User is authenticated. Opening register modal.');
       this.modalData = {
         courseName: this.course.title,
-        courseId: this.course['code'],
+        courseCode: this.course.code,
         userData: {
           email: user.email,
         },

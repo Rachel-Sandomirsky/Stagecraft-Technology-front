@@ -37,6 +37,7 @@ export class CourseListComponent implements OnInit {
     this.courseService.getCourses().subscribe({
       next: (data: Course[]) => { // Defined data type
         this.courses = data;
+        console.log('Course Image:', this.courses[0].image);
         this.filteredCourses = data;
       },
       error: (error) => {

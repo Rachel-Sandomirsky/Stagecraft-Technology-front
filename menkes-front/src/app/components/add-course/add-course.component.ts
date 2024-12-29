@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -10,15 +11,15 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./add-course.component.css'],
 })
 export class AddCourseComponent {
+  selectedFile: File | null = null;
   courseForm: FormGroup;
   topics: string[] = []; // מערך נושאים שיתעדכן בזמן אמת
 
-  constructor(private fb: FormBuilder, private courseService: CourseService) {
+  constructor(private fb: FormBuilder, private courseService: CourseService,  private router: Router) {
     // יצירת Reactive Form עם השדות הנדרשים
     this.courseForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       description: ['', Validators.required],
-      image: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       topicsInput: [''], // שדה זמני לעדכון הנושאים
     });
@@ -31,32 +32,40 @@ export class AddCourseComponent {
       this.topics = topicsInput.split(',').map((topic: string) => topic.trim());
     }
   }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
 
-  // שליחת הטופס לשרת
-  onSubmit() {
-    if (this.courseForm.valid) {
-      // יצירת אובייקט מסוג Course
-      const course = new Course(
-        this.courseForm.value.title,
-        0, // קוד (ברירת מחדל)
-        this.courseForm.value.description,
-        this.courseForm.value.image,
-        +this.courseForm.value.price, 
-        0, 
-        0, 
-        this.topics 
-      );
-      // שליחת האובייקט לשרת
-      this.courseService.addCourse(course).subscribe(
-        (response) => {
-          alert('Course added successfully');
-        },
-        (error) => {
-          alert('Error adding course:' + error);
-        }
-      );
-    } else {
-      alert('Form is invalid');
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
     }
+  }
+
+  onSubmit(form: any): void {
+    if (form.invalid || !this.selectedFile) {
+      alert('נא למלא את כל השדות ולבחור תמונה.');
+      return;
+    }
+
+    const formData = new FormData();
+    const topicsArray: string[] = this.courseForm.value.topicsInput
+    .split(',')
+    .map((topic: string) => topic.trim());    // המרת הנושאים למערך
+
+    formData.append('title', form.value.title);
+    formData.append('description', form.value.description);
+    formData.append('price', form.value.price);
+    topicsArray.forEach((topic) => {
+      formData.append('topics', topic);
+    });
+    formData.append('image', this.selectedFile); // הוספת התמונה
+
+    this.courseService.addCourse(formData).subscribe({
+      next: (response) => {
+        console.log('Course added successfully', response);
+      },
+      error: (err) => {
+        console.error('Error adding course:', err);
+      },
+    });
   }
 }

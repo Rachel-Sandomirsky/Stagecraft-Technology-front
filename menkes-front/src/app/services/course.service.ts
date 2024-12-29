@@ -25,9 +25,9 @@ export class CourseService {
   }
 
 
-  addCourse(course:Course)
+  addCourse(courseData: FormData)
   {
-    return this.apiService.post(this.apiUrl,course)
+    return this.apiService.post(this.apiUrl,courseData)
   }
   
 }

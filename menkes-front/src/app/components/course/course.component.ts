@@ -11,7 +11,8 @@ import { ModalService } from 'src/app/services/modal.service';
 export class CourseComponent {
   @Input() course!: Course;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   // registerForCourse(): void {
   //   try {
