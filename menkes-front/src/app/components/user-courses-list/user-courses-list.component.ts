@@ -34,7 +34,9 @@ export class UserCoursesListComponent {
           course.progress = progress; // עדכון אחוזי התקדמות
           const element = document.querySelector(`.progress-bar[course-id="${course.code}"]`);
           if (element) {
-            (element as HTMLElement).style.setProperty('--progress-width', `${progress}%`);
+            setTimeout(() => {
+              (element as HTMLElement).style.width = `${progress}%`; // עדכון הרוחב לאחר עיכוב
+            }, 100); // עיכוב קטן כדי לאפשר לאנימציה לעבוד
           }
         });
     });

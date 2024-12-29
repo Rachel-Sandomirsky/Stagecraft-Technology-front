@@ -91,9 +91,11 @@ body {
   font-weight: bold;
   line-height: 1.5rem;
   white-space: nowrap;
-  transition: width 0.5s ease;
   box-shadow: inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+  transition: width 1s ease; /* אנימציה חלקה */
+  width: 0%; /* מתחיל מ-0% */
 }
+
 
 .view-course-btn {
   background-color: #333;
