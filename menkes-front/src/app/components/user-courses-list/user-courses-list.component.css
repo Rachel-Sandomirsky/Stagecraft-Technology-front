@@ -1,0 +1,44 @@
+.courses-container {
+  text-align: right; /* מיישר את כל התוכן לימין */
+  direction: rtl; /* הופך את הכיוון לימין לשמאל */
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.course-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: right; /* מיישר את הטקסט לימין */
+}
+
+.course-details {
+  text-align: right; /* מיישר טקסט לימין */
+}
+
+.course-details h3 {
+  margin: 0 0 0.5rem;
+  color: #2a3d4f;
+}
+
+.course-details p {
+  margin: 0 0 0.5rem;
+  color: #7b8d9e;
+}
+
+.view-course-btn {
+  background-color: #ffcf00;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

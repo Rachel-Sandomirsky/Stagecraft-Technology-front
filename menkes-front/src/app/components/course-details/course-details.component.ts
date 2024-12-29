@@ -1,7 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
+import { LessonsService } from 'src/app/services/lessons.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,16 +14,22 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./course-details.component.css'],
 })
 export class CourseDetailsComponent implements OnInit, AfterViewInit {
+  @ViewChild('lessonSection') lessonSection!: ElementRef;
   course!: Course;
   showNotRegisteredMessage = false;
-  notAuthenticatedMessage = false; 
+  notAuthenticatedMessage = false;
   modalData: any = null;
+  isUserRegistered: boolean = true;
+  lessons: any[] = [];
+  selectedLesson: any = null;
 
   constructor(
     private route: ActivatedRoute,
     private courseService: CourseService,
     public modalService: ModalService,
     private userService: UserService,
+    private lessonsService: LessonsService,
+   
     private router: Router
   ) {}
 
@@ -30,6 +39,13 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       next: (data: Course) => {
         this.course = data;
         console.log('Course loaded successfully:', this.course);
+        console.log('Course Image:', this.course.image);
+
+
+        // בדוק אם המשתמש רשום והעלה שיעורים אם כן
+        if (this.isUserRegistered) {
+          this.loadLessonsAndSetDefault();
+        }
       },
       error: (error) => {
         console.error('Failed to load course details:', error);
@@ -46,21 +62,21 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       console.error('Course details are not loaded yet');
       return;
     }
-  
-    const user = this.userService.userSubject.getValue(); 
+
+    const user = this.userService.userSubject.getValue();
     const isAuthenticated = !!user;
-  
+
     if (isAuthenticated) {
       console.log('User is authenticated. Opening register modal.');
       this.modalData = {
         courseName: this.course.title,
-        courseId: this.course['code'],
+        courseCode: this.course.code,
         userData: {
           email: user.email,
         },
       };
-      console.log('Modal Data:', this.modalData); 
-      
+      console.log('Modal Data:', this.modalData);
+
       this.modalService.openModal(this.modalData);
     } else {
       console.log('User is not authenticated. Showing message.');
@@ -70,21 +86,80 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       }, 15000);
     }
   }
-  
-  
+
   closeRegisterModal(): void {
     console.log('Closing modal via ModalService');
     this.modalService.closeModal();
   }
 
   viewCourse(): void {
-    if (this.course.isRegistered) {
-      window.open('dummy-link-to-course-view', '_blank');
+    if (this.isUserRegistered) {
+      this.loadLessonsAndScroll();
     } else {
+      // הצגת הודעה בקומפוננטה אם המשתמש לא רשום
       this.showNotRegisteredMessage = true;
+
       setTimeout(() => {
         this.showNotRegisteredMessage = false;
-      }, 7000);
+      }, 3000); // ההודעה נעלמת לאחר 3 שניות
     }
+  }
+
+  private loadLessons(): void {
+    this.lessonsService.getLessonsByCourseId(this.course.code).subscribe(
+      (data) => {
+        console.log('Received lessons:', data);
+        this.lessons = data; // שמירת השיעורים שהתקבלו
+        this.selectedLesson = this.lessons[0]; // בחירת השיעור הראשון כברירת מחדל
+      },
+      (error) => {
+        console.error('Error fetching lessons:', error);
+        alert('שגיאה בטעינת השיעורים. נסה שוב מאוחר יותר.');
+      }
+    );
+  }
+
+  private loadLessonsAndScroll(): void {
+    this.lessonsService.getLessonsByCourseId(this.course.code).subscribe(
+      (data) => {
+        console.log('Received lessons:', data);
+        this.lessons = data; // שמירת השיעורים שהתקבלו
+        this.selectedLesson = this.lessons[0]; // בחירת השיעור הראשון כברירת מחדל
+
+        // גלילה לקומפוננטת השיעורים
+        setTimeout(() => {
+          if (this.lessonSection && this.lessonSection.nativeElement) {
+            this.lessonSection.nativeElement.scrollIntoView({
+              behavior: 'smooth',
+            });
+          } else {
+            console.error('lessonSection is not defined or not loaded.');
+          }
+        }, 100); // עיכוב קצר
+      },
+      (error) => {
+        console.error('Error fetching lessons:', error);
+        alert('שגיאה בטעינת השיעורים. נסה שוב מאוחר יותר.');
+      }
+    );
+  }
+
+  private loadLessonsAndSetDefault(): void {
+    this.lessonsService.getLessonsByCourseId(this.course.code).subscribe(
+      (data) => {
+        console.log('Received lessons:', data);
+        this.lessons = data; // שמירת השיעורים שהתקבלו
+        this.selectedLesson = this.lessons[0]; // בחירת השיעור הראשון כברירת מחדל
+
+        // מציג את השיעור הראשון כברירת מחדל
+        if (this.selectedLesson) {
+          console.log('Default lesson set:', this.selectedLesson);
+        }
+      },
+      (error) => {
+        console.error('Error fetching lessons:', error);
+        alert('שגיאה בטעינת השיעורים. נסה שוב מאוחר יותר.');
+      }
+    );
   }
 }

@@ -9,10 +9,12 @@ import { UserService } from 'src/app/services/user.service';
 
 export class SideMenuComponent {
   isAdmin: boolean = false;
+  isCustomer : boolean = false;
   constructor(private userService: UserService) {}
   ngOnInit(): void {
     this.userService.user$.subscribe((user) => {
-      this.isAdmin = user?.role === 'admin'; // בדיקת role מעודכנת
+      this.isAdmin = user?.role === 'admin';
+      this.isCustomer = user?.role === 'customer';
     });
   }
 }

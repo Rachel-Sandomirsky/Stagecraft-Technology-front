@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
   activeTab: string = '';
   constructor(private router: Router) {}
-
+  selectedTab: string = 'courses';
   selectTab(tab: string) {
     this.activeTab = tab;
   }
