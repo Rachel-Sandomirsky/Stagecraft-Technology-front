@@ -93,6 +93,10 @@
   padding: 0;
 }
 
+.background-blur {
+  z-index: 1000; /* נמוך יותר */
+}
+
 .course-details ul li {
   display: flex;
   align-items: center;
@@ -278,6 +282,7 @@ app-lessons {
     margin-bottom: 1.5rem;
   }
 }
+
 
 
 

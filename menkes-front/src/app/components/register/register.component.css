@@ -20,6 +20,14 @@
   cursor: pointer !important;
   transition: color 0.3s ease !important;
 }
+.custom-snackbar .mat-button-wrapper {
+  color: rgb(230, 230, 48) !important; /* צבע טקסט צהוב */
+}
+
+.custom-snackbar .mat-button:hover {
+  background-color: #ffffe0 !important; /* רקע צהוב בהיר מאוד במעבר עכבר */
+  color: black !important; /* צבע טקסט שחור לקריאות */
+}
 
 .close-icon:hover {
   color: #ffcf00 !important;

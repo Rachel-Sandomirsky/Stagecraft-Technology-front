@@ -31,6 +31,9 @@ import { UserRequestComponent } from './components/user-request/user-request.com
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { LessonsComponent } from './components/lessons/lessons.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +58,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     RegisterComponent,
     UserDetailsComponent,
     LessonsComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,9 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
+    MatTabsModule,
+    MatSnackBarModule,
+    ToastrModule.forRoot()
    
   ],
   providers: [

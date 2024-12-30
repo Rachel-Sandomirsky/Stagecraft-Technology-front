@@ -64,16 +64,21 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
 
     if (isAuthenticated) {
       console.log('User is authenticated. Opening register modal.');
+      console.log('User email: ' + user.email);
+
       this.modalData = {
         courseName: this.course.title,
         courseCode: this.course.code,
         userData: {
-          email: user.email,
+          email: user?.email,
         },
       };
       console.log('Modal Data:', this.modalData);
 
-      this.modalService.openModal(this.modalData);
+      this.modalService.openModal({
+        courseName: this.course.title, // שולח שם הקורס
+        userData: { email: user?.email || '' }, // שולח את האימייל
+    });
     } else {
       console.log('User is not authenticated. Showing message.');
       this.notAuthenticatedMessage = true;
