@@ -26,9 +26,10 @@
               "src/assets"
             ],
                "styles": [
-              "src/styles.css",
-              "src/app/components/dashboard/dashboard.component.css"
-          ],
+             "@angular/material/prebuilt-themes/indigo-pink.css",
+                "src/styles.css",
+                "src/app/components/dashboard/dashboard.component.css"
+              ],
           "stylePreprocessorOptions": {
             "includePaths": [
               "src"
@@ -100,6 +101,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []

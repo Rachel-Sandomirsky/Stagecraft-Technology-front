@@ -31,6 +31,9 @@ import { UserRequestComponent } from './components/user-request/user-request.com
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { LessonsComponent } from './components/lessons/lessons.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToastrModule } from 'ngx-toastr';
+
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ReconnectComponent } from './components/reconnect/reconnect.component';
 
@@ -69,6 +72,9 @@ import { ReconnectComponent } from './components/reconnect/reconnect.component';
     RouterModule,
     CommonModule,
     BrowserAnimationsModule,
+    MatTabsModule,
+    MatSnackBarModule,
+    ToastrModule.forRoot()
    
   ],
   providers: [

@@ -2,3 +2,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::ng-deep .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: #ffcc00 !important; /* שינוי לצהוב */
+    font-weight: bold; /* אופציונלי להדגשה */
+}
