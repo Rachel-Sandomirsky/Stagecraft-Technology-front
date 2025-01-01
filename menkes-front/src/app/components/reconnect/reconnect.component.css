@@ -1,0 +1,30 @@
+.session-expired {
+    background-color: #efec90; /* צבע צהוב בהיר */
+    border: 1px solid #ffeeba; /* גבול צהוב יותר בהיר */
+    color: #212529; /* טקסט בצבע שחור כהה */
+    padding: 30px;
+    border-radius: 5px;
+    font-size: 20px; /* הגדלת גודל הפונט */
+    text-align: center;
+    margin: 20px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* מרכז את התוכן במסך כולו */
+  }
+  
+  .message {
+    margin: 5px 0;
+    font-weight: normal;
+    font-size: 22px; /* גודל פונט גדול יותר */
+  }
+  
+  .highlighted {
+    font-size: 24px; /* גודל פונט גדול יותר לשורה המודגשת */
+    font-weight: bold;
+    color: #d32f2f; /* צבע מודגש (אדום כהה) */
+    text-transform: uppercase; /* כתיבה באותיות רישיות */
+  }

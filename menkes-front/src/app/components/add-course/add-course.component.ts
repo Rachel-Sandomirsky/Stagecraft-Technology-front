@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -32,6 +33,7 @@ export class AddCourseComponent {
       this.topics = topicsInput.split(',').map((topic: string) => topic.trim());
     }
   }
+
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -39,7 +41,7 @@ export class AddCourseComponent {
       this.selectedFile = input.files[0];
     }
   }
-
+@RequiresToken()
   onSubmit(form: any): void {
     if (form.invalid || !this.selectedFile) {
       alert('נא למלא את כל השדות ולבחור תמונה.');
@@ -64,7 +66,9 @@ export class AddCourseComponent {
         console.log('Course added successfully', response);
       },
       error: (err) => {
-        console.error('Error adding course:', err);
+        if(err.status===401)
+          this.router.navigate(['/reconnect'])
+         else console.log("Error "+err)
       },
     });
   }

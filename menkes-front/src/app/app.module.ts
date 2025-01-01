@@ -34,6 +34,8 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
 
+import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { ReconnectComponent } from './components/reconnect/reconnect.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { ToastrModule } from 'ngx-toastr';
     UserDetailsComponent,
     LessonsComponent,
     SafeUrlPipe,
+    ReconnectComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,12 @@ import { ToastrModule } from 'ngx-toastr';
    
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,  
+      multi: true,  
+    },
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiKeyInterceptor,

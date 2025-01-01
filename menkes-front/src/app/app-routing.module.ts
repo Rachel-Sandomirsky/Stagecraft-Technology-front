@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { ReconnectComponent } from './components/reconnect/reconnect.component';
 
 export const routes: Routes = [
   { path: '', component: CourseListComponent }, // ברירת מחדל ל-Dashboard
@@ -28,6 +29,8 @@ export const routes: Routes = [
   {path:'forgot-password',component:ForgotPasswordComponent},
   { path: 'user-dashboard', component: UserDashboardComponent },
 
+  {path:'forgot-password',component:ForgotPasswordComponent},
+  {path:'reconnect',component:ReconnectComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

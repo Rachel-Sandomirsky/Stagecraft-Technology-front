@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class UserService {
   private apiUrl = environment.apiUrl; // apiUrl כללית
   public userSubject = new BehaviorSubject<User | null>(null);
-  user$ = this.userSubject.asObservable();
+  public user$ = this.userSubject.asObservable();
 
   constructor(private apiService: ApiService) {
     this.restoreUserFromStorage(); // שחזור משתמש בעת טעינת האפליקציה
