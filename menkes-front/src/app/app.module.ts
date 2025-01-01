@@ -35,6 +35,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
 import { QuizzesComponent } from './components/quizzes/quizzes.component';
 
+import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { ReconnectComponent } from './components/reconnect/reconnect.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
     LessonsComponent,
     SafeUrlPipe,
     QuizzesComponent,
+    ReconnectComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,12 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
    
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,  
+      multi: true,  
+    },
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiKeyInterceptor,

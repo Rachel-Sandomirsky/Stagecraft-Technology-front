@@ -66,7 +66,10 @@ export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   extractYouTubeId(url: string): string {
-    const videoIdMatch = url.match(/v=([^&]+)/);
+    if (url.includes('studio.youtube.com')) {
+      url = url.replace('studio.youtube.com', 'www.youtube.com');
+    }
+    const videoIdMatch = url.match(/(?:v=|\/embed\/|youtu\.be\/|\/v\/|\?vi=|&vi=|\/u\/\w\/|embed\/|v=|youtu\.be\/|\/embed\/|\/shorts\/|\/watch\?v=|\/watch\?vi=)([^#\&\?]*).*/);
     return videoIdMatch ? videoIdMatch[1] : '';
   }
 
