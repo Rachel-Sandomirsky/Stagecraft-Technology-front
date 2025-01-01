@@ -33,6 +33,7 @@ import { LessonsComponent } from './components/lessons/lessons.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
+import { QuizzesComponent } from './components/quizzes/quizzes.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ToastrModule } from 'ngx-toastr';
     UserDetailsComponent,
     LessonsComponent,
     SafeUrlPipe,
+    QuizzesComponent,
   ],
   imports: [
     BrowserModule,
