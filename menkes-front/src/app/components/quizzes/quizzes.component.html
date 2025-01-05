@@ -1,0 +1,38 @@
+<div class="overlay" *ngIf="quiz && !quizAnswered"></div>
+
+<!-- הצגת השאלות והתשובות אם המשתמש לא ענה על הבוחן -->
+<div class="quiz-container" *ngIf="quiz && !quizAnswered">
+  <h2>{{ quiz.question }}</h2>
+  <div class="close-btn" (click)="goBack()">✖</div>
+
+  <div class="options">
+    <div
+      *ngFor="let option of quiz.options; let i = index"
+      class="option"
+      [class.selected]="userAnswer === i + 1"
+      [class.correct]="hasAnswered && isCorrectAnswer(i + 1)"
+      [class.wrong]="hasAnswered && userAnswer === i + 1 && !isCorrect"
+      (click)="selectAnswer(i + 1)"
+    >
+      {{ option }}
+    </div>
+  </div>
+
+  <button *ngIf="!hasAnswered" (click)="submitAnswer()" [disabled]="userAnswer === null">
+    שלח תשובה
+  </button>
+
+  <div *ngIf="hasAnswered">
+    <p *ngIf="isCorrect; else incorrectAnswer">תשובתך נכונה! 🏆</p>
+    <ng-template #incorrectAnswer>
+      <p>תשובה שגויה... פעם הבאה תצליח יותר 💪</p>
+    </ng-template>
+  </div>
+</div>
+
+<!-- הצגת ההודעה אם המשתמש כבר ענה על הבוחן -->
+<div class="quiz-container" *ngIf="quizAnswered">
+  <div class="already-answered">
+    <p>כבר ענית על בוחן זה! תודה על השתתפותך.</p>
+  </div>
+</div>
