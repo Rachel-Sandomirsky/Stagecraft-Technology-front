@@ -86,4 +86,44 @@ export class LessonsService {
       })
     );
   }
+
+// Function to delete a lesson by its ID
+deleteLesson(lessonId: number): Observable<void> {
+  console.log('Preparing to delete lesson with ID:', lessonId);
+
+  return this.apiService.delete<void>(`${this.apiUrl}/${lessonId}`).pipe(
+    // Log success after sending the request to the server
+    tap(() => {
+      console.log(`Lesson with ID ${lessonId} deleted successfully.`);
+    }),
+
+    // Error handling
+    catchError((error) => {
+      console.error('Error deleting lesson:', error);
+
+      // Detailed error message
+      const errorMessage =
+        error?.error?.message ||
+        (error.status === 404
+          ? 'Lesson not found. It may have already been deleted.'
+          : error.status === 500
+          ? 'Internal server error. Please try again later.'
+          : 'Failed to delete lesson. Please try again.');
+
+      // Log the detailed error message
+      console.error('Detailed error message:', errorMessage);
+
+      // Return the error as an observable
+      return throwError(() => new Error(errorMessage));
+    }),
+
+    // Finalize action
+    finalize(() => {
+      console.log('deleteLesson request completed.');
+    })
+  );
+}
+
+
+
 }

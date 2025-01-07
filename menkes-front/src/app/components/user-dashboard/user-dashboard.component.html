@@ -6,16 +6,19 @@
   <div class="tabs">
     <button
     class="tab-button"
+    [ngClass]="{ active: activeTab === 'achievements' }"
+    (click)="selectTab('achievements')"
+    >
+
+    הישגים
+  </button>
+
+    <button
+    class="tab-button"
     [ngClass]="{ active: activeTab === 'enrollCourses' }"
     (click)="selectTab('enrollCourses')"
   >
-    הישגים
-  </button>
-    <button
-      class="tab-button"
-      [ngClass]="{ active: activeTab === 'enrollCourses' }"
-      (click)="selectTab('enrollCourses')"
-    >
+  
       בקשות הרשמה שלי
     </button>
     <button
@@ -32,6 +35,9 @@
     </div>
     <div *ngIf="activeTab === 'enrollCourses'" class="tab-content active">
       <app-user-request></app-user-request>
+    </div>
+    <div *ngIf="activeTab === 'achievements'" class="tab-content active">
+      <app-user-achievements></app-user-achievements>
     </div>
   </div>
 </div>

@@ -5,7 +5,8 @@ export class Lesson {
     public description: string,
     public video_url: string,
     public duration: string,
-    public lessons_number: number, 
-    public transcript: string
+    public lessons_number: number,
+    public transcript: string,
+    public lessone_code?: number
   ) {}
 }

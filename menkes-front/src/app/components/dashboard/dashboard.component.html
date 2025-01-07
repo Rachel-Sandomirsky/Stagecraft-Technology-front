@@ -10,6 +10,9 @@
     <button class="tab-button" [ngClass]="{active: activeTab === 'courses'}" (click)="selectTab('courses')">
       הקורסים שלנו
     </button>
+    <button class="tab-button" [ngClass]="{active: activeTab === 'materials'}" (click)="selectTab('materials')">
+      חומרים
+    </button>
   </div>
   <div class="content-box">
     <div *ngIf="activeTab === 'requests'" class="tab-content active">
@@ -17,6 +20,9 @@
     </div>
     <div *ngIf="activeTab === 'courses'" class="tab-content active">
       <app-deshboard-courses-list (addCourse)="selectTab('addCourse')"></app-deshboard-courses-list>
+    </div>
+    <div *ngIf="activeTab === 'materials'" class="tab-content active">
+      <app-admin-materials></app-admin-materials>
     </div>
     <div *ngIf="activeTab === 'content'">
       <p>כאן תוכל להוסיף תוכן לקורסים.</p>

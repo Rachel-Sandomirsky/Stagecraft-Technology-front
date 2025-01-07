@@ -11,3 +11,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     color: #ffcc00 !important; /* שינוי לצהוב */
     font-weight: bold; /* אופציונלי להדגשה */
 }
+
+.small-popup {
+    width: 300px !important; /* שינוי הרוחב של החלון */
+  }
+  
+  .custom-title {
+    font-size: 16px; /* כותרת קטנה יותר */
+  }
+  
+  .custom-confirm-button {
+    background-color: #ffc107 !important; /* צבע כחול */
+    border-color: #ffc107 !important;
+    color: white !important;
+    border-radius: 5px;
+  }
+  
+  .custom-cancel-button {
+    background-color: grey !important; /* צבע צהוב */
+    border-color: grey !important;
+    color: white !important;
+    border-radius: 5px;
+  }
+  

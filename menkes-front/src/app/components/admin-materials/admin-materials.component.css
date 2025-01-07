@@ -1,0 +1,78 @@
+ 
+  .materials-dashboard {
+    direction: rtl; /* מגדיר את כל הקומפוננטה לימין לשמאל */
+    text-align: right;
+    margin: 20px;
+  }
+  
+  .add-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .materials-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .materials-table th,
+  .materials-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right; /* יישור לימין */
+  }
+  
+  .materials-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .delete-button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+  }
+  
+  .material-details {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+  }
+  
+  .add-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .materials-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .materials-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .delete-button {
+    background-color: transparent;
+    border: none;
+    color:red; /* צבע צהוב לאייקון */
+    cursor: pointer;
+    font-size: 90%; /* גודל האייקון */
+  }
+  
+  .delete-button:hover {
+    color: orange; /* שינוי צבע בעת מעבר העכבר */
+  }
+  

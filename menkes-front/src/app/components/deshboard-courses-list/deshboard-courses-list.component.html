@@ -11,7 +11,12 @@
       <!-- אזור השיעורים -->
       <ul *ngIf="selectedCourseCode === course.code" class="lessons-list">
         <li *ngFor="let lesson of lessons" class="lesson-item">
-          <h3 class="lesson-title">שיעור {{ lesson.lessons_number }}: {{ lesson.title }}</h3>
+          <span class="delete-icon" (click)="onDeleteClick(lesson, course)">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+          <h3 class="lesson-title">
+            שיעור {{ lesson.lessons_number }}: {{ lesson.title }}
+          </h3>
         </li>
       </ul>
 
@@ -21,6 +26,20 @@
       </div>
     </li>
   </ul>
+</div>
+
+<!-- חלונית למחיקת שיעור -->
+<div *ngIf="showDeleteModal" class="delete-modal">
+  <div class="delete-modal-content">
+    <h2>האם אתה בטוח שברצונך למחוק את השיעור?</h2>
+    <p>שם הקורס: {{ selectedCourse?.title }}</p>
+    <p>מספר שיעור: {{ selectedLesson?.lessons_number }}</p>
+    <p>שם שיעור: {{ selectedLesson?.title }}</p>
+    <div class="delete-modal-actions">
+      <button (click)="confirmDelete()">כן</button>
+      <button (click)="cancelDelete()">לא</button>
+    </div>
+  </div>
 </div>
 
 <!-- קומפוננטת add-lesson -->
