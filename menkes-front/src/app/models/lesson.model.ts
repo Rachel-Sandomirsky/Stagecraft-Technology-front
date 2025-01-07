@@ -7,6 +7,6 @@ export class Lesson {
     public duration: string,
     public lessons_number: number,
     public transcript: string,
-    public lessone_code?: number // שדה חדש ל-`lessone_code`, אופציונלי
+    public lessone_code?: number
   ) {}
 }

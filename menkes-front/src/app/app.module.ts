@@ -38,8 +38,10 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ReconnectComponent } from './components/reconnect/reconnect.component';
 import { AddLessonComponent } from './components/add-lesson/add-lesson.component';
+
 import { UserAchievementsComponent } from './components/user-achievements/user-achievements.component';
 import { AdminMaterialsComponent } from './components/admin-materials/admin-materials.component';
+
 
 @NgModule({
   declarations: [
