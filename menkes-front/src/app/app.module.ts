@@ -36,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ReconnectComponent } from './components/reconnect/reconnect.component';
+import { AddLessonComponent } from './components/add-lesson/add-lesson.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ReconnectComponent } from './components/reconnect/reconnect.component';
     UserDetailsComponent,
     LessonsComponent,
     SafeUrlPipe,
-    ReconnectComponent
+    ReconnectComponent,
+    AddLessonComponent
   ],
   imports: [
     BrowserModule,
