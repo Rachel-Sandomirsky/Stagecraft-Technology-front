@@ -18,11 +18,23 @@ export class ProfileModalComponent {
   }
 
   onLogout() {
-    this.userService.logout(); 
+      this.userService.logout()
+        .subscribe({
+          next: (response) => {
+            console.log('Logout successfull:', response.message);
+          },
+          error: (err) => {
+            console.error(
+              'Error during logout:',
+              err.error?.message || err.message
+            );
+          },
+        });
+        
+    this.userService.userSubject.next(null);
+    localStorage.removeItem('user');
     this.closeModal(); 
-    this.router.navigate(['/']); 
-
-    
+    this.router.navigate(['/']);     
   }
 
   navigateToDashboard() {

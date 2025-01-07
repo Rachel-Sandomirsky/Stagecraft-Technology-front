@@ -19,13 +19,13 @@ export class UserDashboardService {
   @RequiresToken()
   getUserCourses(): Observable<Course[]> {
     return this.apiService.get(
-      this.apiUrl + '/myCourses/' + this.userService.getUser()?.code
+      this.apiUrl + '/myCourses'
     );
   }
   @RequiresToken()
   getUserRequest(): Observable<Course[]> {
     return this.apiService.get(
-      this.apiUrl + '/course-requests/' + this.userService.getUser()?.code
+      this.apiUrl + '/course-requests'
     );
   }
 

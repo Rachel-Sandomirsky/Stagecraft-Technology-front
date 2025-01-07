@@ -100,30 +100,12 @@ resetPassword(email:string,password:string)
     return this.apiService.get(`${this.apiUrl}/auth/${email}`) 
   }
   // יציאה מהמערכת
-  public logout(): void {
-    const user = this.userSubject.getValue(); // שליפת הערך הנוכחי של המשתמש
-    if (user && user.email && user.access_token) {
-      this.apiService
-        .post<any>(`${this.apiUrl}/logout`, {
-          email: user.email,
-          token: user.access_token,
-        })
-        .subscribe({
-          next: (response) => {
-            console.log('Logout successful:', response.message);
-            this.userSubject.next(null);
-            localStorage.removeItem('user'); // מחיקת המשתמש מה-localStorage
-          },
-          error: (err) => {
-            console.error(
-              'Error during logout:',
-              err.error?.message || err.message
-            );
-          },
-        });
-    } else {
-      console.error('User or token not found.');
-    }
+  public logout(): Observable<any>{
+    const user = this.userSubject.getValue();
+    return this.apiService.post<any>(`${this.apiUrl}/logout`, {
+      email: user?.email,
+      token: user?.access_token,
+    });
   }
 
   getUserByCode(code: string): Observable<User> {
