@@ -14,7 +14,10 @@ import { ModalService } from 'src/app/services/modal.service';
 export class DeshboardCoursesListComponent implements OnInit {
   courses: Course[] = []; // רשימת הקורסים
   lessons: Lesson[] = []; // רשימת השיעורים
-  selectedCourseCode: number = 0; 
+  selectedCourseCode: number = 0;
+  selectedLesson: Lesson | null = null; // השיעור שנבחר למחיקה
+  selectedCourse: Course | null = null; // הקורס שבו נמצא השיעור
+  showDeleteModal: boolean = false; // מצב החלונית למחיקה
   @Output() addCourse = new EventEmitter<void>(); // אירוע להוספת קורס
 
   constructor(
@@ -42,7 +45,6 @@ export class DeshboardCoursesListComponent implements OnInit {
   }
 
   onCourseClick(course: Course): void {
-
     this.modalService.modalState$.subscribe((isOpen) => {
       if (this.selectedCourseCode === course.code) {
         console.log('Unselecting course:', course.code); // לוג הסרת בחירת קורס
@@ -59,8 +61,6 @@ export class DeshboardCoursesListComponent implements OnInit {
       }
     });
   }
-  
-  
 
   loadLessons(courseCode: number): void {
     this.lessonService.getLessonsByCourseId(courseCode).subscribe(
@@ -84,6 +84,39 @@ export class DeshboardCoursesListComponent implements OnInit {
     console.log('Add Lesson clicked. selectedCourseCode set to:', this.selectedCourseCode);
     this.modalService.openModal();
   }
-  
+
+  // פונקציה להצגת חלונית המחיקה
+  onDeleteClick(lesson: Lesson, course: Course): void {
+    this.selectedLesson = lesson;
+    this.selectedCourse = course;
+    this.showDeleteModal = true;
+  }
+
+  // פונקציה לסגירת חלונית המחיקה
+  cancelDelete(): void {
+    this.showDeleteModal = false;
+    this.selectedLesson = null;
+    this.selectedCourse = null;
+  }
+
+  // פונקציה למחיקת שיעור לאחר אישור
+  confirmDelete(): void {
+    if (this.selectedLesson && this.selectedLesson.lessone_code !== undefined) {
+      this.lessonService.deleteLesson(this.selectedLesson.lessone_code).subscribe({
+        next: () => {
+          console.log('Lesson deleted successfully.');
+          this.showDeleteModal = false; // סגור את המודל
+          this.selectedLesson = null;
+          this.selectedCourse = null;
+          this.loadLessons(this.selectedCourseCode); // עדכון השיעורים בקורס
+        },
+        error: (err) => {
+          console.error('Error deleting lesson:', err);
+        }
+      });
+    } else {
+      console.error('Error: lessone_code is undefined. Cannot delete lesson.');
+    }
+  }
   
 }
