@@ -4,6 +4,7 @@ import { UserDetailsService } from '../../services/UserDetials/user-details.serv
 import { RequestsUserDto } from 'src/app/models/RequestsUserDto';
 import { Router } from '@angular/router';
 import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
 export class UserDetailsComponent implements OnInit {
   users: RequestsUserDto[]=[];
 
-  constructor(private userDetailsService: UserDetailsService,private router: Router) { }  // מזריקים את השירות לקומפוננטה
+  constructor(private userDetailsService: UserDetailsService,private userService:UserService ,private router: Router) { }  // מזריקים את השירות לקומפוננטה
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -29,7 +30,23 @@ export class UserDetailsComponent implements OnInit {
       },
       error: (e) => {
         if(e.status===401)
-          this.router.navigate(['/reconnect'])
+          {
+            const currentUrl = this.router.url;
+            {
+              const currentUrl = this.router.url;
+              this.router.navigate(['/reconnect'])
+              setTimeout(() => {
+               
+                this.router.navigate([currentUrl]);
+              }, 5000); 
+              this.onLogout() ;
+            }
+            setTimeout(() => {
+             
+              this.router.navigate([currentUrl]);
+            }, 5000); 
+            this.userService.logout();
+          }
          else console.log("Error ")
       }
     });
@@ -48,11 +65,33 @@ export class UserDetailsComponent implements OnInit {
       },
       error: (e) => {
         if(e.status===401)
-          this.router.navigate(['/reconnect'])
+          {
+            const currentUrl = this.router.url;
+            this.router.navigate(['/reconnect'])
+            setTimeout(() => {
+             
+              this.router.navigate([currentUrl]);
+            }, 5000); 
+            this.onLogout() ;
+          }
          else console.log("Error ")
       }
     });
     this.users = this.users.filter(user =>( user.user_code !== userCode)||(user.course_code !== courseCode));
     
   }
+  onLogout() {
+    this.userService.logout()
+      .subscribe({
+        next: (response) => {
+          console.log('Logout successfull:', response.message);
+          this.userService.userSubject.next(null);
+        },
+        error: (err) => {
+          console.error(
+            'Error during logout:',
+            err.error?.message || err.message
+          );
+        },
+      });}
 }

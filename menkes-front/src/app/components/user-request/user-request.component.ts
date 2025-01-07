@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/models/course';
 import { UserDashboardService } from 'src/app/services/user-dashboard.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-request',
@@ -12,7 +13,8 @@ export class UserRequestComponent {
 userRequestList: Course[] = [];
   constructor(
     private router: Router,
-    private userDashboardService: UserDashboardService
+    private userDashboardService: UserDashboardService,
+    private userService:UserService 
   ) {
     this.userDashboardService.getUserRequest().subscribe(
       (data) => {
@@ -20,7 +22,15 @@ userRequestList: Course[] = [];
       },
       (err) => {
         if(err.status===401)
-          this.router.navigate(['/reconnect'])
+          {
+            const currentUrl = this.router.url;
+            this.router.navigate(['/reconnect'])
+            setTimeout(() => {
+             
+              this.router.navigate([currentUrl]);
+            }, 5000); 
+            this.onLogout() ;
+          }
          else console.log("Error ")
       }
     );
@@ -30,4 +40,18 @@ userRequestList: Course[] = [];
     // ניווט לדף פרטי הקורס
     this.router.navigate(['/course-details', courseId]);
   }
+  onLogout() {
+    this.userService.logout()
+      .subscribe({
+        next: (response) => {
+          console.log('Logout successfull:', response.message);
+          this.userService.userSubject.next(null);
+        },
+        error: (err) => {
+          console.error(
+            'Error during logout:',
+            err.error?.message || err.message
+          );
+        },
+      });}
 }

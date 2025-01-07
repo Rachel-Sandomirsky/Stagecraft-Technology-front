@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RequiresToken } from 'src/app/interceptors/TokenDecorator';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-course',
@@ -16,7 +17,7 @@ export class AddCourseComponent {
   courseForm: FormGroup;
   topics: string[] = []; // מערך נושאים שיתעדכן בזמן אמת
 
-  constructor(private fb: FormBuilder, private courseService: CourseService,  private router: Router) {
+  constructor(private fb: FormBuilder, private courseService: CourseService,private userService:UserService , private router: Router) {
     // יצירת Reactive Form עם השדות הנדרשים
     this.courseForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
@@ -67,9 +68,31 @@ export class AddCourseComponent {
       },
       error: (err) => {
         if(err.status===401)
-          this.router.navigate(['/reconnect'])
+          {
+            const currentUrl = this.router.url;
+            this.router.navigate(['/reconnect'])
+            setTimeout(() => {
+             
+              this.router.navigate([currentUrl]);
+            }, 5000); 
+            this.onLogout() ;
+          }
          else console.log("Error "+err)
       },
     });
   }
+  onLogout() {
+    this.userService.logout()
+      .subscribe({
+        next: (response) => {
+          console.log('Logout successfull:', response.message);
+          this.userService.userSubject.next(null);
+        },
+        error: (err) => {
+          console.error(
+            'Error during logout:',
+            err.error?.message || err.message
+          );
+        },
+      });}
 }
