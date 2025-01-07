@@ -1,0 +1,123 @@
+<div class="add-lesson-modal">
+  <div class="modal-header">
+    <button class="close-btn" (click)="onClose()" aria-label="סגור חלונית">×</button>
+    <h2>הוספת שיעור</h2>
+  </div>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+  <div *ngIf="errorMessage" class="alert alert-error">{{ errorMessage }}</div>
+  <form (ngSubmit)="onSubmit()" #lessonForm="ngForm" class="lesson-form">
+    <!-- שם השיעור -->
+    <div class="form-group">
+      <label for="title">שם השיעור</label>
+      <input
+        type="text"
+        id="title"
+        [(ngModel)]="lesson.title"
+        name="title"
+        class="form-input"
+        placeholder="הכנס שם שיעור"
+        aria-label="שם השיעור"
+        required
+        #title="ngModel"
+      />
+      <small *ngIf="title.invalid && title.touched" class="error">שדה זה הינו חובה</small>
+    </div>
+
+    <!-- תיאור -->
+    <div class="form-group">
+      <label for="description">תיאור השיעור</label>
+      <textarea
+        id="description"
+        [(ngModel)]="lesson.description"
+        name="description"
+        class="form-textarea"
+        placeholder="הכנס תיאור לשיעור"
+        aria-label="תיאור השיעור"
+        required
+        #description="ngModel"
+      ></textarea>
+      <small *ngIf="description.invalid && description.touched" class="error">שדה זה הינו חובה</small>
+    </div>
+
+    <!-- קישור לסרטון -->
+    <div class="form-group">
+      <label for="video_url">קישור לסרטון (YouTube בלבד)</label>
+      <input
+        type="url"
+        id="video_url"
+        [(ngModel)]="lesson.video_url"
+        name="video_url"
+        class="form-input"
+        placeholder="לדוגמה: https://youtube.com/..."
+        aria-label="קישור לסרטון"
+        required
+        (blur)="validateYouTubeUrl()"
+        #videoUrl="ngModel"
+      />
+      <small *ngIf="videoUrl.invalid && videoUrl.touched" class="error">יש למלא קישור תקין מיוטיוב</small>
+      <small *ngIf="videoUrlError && !videoUrl.invalid" class="error">{{ videoUrlError }}</small>
+    </div>
+
+    <!-- מספר שיעור -->
+    <div class="form-group">
+      <label for="lessonsNumber">מספר שיעור</label>
+      <input
+        type="number"
+        id="lessonsNumber"
+        [(ngModel)]="lesson.lessons_number"
+        name="lessonsNumber"
+        class="form-input"
+        placeholder="הכנס מספר שיעור"
+        aria-label="מספר שיעור"
+        required
+        #lessonsNumber="ngModel"
+      />
+      <small *ngIf="lessonsNumber.invalid && lessonsNumber.touched" class="error">שדה זה הינו חובה</small>
+    </div>
+
+    <!-- כיתוביות -->
+    <div class="form-group">
+      <label for="transcript">כיתוביות (בפורמט JSON)</label>
+      <textarea
+        id="transcript"
+        [(ngModel)]="lesson.transcript"
+        name="transcript"
+        class="form-textarea"
+        placeholder="הכנס כיתוביות בפורמט JSON"
+        aria-label="כיתוביות בפורמט JSON"
+        required
+        #transcript="ngModel"
+        (blur)="validateTranscriptFormat()"
+      ></textarea>
+      <small *ngIf="transcript.invalid && transcript.touched" class="error">שדה זה הינו חובה</small>
+      <small *ngIf="transcriptError" class="error">{{ transcriptError }}</small>
+    </div>
+
+    <!-- אורך הסרטון (אופציונלי) -->
+    <div class="form-group">
+      <label for="duration">אורך הסרטון (אופציונלי)</label>
+      <input
+        type="text"
+        id="duration"
+        [(ngModel)]="lesson.duration"
+        name="duration"
+        class="form-input"
+        placeholder="לדוגמה: 10:30"
+        aria-label="אורך הסרטון"
+      />
+      <small>שדה זה אינו חובה</small>
+    </div>
+
+    <!-- לחצן הוספה -->
+    <div class="form-group">
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="!lessonForm.valid"
+        aria-label="הוסף שיעור"
+      >
+        הוסף שיעור
+      </button>
+    </div>
+  </form>
+</div>

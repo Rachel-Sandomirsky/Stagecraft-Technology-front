@@ -4,8 +4,9 @@ export class Lesson {
     public title: string,
     public description: string,
     public video_url: string,
-    public duration: string, // משך זמן הסרטון
-    public lessonsNumber: number, // סדר הופעה בשיעור
-    public transcript: string
+    public duration: string,
+    public lessons_number: number,
+    public transcript: string,
+    public lessone_code?: number // שדה חדש ל-`lessone_code`, אופציונלי
   ) {}
 }

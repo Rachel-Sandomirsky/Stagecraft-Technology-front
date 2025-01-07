@@ -1,15 +1,49 @@
-<div class="courses-container" dir="rtl">
-
+<div [class.blur]="modalService.modalState$ | async" class="courses-container" dir="rtl">
   <div class="add-course">
-    <button (click)="onAddCourseClick()">
-      <span class="plus-icon">+</span> הוספת קורס חדש
-    </button>
+    <button (click)="onAddCourseClick()">+ הוספת קורס חדש</button>
   </div>
 
   <ul class="courses-list">
-    <li *ngFor="let course of courses" class="course-item">
+    <li *ngFor="let course of courses" class="course-item" (click)="onCourseClick(course)">
       <h2 class="course-name">{{ course.title }}</h2>
       <p class="course-description">{{ course.description }}</p>
+
+      <!-- אזור השיעורים -->
+      <ul *ngIf="selectedCourseCode === course.code" class="lessons-list">
+        <li *ngFor="let lesson of lessons" class="lesson-item">
+          <span class="delete-icon" (click)="onDeleteClick(lesson, course)">
+            <i class="fas fa-trash-alt"></i>
+          </span>
+          <h3 class="lesson-title">
+            שיעור {{ lesson.lessons_number }}: {{ lesson.title }}
+          </h3>
+        </li>
+      </ul>
+
+      <!-- כפתור הוספת שיעור -->
+      <div *ngIf="selectedCourseCode === course.code" class="add-lesson">
+        <button (click)="onAddLessonClick(course.code)">+ הוספת שיעור</button>
+      </div>
     </li>
   </ul>
 </div>
+
+<!-- חלונית למחיקת שיעור -->
+<div *ngIf="showDeleteModal" class="delete-modal">
+  <div class="delete-modal-content">
+    <h2>האם אתה בטוח שברצונך למחוק את השיעור?</h2>
+    <p>שם הקורס: {{ selectedCourse?.title }}</p>
+    <p>מספר שיעור: {{ selectedLesson?.lessons_number }}</p>
+    <p>שם שיעור: {{ selectedLesson?.title }}</p>
+    <div class="delete-modal-actions">
+      <button (click)="confirmDelete()">כן</button>
+      <button (click)="cancelDelete()">לא</button>
+    </div>
+  </div>
+</div>
+
+<!-- קומפוננטת add-lesson -->
+<app-add-lesson
+  *ngIf="modalService.modalState$ | async"
+  [courseId]="selectedCourseCode">
+</app-add-lesson>
