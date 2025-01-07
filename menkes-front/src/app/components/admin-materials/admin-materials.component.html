@@ -1,0 +1,43 @@
+<div class="materials-dashboard">
+    <h2>ניהול חומרים</h2>
+  
+    <!-- כפתור להוספת חומר -->
+    <button (click)="onAddMaterial()" class="add-button">+ הוסף חומר</button>
+  
+    <!-- טבלה להצגת החומרים -->
+    <table class="materials-table">
+      <thead>
+        <tr>
+          <th>שם הקורס</th>
+          <th>שם השיעור</th>
+          <th>סוג החומר</th>
+          <th>נתיב/קישור</th>
+          <th>פעולות</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let material of materials" (click)="onSelectMaterial(material)">
+          <td>{{ material.course_name }}</td>
+          <td>{{ material.lesson_name || 'ללא' }}</td>
+          <td>{{ material.material_type }}</td>
+          <td>{{ material.material_path }}</td>
+          <td>
+            <!-- כפתור למחיקת חומר -->
+            <button (click)="onDeleteMaterial(material.material_code, $event)" class="delete-button">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- פרטי החומר שנבחר -->
+    <div *ngIf="selectedMaterial" class="material-details">
+      <h3>פרטי החומר:</h3>
+      <p><strong>שם הקורס:</strong> {{ selectedMaterial.course_name }}</p>
+      <p><strong>שם השיעור:</strong> {{ selectedMaterial.lesson_name || 'ללא' }}</p>
+      <p><strong>סוג החומר:</strong> {{ selectedMaterial.material_type }}</p>
+      <p><strong>נתיב/קישור:</strong> {{ selectedMaterial.material_path }}</p>
+    </div>
+  </div>
+  
