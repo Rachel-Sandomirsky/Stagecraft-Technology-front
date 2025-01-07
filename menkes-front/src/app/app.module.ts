@@ -33,6 +33,7 @@ import { LessonsComponent } from './components/lessons/lessons.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
+import { QuizzesComponent } from './components/quizzes/quizzes.component';
 
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ReconnectComponent } from './components/reconnect/reconnect.component';
@@ -63,7 +64,9 @@ import { AddLessonComponent } from './components/add-lesson/add-lesson.component
     LessonsComponent,
     SafeUrlPipe,
     ReconnectComponent,
-    AddLessonComponent
+    AddLessonComponent,
+    QuizzesComponent,
+    ReconnectComponent
   ],
   imports: [
     BrowserModule,

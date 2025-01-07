@@ -5,11 +5,18 @@
   </div>
   <div class="tabs">
     <button
+    class="tab-button"
+    [ngClass]="{ active: activeTab === 'enrollCourses' }"
+    (click)="selectTab('enrollCourses')"
+  >
+    הישגים
+  </button>
+    <button
       class="tab-button"
       [ngClass]="{ active: activeTab === 'enrollCourses' }"
       (click)="selectTab('enrollCourses')"
     >
-      קורסים שאני רוצה להרשם
+      בקשות הרשמה שלי
     </button>
     <button
       class="tab-button"

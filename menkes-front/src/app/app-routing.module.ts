@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { QuizzesComponent } from './components/quizzes/quizzes.component';
 import { ReconnectComponent } from './components/reconnect/reconnect.component';
 
 export const routes: Routes = [
@@ -28,7 +29,7 @@ export const routes: Routes = [
   { path: 'course-details/:code', component: CourseDetailsComponent },
   {path:'forgot-password',component:ForgotPasswordComponent},
   { path: 'user-dashboard', component: UserDashboardComponent },
-
+  { path: 'quizzes/:class_code', component: QuizzesComponent },
   {path:'forgot-password',component:ForgotPasswordComponent},
   {path:'reconnect',component:ReconnectComponent}
 ];

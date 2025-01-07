@@ -1,0 +1,120 @@
+/* רקע מטושטש */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.08); /* הקטנת השקיפות */
+  backdrop-filter: blur(5px); /* הפחתת הטשטוש ל-2 פיקסלים */
+  z-index: 999;
+}
+
+
+/* מיקום ועיצוב הקופסה */
+.quiz-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border: 0.125rem solid #ffcf00;
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 400px;
+  z-index: 1000;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* עיצוב השאלה */
+h2 {
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+/* עיצוב התשובות */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option {
+  padding: 0.75rem;
+  border: 0.125rem solid #ccc;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: right;
+  background-color: #fff;
+}
+
+.option:hover {
+  background-color: #f9f9f9;
+}
+
+.option.selected {
+  border-color: #ffcf00;
+  background-color: #fffcdd;
+}
+
+.option.correct {
+  background-color: #fffc99;
+  border-color: #ffcf00;
+}
+
+.option.wrong {
+  background-color: #ffdddd;
+  border-color: #ff0000;
+}
+
+/* עיצוב כפתור */
+button {
+  background-color: #ffcf00;
+  color: #000;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button:hover:enabled {
+  background-color: #e6b800;
+}
+
+
+/* סגנון לכפתור ה-X */
+.close-btn {
+  position: absolute !important;
+  top: 1rem !important;
+  right: 1rem !important;
+  font-size: 1.5rem !important;
+  color: #000 !important;
+  cursor: pointer !important;
+  transition: color 0.3s ease !important;
+}
+
+.close-btn:hover {
+  color: #ffcf00 !important;
+
+}
+.already-answered {
+  background-color: #fffc99;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  margin-top: 20px;
+}
