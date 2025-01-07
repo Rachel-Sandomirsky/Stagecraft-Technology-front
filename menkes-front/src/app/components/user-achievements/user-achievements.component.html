@@ -1,0 +1,23 @@
+<table *ngIf="!isLoading && achievements.length > 0" class="achievements-table">
+    <thead>
+      <tr>
+        <th>שם הקורס</th>
+        <th>שם השיעור</th>
+        <th>עברתי?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let achievement of achievements">
+        <td>{{ achievement.course_name }}</td>
+        <td>{{ achievement.lesson_name }}</td>
+        <td>
+          <span *ngIf="achievement.is_correct" class="status-icon success">✔</span>
+          <span *ngIf="!achievement.is_correct" class="status-icon error">✘</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="!isLoading && achievements.length === 0" class="no-data">
+    אין נתונים להצגה.
+  </div>
+  

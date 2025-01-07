@@ -37,6 +37,7 @@ import { QuizzesComponent } from './components/quizzes/quizzes.component';
 
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ReconnectComponent } from './components/reconnect/reconnect.component';
+import { UserAchievementsComponent } from './components/user-achievements/user-achievements.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ReconnectComponent } from './components/reconnect/reconnect.component';
     LessonsComponent,
     SafeUrlPipe,
     QuizzesComponent,
-    ReconnectComponent
+    ReconnectComponent,
+    UserAchievementsComponent
   ],
   imports: [
     BrowserModule,
