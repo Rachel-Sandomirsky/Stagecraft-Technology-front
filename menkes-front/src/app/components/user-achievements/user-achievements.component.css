@@ -1,0 +1,54 @@
+/* כל הטבלה מימין לשמאל */
+.achievements-table {
+    width: 100%;
+    border-collapse: collapse;
+    direction: rtl; /* מימין לשמאל */
+  }
+  
+  .achievements-table th,
+  .achievements-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right; /* יישור לימין */
+  }
+  
+  .achievements-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .achievements-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .achievements-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* עיצוב אייקונים */
+  .status-icon {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .status-icon.success {
+    color: green; /* V ירוק */
+  }
+  
+  .status-icon.error {
+    color: red; /* X אדום */
+  }
+  
+  /* עיצוב של טקסט טוען */
+  .loading {
+    text-align: center;
+    font-size: 18px;
+    margin: 20px 0;
+  }
+  
+  /* טקסט כאשר אין נתונים */
+  .no-data {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+  }
+  
