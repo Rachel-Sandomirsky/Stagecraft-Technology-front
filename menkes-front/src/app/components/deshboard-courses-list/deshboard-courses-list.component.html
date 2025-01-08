@@ -32,9 +32,10 @@
 <div *ngIf="showDeleteModal" class="delete-modal">
   <div class="delete-modal-content">
     <h2>האם אתה בטוח שברצונך למחוק את השיעור?</h2>
-    <p>שם הקורס: {{ selectedCourse?.title }}</p>
-    <p>מספר שיעור: {{ selectedLesson?.lessons_number }}</p>
-    <p>שם שיעור: {{ selectedLesson?.title }}</p>
+    <p><span>שם הקורס:</span> {{ selectedCourse?.title }}</p>
+    <p><span>מספר שיעור:</span> {{ selectedLesson?.lessons_number }}</p>
+    <p><span>שם שיעור:</span> {{ selectedLesson?.title }}</p>
+    
     <div class="delete-modal-actions">
       <button (click)="confirmDelete()">כן</button>
       <button (click)="cancelDelete()">לא</button>

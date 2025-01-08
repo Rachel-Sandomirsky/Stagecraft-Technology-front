@@ -180,38 +180,71 @@
   text-align: center;
   max-width: 400px;
   width: 90%;
+  font-family: Arial, sans-serif;
 }
 
 .delete-modal-content h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .delete-modal-content p {
   margin: 0.5rem 0;
+  text-align: right;
+  direction: rtl;
+  display: flex; 
+  justify-content: flex-start;
+  gap: 0.5rem;
+  align-items: flex-start; 
+  flex-wrap: wrap; 
 }
+
+.delete-modal-content p span {
+  font-weight: bold; 
+  flex-shrink: 0;
+  white-space: nowrap; 
+}
+
+
 
 .delete-modal-actions {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
+  justify-content: space-evenly;
+  margin-top: 1.5rem;
 }
 
 .delete-modal-actions button {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border: none;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .delete-modal-actions button:first-child {
-  background-color: #ff4d4f;
-  color: white;
+  background-color: #ffcf00;
+  color: black;
+}
+
+.delete-modal-actions button:first-child:hover {
+  background-color: #d4ac0d;
+  transform: scale(1.05);
 }
 
 .delete-modal-actions button:last-child {
-  background-color: #ddd;
+  background-color: #f0f0f0;
+  color: #555;
 }
+
+.delete-modal-actions button:last-child:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
 
 @media (max-width: 768px) {
   .courses-container {
