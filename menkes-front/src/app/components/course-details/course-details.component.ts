@@ -23,7 +23,7 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
   isUserRegistered: boolean = true;
   lessons: any[] = [];
   selectedLesson: any = null;
-
+  
   constructor(
     private route: ActivatedRoute,
     private courseService: CourseService,
@@ -145,7 +145,15 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       },
       (error) => {
         if(error.status===401)
+        {
+          const currentUrl = this.router.url;
           this.router.navigate(['/reconnect'])
+          setTimeout(() => {
+           
+            this.router.navigate([currentUrl]);
+          }, 5000); 
+          this.onLogout() ;
+        }
          else {
         console.error('Error fetching lessons:', error);
         alert('שגיאה בטעינת השיעורים. נסה שוב מאוחר יותר.');
@@ -169,7 +177,15 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       },
       (error) => {
         if(error.status===401)
-          this.router.navigate(['/reconnect'])
+          {
+            const currentUrl = this.router.url;
+            this.router.navigate(['/reconnect'])
+            setTimeout(() => {
+             
+              this.router.navigate([currentUrl]);
+            }, 5000); 
+            this.onLogout() ;
+          }
          else {
         console.error('Error fetching lessons:', error);
         alert('שגיאה בטעינת השיעורים. נסה שוב מאוחר יותר.');
@@ -177,4 +193,18 @@ export class CourseDetailsComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  onLogout() {
+    this.userService.logout()
+      .subscribe({
+        next: (response) => {
+          console.log('Logout successfull:', response.message);
+          this.userService.userSubject.next(null);
+        },
+        error: (err) => {
+          console.error(
+            'Error during logout:',
+            err.error?.message || err.message
+          );
+        },
+      });}
 }
