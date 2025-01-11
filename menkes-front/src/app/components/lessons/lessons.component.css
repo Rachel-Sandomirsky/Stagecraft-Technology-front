@@ -62,6 +62,12 @@
   aspect-ratio: 16/9; /* ווידוא פרופורציות נכונות */
 }
 
+.lesson-item.disabled {
+  pointer-events: none;
+  opacity: 0.5; /* שקיפות לשיעורים שאי אפשר ללחוץ עליהם */
+  cursor: not-allowed;
+}
+
 .transcript-line {
   margin-bottom: 0.5rem;
   padding: 0.25rem;

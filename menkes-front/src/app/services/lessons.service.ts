@@ -123,6 +123,9 @@ deleteLesson(lessonId: number): Observable<void> {
     })
   );
 }
+updateUserQuizStatus(courseId: number): Observable<void> {
+  return this.apiService.patch<void>(`${this.apiUrl}/${courseId}/quiz`, { isQuiz: true });
+}
 
 
 

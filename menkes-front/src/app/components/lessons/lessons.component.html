@@ -1,59 +1,36 @@
 <div class="lessons-container">
-  <div class="video-and-transcript">
-    <!-- סרטון YouTube -->
+  <div *ngIf="selectedLesson?.video_url" class="video-and-transcript">
+    <!-- YouTube Video -->
     <div class="video-wrapper">
-      <div #video class="youtube-player">
-        <iframe
-          *ngIf="selectedLesson?.video_url as videoUrl"
-          [src]="videoUrl | safeUrl"
-          frameborder="0"
-          allowfullscreen
-          style="width: 100%; height: auto; aspect-ratio: 16/9;"
-        ></iframe>
-        <div *ngIf="!selectedLesson?.video_url" class="no-video">אין סרטון לצפייה</div>
+      <div #video class="youtube-player"></div>
+    </div>
+
+    <!-- Transcript -->
+    <div *ngIf="filteredTranscript.length > 0" class="transcript-container" #transcriptContainer>
+      <div *ngFor="let line of filteredTranscript" class="transcript-line-wrapper">
+        <div
+          [class.active]="line.isActive"
+          class="transcript-line"
+        >
+          {{ line.text }}
+        </div>
       </div>
     </div>
-
-    <!-- תמלול -->
-    <div class="transcript-container" #transcriptContainer>
-      <ng-container *ngIf="filteredTranscript.length; else noTranscript">
-        <div *ngFor="let line of filteredTranscript" class="transcript-line-wrapper">
-          <div
-            *ngIf="line.isVisible"
-            [class.active]="line.isActive"
-            class="transcript-line"
-          >
-            {{ line.text }}
-          </div>
-        </div>
-      </ng-container>
-      <ng-template #noTranscript>
-        <div class="no-transcript-message">אין תמלול זמין לשיעור זה</div>
-      </ng-template>
-    </div>
-    
+    <div *ngIf="filteredTranscript.length === 0" class="no-transcript-message">אין תמלול זמין לשיעור זה</div>
   </div>
 
-  <!-- רשימת שיעורים -->
   <div class="lessons-list">
     <div class="list-header">{{ selectedLesson?.description || 'בחר שיעור לצפייה' }}</div>
     <div class="scrollable-list">
       <div
         class="lesson-item"
         *ngFor="let lesson of lessons"
-        [class.active]="lesson.video_url === selectedLesson?.video_url"
+        [class.active]="lesson === selectedLesson"
+        [class.disabled]="!lesson.video_url"
         (click)="selectLesson(lesson)"
       >
         <div class="lesson-content">
-          <img
-            [src]="getThumbnailUrl(lesson.video_url)"
-            alt="תמונה ממוזערת"
-            class="lesson-thumbnail"
-          />
-          <div class="lesson-info">
-            <span class="lesson-title">{{ lesson.title }}</span>
-            <span class="lesson-duration">{{ lesson.duration }}</span>
-          </div>
+          <span class="lesson-title">{{ lesson.title }}</span>
         </div>
       </div>
     </div>

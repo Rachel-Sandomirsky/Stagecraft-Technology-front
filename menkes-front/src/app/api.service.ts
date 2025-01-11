@@ -48,4 +48,9 @@ export class ApiService {
 
     return throwError(() => error.error ? error: new Error('An error occurred with the API.'));
   }
+   // הוספת פונקציית PATCH
+   patch<T>(url: string, body: any): Observable<T> {
+    return this.http.patch<T>(url, body).pipe(catchError(this.handleError));
+  }
+
 }

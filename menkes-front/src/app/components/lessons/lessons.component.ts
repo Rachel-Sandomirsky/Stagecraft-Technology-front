@@ -1,5 +1,15 @@
-import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
 import { Lesson } from '../../models/lesson.model';
+import { LessonsService } from 'src/app/services/lessons.service';
+import { Router } from '@angular/router';
 
 declare var YT: any; // YouTube API
 
@@ -11,92 +21,134 @@ declare var YT: any; // YouTube API
 export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() lessons: Lesson[] = [];
   selectedLesson: Lesson | null = null;
-  filteredTranscript: { start_time: string; end_time: string; text: string; isActive: boolean; isVisible: boolean }[] = [];
+  filteredTranscript: {
+    start_time: string;
+    end_time: string;
+    text: string;
+    isActive: boolean;
+    isVisible: boolean;
+  }[] = [];
   @ViewChild('video', { static: false }) videoElement!: ElementRef<HTMLDivElement>;
-  @ViewChild('transcriptContainer', { static: false }) transcriptContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('transcriptContainer', { static: false })
+  transcriptContainer!: ElementRef<HTMLDivElement>;
 
   private player: any;
 
-  constructor() {}
+  constructor(private lessonService: LessonsService, private router: Router) {}
 
   ngOnInit(): void {
-    this.setDefaultLesson(); // ווידוא שיעור ברירת מחדל
+    this.sortLessonsByNumber();
+    this.setDefaultLesson();
   }
 
   ngAfterViewInit(): void {
-    this.loadYouTubeAPI(); // טען את API של YouTube
-    if (this.selectedLesson) {
-      const videoId = this.extractYouTubeId(this.selectedLesson.video_url || '');
-      this.loadVideo(videoId); // טען וידאו כברירת מחדל
-    }
+    this.loadYouTubeAPI();
   }
 
   ngOnChanges(): void {
-    this.setDefaultLesson(); // וידוא שיעור ברירת מחדל בכל שינוי
+    this.sortLessonsByNumber();
+    this.setDefaultLesson();
   }
 
   setDefaultLesson(): void {
-    const savedLesson = localStorage.getItem('selectedLesson');
-    if (savedLesson) {
-      const lesson = JSON.parse(savedLesson);
-      const videoId = this.extractYouTubeId(lesson.video_url || '');
-      this.selectedLesson = {
-        ...lesson,
-        video_url: videoId ? `https://www.youtube.com/embed/${videoId}` : '',
-      };
-  
-      this.filteredTranscript = this.selectedLesson?.transcript
-        ? this.parseTranscript(this.selectedLesson.transcript)
-        : [];
-  
-      if (!this.player && videoId) {
-        this.initPlayer(videoId);
-      }
-    } else if (this.lessons.length > 0) {
-      const lesson = this.lessons[0];
-      const videoId = this.extractYouTubeId(lesson.video_url || '');
-      this.selectedLesson = {
-        ...lesson,
-        video_url: videoId ? `https://www.youtube.com/embed/${videoId}` : '',
-      };
-  
-      this.filteredTranscript = this.selectedLesson?.transcript
-        ? this.parseTranscript(this.selectedLesson.transcript)
-        : [];
-  
-      if (!this.player && videoId) {
-        this.initPlayer(videoId);
-      }
-    }
+    const fullLesson = this.lessons.find(
+      (lesson) => lesson.video_url !== null && lesson.video_url !== undefined
+    );
+
+    this.selectedLesson = fullLesson || this.lessons[0] || null;
+
+    this.filteredTranscript = this.selectedLesson?.transcript
+      ? this.parseTranscript(this.selectedLesson.transcript)
+      : [];
   }
-  
 
   selectLesson(lesson: Lesson): void {
-    if (lesson && lesson.video_url) {
-      const videoId = this.extractYouTubeId(lesson.video_url);
-      this.selectedLesson = {
-        ...lesson,
-        video_url: `https://www.youtube.com/embed/${videoId}`,
-      };
-  
-      this.filteredTranscript = this.selectedLesson?.transcript
-        ? this.parseTranscript(this.selectedLesson.transcript)
-        : [];
-  
-      localStorage.setItem('selectedLesson', JSON.stringify(this.selectedLesson)); // שמירת השיעור ב-localStorage
-  
-      this.loadVideo(videoId);
+    this.selectedLesson = lesson;
+    this.filteredTranscript = lesson.transcript
+      ? this.parseTranscript(lesson.transcript)
+      : [];
+
+    const videoId = lesson.video_url ? this.extractYouTubeId(lesson.video_url) : null;
+
+    if (videoId) {
+      if (this.player) {
+        this.loadVideo(videoId);
+      } else {
+        this.initPlayer(videoId);
+      }
+    } else {
+      console.log('אין סרטון זמין לשיעור זה.');
     }
   }
-  
-  
 
   getThumbnailUrl(videoUrl: string): string {
     const videoId = this.extractYouTubeId(videoUrl);
     return `https://img.youtube.com/vi/${videoId}/default.jpg`;
   }
 
-  parseTranscript(transcript: string): { start_time: string; end_time: string; text: string; isActive: boolean; isVisible: boolean }[] {
+
+  extractYouTubeId(url: string): string {
+    const videoIdMatch = url.match(
+      /(?:v=|\/embed\/|youtu\.be\/|\/v\/|\?vi=|&vi=|\/u\/\w\/|embed\/|v=|youtu\.be\/|\/embed\/|\/shorts\/|\/watch\?v=|\/watch\?vi=)([^#\&\?]*).*/
+    );
+    return videoIdMatch ? videoIdMatch[1] : '';
+  }
+
+  loadYouTubeAPI(): void {
+    if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://www.youtube.com/iframe_api';
+      script.onload = () => this.initPlayer();
+      document.body.appendChild(script);
+    } else {
+      this.initPlayer();
+    }
+  }
+  
+  
+  waitForYTReady(): void {
+    const interval = setInterval(() => {
+      if (typeof YT !== 'undefined' && typeof YT.Player !== 'undefined') {
+        console.log('YouTube API is ready.');
+        clearInterval(interval);
+        this.initPlayer(); // אתחל את הנגן כאשר ה-API מוכן
+      }
+    }, 2000);
+  }
+  
+  
+  initPlayer(videoId?: string): void {
+    if (!this.videoElement || !this.videoElement.nativeElement) {
+      console.error('Video element is not available yet.');
+      return;
+    }
+  
+    const idToLoad = videoId || this.extractYouTubeId(this.selectedLesson?.video_url || '');
+  
+      console.log('Initializing new YouTube player...');
+      this.player = new YT.Player(this.videoElement.nativeElement, {
+        height: '100%',
+        width: '100%',
+        videoId: idToLoad,
+        playerVars: {
+          autoplay: 0,
+          controls: 1,
+          rel: 0,
+          modestbranding: 1,
+        },
+        events: {
+          onReady: () => this.onPlayerReady(),
+          onStateChange: (event: any) => this.onPlayerStateChange(event),
+        },
+      });
+  }  
+  
+  parseTranscript(transcript: any): { start_time: string; end_time: string; text: string; isActive: boolean; isVisible: boolean }[] {
+    if (!transcript || typeof transcript !== 'string' || transcript.trim() === '') {
+      console.warn('Transcript is empty, invalid, or not a string.');
+      return [];
+    }
+  
     try {
       return JSON.parse(transcript).map((line: any) => ({
         start_time: line.start_time || '',
@@ -110,47 +162,15 @@ export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
       return [];
     }
   }
-
-  extractYouTubeId(url: string): string {
-    const videoIdMatch = url.match(/(?:v=|\/embed\/|youtu\.be\/|\/v\/|\?vi=|&vi=|\/u\/\w\/|embed\/|v=|youtu\.be\/|\/embed\/|\/shorts\/|\/watch\?v=|\/watch\?vi=)([^#\&\?]*).*/);
-    return videoIdMatch ? videoIdMatch[1] : '';
-  }
-
-  loadYouTubeAPI(): void {
-    if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
-      const script = document.createElement('script');
-      script.src = 'https://www.youtube.com/iframe_api';
-      script.onload = () => {
-        this.initPlayer();
-      };
-      document.body.appendChild(script);
-    } else {
-      this.initPlayer();
+  
+  sortLessonsByNumber(): void {
+    if (this.lessons && this.lessons.length > 0) {
+      this.lessons.sort((a, b) => a.lessons_number - b.lessons_number);
     }
   }
 
-  initPlayer(videoId?: string): void {
-    const idToLoad = videoId || this.extractYouTubeId(this.selectedLesson?.video_url || '');
-    this.player = new YT.Player(this.videoElement.nativeElement, {
-      height: '100%', // ווידוא גובה מלא
-      width: '100%', // ווידוא רוחב מלא
-      videoId: idToLoad,
-      playerVars: {
-        autoplay: 0, // ביטול הפעלה אוטומטית
-        controls: 1, // הצגת כפתורי שליטה
-        rel: 0, // לא להציג סרטונים קשורים
-        modestbranding: 1 // הפחתת מיתוג יוטיוב
-      },
-      events: {
-        onReady: () => this.onPlayerReady(),
-        onStateChange: (event: any) => this.onPlayerStateChange(event),
-      },
-    });
-  }
-  
-
   loadVideo(videoId: string): void {
-    if (this.player) {
+    if (this.player && this.player.loadVideoById) {
       this.player.loadVideoById(videoId);
     } else {
       this.initPlayer(videoId);
@@ -165,6 +185,17 @@ export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
     if (event.data === YT.PlayerState.PLAYING) {
       this.startUpdatingTranscript();
     }
+    if (event.data === YT.PlayerState.ENDED) {
+      this.handleVideoEnd();
+    }
+  }
+
+  handleVideoEnd(): void {
+    const userConfirmed = confirm('סיימת את השיעור! האם ברצונך לעבור לבוחן?');
+    if (userConfirmed) {
+      this.updateUserQuizStatus();
+      this.navigateToQuiz();
+    }
   }
 
   startUpdatingTranscript(): void {
@@ -173,7 +204,7 @@ export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
       if (currentTime !== undefined) {
         this.updateTranscript(currentTime);
       }
-      requestAnimationFrame(update); // עדכון מתמשך
+      requestAnimationFrame(update);
     };
     requestAnimationFrame(update);
   }
@@ -218,5 +249,21 @@ export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
     const container = this.transcriptContainer.nativeElement;
     const rect = container.getBoundingClientRect();
     return rect.bottom <= window.innerHeight && rect.top >= 0;
+  }
+
+  updateUserQuizStatus(): void {
+    this.lessonService.updateUserQuizStatus(this.selectedLesson?.course_id || 0).subscribe({
+      next: () => {
+        console.log('User quiz status updated successfully.');
+      },
+      error: (err) => {
+        console.error('Failed to update user quiz status:', err);
+      },
+    });
+  }
+
+  navigateToQuiz(): void {
+    const lessonCode = this.selectedLesson?.lessone_code;
+    this.router.navigate([`/quizzes/${lessonCode}`]);
   }
 }
