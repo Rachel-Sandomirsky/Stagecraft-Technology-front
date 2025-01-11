@@ -130,7 +130,6 @@ export class RegisterComponent implements OnInit, OnChanges {
   }
 
   async onSubmit(): Promise<void> {
-    debugger
     if (this.registrationForm.valid) {
       const formData = {
         user_email: this.email?.value,

@@ -101,7 +101,6 @@ export class QuizzesComponent implements OnInit
 
   // פונקציה לשליחת תשובה
   submitAnswer() {
-    debugger
     if(this.userEmail!= null)
     {
       this.quizzesService.submitAnswer(this.quiz.code, this.userEmail, this.userAnswer).subscribe(
