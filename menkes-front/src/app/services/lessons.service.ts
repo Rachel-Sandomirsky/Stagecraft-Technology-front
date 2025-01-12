@@ -8,6 +8,7 @@ import { ApiService } from '../api.service';
   providedIn: 'root',
 })
 export class LessonsService {
+  
   private apiUrl = `${environment.apiUrl}/lessons`;
 
   constructor(private apiService: ApiService) {}
@@ -29,6 +30,9 @@ export class LessonsService {
         console.log('getLessonsByCourseId request completed.');
       })
     );
+  }
+  updateUserLessonProgress(courseId: number): Observable<void> {
+    return this.apiService.post<void>(`${this.apiUrl}/update-lesson-progress`, { courseId });
   }
 
   // Function to fetch a specific lesson by lesson ID

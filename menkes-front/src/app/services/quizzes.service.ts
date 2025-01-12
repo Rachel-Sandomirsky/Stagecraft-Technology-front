@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 // Interface for the request body
 interface SubmitAnswerRequest {
@@ -26,23 +27,24 @@ interface Quiz {
   providedIn: 'root'
 })
 export class QuizzesService {
-  private apiUrl = 'http://localhost:3000/quizzes';  
+  private apiUrl = `${environment.apiUrl}/lessons`;
+  private quizzesApiUrl = `${environment.apiUrl}/quizzes`;
 
   constructor(private http: HttpClient) {}
 
   getQuizByClassCode(classCode: number): Observable<Quiz> {
-    return this.http.get<Quiz>(`${this.apiUrl}/${classCode}`);
+    return this.http.get<Quiz>(`${this.quizzesApiUrl}/${classCode}`);
   }
   // Get correct answer
   getCorrectAnswer(class_code: number): Observable<{ correctOption: number }> {
-    return this.http.get<{ correctOption: number }>(`${this.apiUrl}/correct-answer?class_code=${class_code}`);
+    return this.http.get<{ correctOption: number }>(`${this.quizzesApiUrl}/correct-answer?class_code=${class_code}`);
   }
 
   // Submit the user's answer
   submitAnswer(quizCode: number, userEmail: string, userAnswer: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/answer`, { quizz_code: quizCode, user_email: userEmail, userAnswer: userAnswer });
+    return this.http.post(`${this.quizzesApiUrl}/answer`, { quizz_code: quizCode, userAnswer: userAnswer });
   }
-  checkIfAnswered(classCode: number, userEmail: string): Observable<boolean> {
-    return this.http.get<boolean>(`${this.apiUrl}/answered/${classCode}/${userEmail}`);
+  checkIfAnswered(classCode: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.quizzesApiUrl}/answered/${classCode}`);
   }
 }

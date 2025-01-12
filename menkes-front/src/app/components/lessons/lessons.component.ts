@@ -10,6 +10,8 @@ import {
 import { Lesson } from '../../models/lesson.model';
 import { LessonsService } from 'src/app/services/lessons.service';
 import { Router } from '@angular/router';
+import { QuizzesService } from 'src/app/services/quizzes.service';
+import { Course } from 'src/app/models/course';
 
 declare var YT: any; // YouTube API
 
@@ -20,6 +22,7 @@ declare var YT: any; // YouTube API
 })
 export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() lessons: Lesson[] = [];
+  @Input() course:Course|null= null;
   selectedLesson: Lesson | null = null;
   filteredTranscript: {
     start_time: string;
@@ -34,7 +37,7 @@ export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
 
   private player: any;
 
-  constructor(private lessonService: LessonsService, private router: Router) {}
+  constructor(private lessonService: LessonsService,private quizzesService: QuizzesService, private router: Router) {}
 
   ngOnInit(): void {
     this.sortLessonsByNumber();
@@ -190,13 +193,72 @@ export class LessonsComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  handleVideoEnd(): void {
-    const userConfirmed = confirm('סיימת את השיעור! האם ברצונך לעבור לבוחן?');
-    if (userConfirmed) {
-      this.updateUserQuizStatus();
-      this.navigateToQuiz();
+  async handleVideoEnd(): Promise<void> {
+    const hasQuiz = this.selectedLesson?.quiz_code !== undefined;
+    console.log('this.selectedLesson?.quiz_code', this.selectedLesson?.quiz_code )
+    const hasAnswered = await this.checkIfQuizAnswered(); // בדיקת סטטוס תשובה
+  
+    if (hasQuiz && !hasAnswered) {
+      const goToQuiz = confirm('סיימת את השיעור! האם לעבור לבוחן?');
+      if (goToQuiz) {
+        this.navigateToQuiz();
+      }
+    } else {
+      const goToNext = confirm('סיימת את השיעור! האם לעבור לשיעור הבא?');
+      if (goToNext) {
+        this.moveToNextLesson();
+      }
     }
   }
+  moveToNextLesson(): void {
+    const currentLessonIndex = this.lessons.findIndex(
+      (lesson) => lesson.lessone_code === this.selectedLesson?.lessone_code
+    );
+  
+    if (currentLessonIndex === -1 || currentLessonIndex === this.lessons.length - 1) {
+      alert('אין שיעורים נוספים לעבור אליהם!');
+      return;
+    }
+  
+    // מעבר לשיעור הבא
+    const nextLesson = this.lessons[currentLessonIndex + 1];
+    if (!nextLesson?.lessone_code) {
+      alert('אין שיעור נוסף לעבור אליו!');
+      return;
+    }
+
+    if (!this.course || !this.course.code) {
+      alert('קורס לא מוגדר או קוד קורס חסר!');
+      return;
+    }
+    this.lessonService.updateUserLessonProgress(this.course?.code).subscribe({
+      next: () => {
+        this.selectLesson(nextLesson); // מעבר לשיעור הבא
+        alert('עברת לשיעור הבא בהצלחה!');
+      },
+      error: (err) => {
+        console.error('Failed to update user lesson progress:', err);
+        alert('שגיאה בעדכון התקדמות השיעור.');
+      },
+    });
+  }
+  
+  async checkIfQuizAnswered(): Promise<boolean> {
+    const lessonCode = this.selectedLesson?.lessone_code;
+    if (!lessonCode) return false;
+  
+    this.quizzesService.checkIfAnswered(lessonCode).
+    subscribe({
+      next: (isanswared) => {
+          return isanswared    
+          },
+      error: (err) => {
+        console.error('Failed to update user quiz status:', err);
+      },
+    });
+    return false;
+  }
+    
 
   startUpdatingTranscript(): void {
     const update = () => {

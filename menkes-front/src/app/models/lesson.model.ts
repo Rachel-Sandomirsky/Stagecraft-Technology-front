@@ -7,6 +7,7 @@ export class Lesson {
     public duration: string,
     public lessons_number: number,
     public transcript: string,
-    public lessone_code?: number
+    public quiz_code? : boolean,
+    public lessone_code?: number,
   ) {}
 }

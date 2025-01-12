@@ -61,7 +61,7 @@ export class QuizzesComponent implements OnInit
    // פונקציה שמבצע את הבדיקה אם המשתמש ענה על הבוחן
    checkIfAnswered() {
     if (this.userEmail) {
-      this.quizzesService.checkIfAnswered(this.classCode, this.userEmail).subscribe(
+      this.quizzesService.checkIfAnswered(this.classCode).subscribe(
         (answered) => {
           this.quizAnswered = answered;
         },
