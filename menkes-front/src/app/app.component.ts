@@ -40,7 +40,7 @@ export class AppComponent implements OnDestroy, OnInit {
         token: user.access_token
       });
       console.log('Sending payload:', payload); // הדפס מה נשלח
-      navigator.sendBeacon('https://menkes-2-back-1.onrender.com/logout', payload);
+      navigator.sendBeacon('http://localhost:3000/logout', payload);
     }
   }
 
